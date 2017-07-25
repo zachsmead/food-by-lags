@@ -1,3 +1,95 @@
-<h1> Food By Lags Yo! </h1>
+<div class="currentuser">
+	<% if current_user && !current_user.admin %>
+		<h4> Welcome <%= current_user.first_name %>!</h4>
+	<% end %>
+</div>
+<div class="currentuser">
+	<% if current_user && current_user.admin %>
+		<h4> Welcome Admin  <%= current_user.first_name %>!</h4>
+	<% end %>
+</div>
 
 
+<h1> Food By Lags Coming Soon </h1>
+
+<% if !session[:id] %>
+	<h1> New User </h1>
+	<div class="signup-page">
+		<div class="log">
+			<h1> Sign Up Here</h1>
+			<%= form_tag "/users", method: :post do %>
+				<div>
+				First Name: <input type="text" name="first_name"%>
+			<br>
+				Last Name: <input type="text" name="last_name"%>
+			<br>
+				Email: <input type="email" name="email"%>
+			<br>
+				Shipping Address Line 1: <input type="text" name="address_one" value="1234 Cherry Way Treesgrowingheresville, CA 93443">
+			<br>
+				Shipping Address Line 2(optional): <input type="text" name="address_two" value="Apt Tree">
+			<br>
+				Password: <input type="password" name="password" %>
+			<br>
+				Password Confirmation: <input type="password" name="password_confirmation"%>
+			<br>
+				<input type="hidden" name="admin" value="false" %>
+				<input type="submit" name="Create Account" %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+<% end %>
+
+
+	<% if session[:id] %>
+		<div class="edituser">
+          <h4> Edit User Information </h4>
+          <%= form_tag "/users/:id/edit", method: :patch do %>
+          <div>
+            First Name: <input type="text" name="first_name" value="<%= current_user.  first_name %>"%>
+            <br>
+            Last Name: <input type="text" name="last_name" value="<%= current_user.last_name %>"%>
+            <br>
+            Email: <input type="email" name="email" value="<%= current_user.email %>"%>
+            <br>
+			Shipping Address Line 1: <input type="text" name="address_one" value="1234 Cherry Way Treesgrowingheresville, CA 93443">
+			<br>
+			Shipping Address Line 2(optional): <input type="text" name="address_two" value="Apt Tree">
+            <br>
+            <input type="submit" value="Edit User Info">
+         </div>
+          <% end %>
+        </div>
+	<% end %>
+
+
+<% if !current_user %>
+	<h1> Login Here</h1>
+	<div class="log">
+	<%= form_tag "/users/signin", method: :post do %>
+		<div>
+		Email: <input type="text" name="email">
+		</div>
+	<br>
+		<div>
+		Password: <input type="password" name="password">
+		</div>
+	<br>
+		<div class="submit_button">
+		<input type="submit" value="Login">
+		<br>
+		<%= button_to "Home", "/", method: :get %>
+		</div>
+	<% end %>
+	</div>
+<% end %>
+
+
+
+
+
+<% if session[:id] %>
+	<%= button_to "Logout", "/users/signout", method: :get %>
+
+<% end %>

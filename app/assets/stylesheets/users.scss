@@ -1,3 +1,29 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.currentuser {
+    font-size: 150%;
+    float: center;
+    text-align: center;
+	text-shadow: 2px 2px #080808;
+   	margin: 0 0.9em;
+	color: #5cb85c;
+	font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+
+}
+
+.signup-page {
+    float: center;
+    text-align: right;
+   	margin: 0 0.9em;
+	color: #5cb85c;
+	font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+
+}
+
+.signup-page.body {
+  	width:195%;
+
+}
