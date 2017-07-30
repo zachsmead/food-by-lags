@@ -13,9 +13,9 @@
 <h1> Food By Lags Coming Soon </h1>
 
 <% if !session[:id] %>
-	<h1> New User </h1>
 	<div class="signup-page">
 		<div class="log">
+			<h1> New User </h1>
 			<h1> Sign Up Here</h1>
 			<%= form_tag "/users", method: :post do %>
 				<div>

@@ -2807,3 +2807,240 @@ Processing by UsersController#index as HTML
 Completed 200 OK in 119ms (Views: 114.1ms | ActiveRecord: 0.5ms)
 
 
+Started GET "/users/signout" for 127.0.0.1 at 2017-07-25 16:27:19 -0700
+Processing by SessionsController#signout as HTML
+Redirected to http://localhost:3000/
+Completed 302 Found in 58ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-25 16:27:19 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  Rendered users/index.html.erb within layouts/application (101.3ms)
+Completed 200 OK in 591ms (Views: 570.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/signin" for 127.0.0.1 at 2017-07-25 16:27:33 -0700
+Processing by SessionsController#signin as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"UntJmSakbZHBN4x+KfmflQAGUAuesbpS9vSJEahmjOa5t5/skDu8h2VDCtXbV69NNJqqq0BNYgAmdUiz3XPyzw==", "email"=>"jimmy@gmail.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (11.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jimmy@gmail.com"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 33ms (ActiveRecord: 11.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-25 16:27:33 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (4.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered users/index.html.erb within layouts/application (21.3ms)
+Completed 200 OK in 206ms (Views: 195.6ms | ActiveRecord: 4.8ms)
+
+
+Started PATCH "/users/:id/edit" for 127.0.0.1 at 2017-07-25 16:27:39 -0700
+Processing by UsersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"plcLDILVhwqoV17gJ8nZLp+FU4ghF8eAiCYEZbWDUMZNm915NEpWHAwj2EvVZ+n2qxmpKP/rH9JYp8XHwJYu7w==", "first_name"=>"Jim", "last_name"=>"Lagattuta", "email"=>"jimmy@gmail.com", "address_one"=>"1234 Cherry Way Treesgrowingheresville, CA 93443", "address_two"=>"Apt Tree", "id"=>":id"}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (5.1ms)[0m  [1m[33mUPDATE "users" SET "first_name" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["first_name", "Jim"], ["updated_at", "2017-07-25 23:27:39.334492"], ["id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 55ms (ActiveRecord: 8.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-25 16:27:39 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered users/index.html.erb within layouts/application (5.7ms)
+Completed 200 OK in 168ms (Views: 162.8ms | ActiveRecord: 0.5ms)
+
+
+Started PATCH "/users/:id/edit" for 127.0.0.1 at 2017-07-25 16:27:54 -0700
+Processing by UsersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"WzrBy8ncxowWtACpXqP8GHRVgdu+ONfp/V2V/QKR3w6w9he+f0MXmrLAhgKsDczAQMl7e2DED7st3FRfd4ShJw==", "first_name"=>"James", "last_name"=>"Lagattuta", "email"=>"jimmy@gmail.com", "address_one"=>"1234 Cherry Way Treesgrowingheresville, CA 93443", "address_two"=>"Apt Tree", "id"=>":id"}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[33mUPDATE "users" SET "first_name" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["first_name", "James"], ["updated_at", "2017-07-25 23:27:54.577136"], ["id", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 16ms (ActiveRecord: 3.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-25 16:27:54 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered users/index.html.erb within layouts/application (5.7ms)
+Completed 200 OK in 101ms (Views: 95.0ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/users/signout" for 127.0.0.1 at 2017-07-25 16:27:56 -0700
+Processing by SessionsController#signout as HTML
+Redirected to http://localhost:3000/
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-25 16:27:56 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  Rendered users/index.html.erb within layouts/application (6.3ms)
+Completed 200 OK in 125ms (Views: 122.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-25 16:31:03 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  Rendered users/index.html.erb within layouts/application (33.8ms)
+Completed 200 OK in 426ms (Views: 392.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/food_by_lags" for 127.0.0.1 at 2017-07-29 19:04:10 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (5.9ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  
+ActionController::RoutingError (No route matches [GET] "/food_by_lags"):
+  
+actionpack (5.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.4) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.4) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.4) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.4) lib/rails/engine.rb:522:in `call'
+puma (3.9.1) lib/puma/configuration.rb:224:in `call'
+puma (3.9.1) lib/puma/server.rb:602:in `handle_request'
+puma (3.9.1) lib/puma/server.rb:435:in `process_client'
+puma (3.9.1) lib/puma/server.rb:299:in `block in run'
+puma (3.9.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  Rendering /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.1ms)
+  Rendered collection of /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.4/lib/action_dispatch/middleware/templates/routes/_route.html.erb [14 times] (7.6ms)
+  Rendered /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.4/lib/action_dispatch/middleware/templates/routes/_table.html.erb (13.7ms)
+  Rendering /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (16.1ms)
+  Rendered /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (228.4ms)
+Started GET "/comingsoon" for 127.0.0.1 at 2017-07-29 19:05:00 -0700
+Processing by UsersController#comingsoon as HTML
+  Rendering users/comingsoon.html.erb within layouts/application
+  Rendered users/comingsoon.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 538ms (Views: 533.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-29 19:05:35 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  Rendered users/index.html.erb within layouts/application (11.7ms)
+Completed 200 OK in 134ms (Views: 121.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-29 19:05:49 -0700
+Processing by UsersController#comingsoon as HTML
+  Rendering users/comingsoon.html.erb within layouts/application
+  Rendered users/comingsoon.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 103ms (Views: 98.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-29 19:07:51 -0700
+Processing by UsersController#comingsoon as HTML
+  Rendering users/comingsoon.html.erb within layouts/application
+  Rendered users/comingsoon.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 306ms (Views: 297.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-29 19:08:22 -0700
+Processing by UsersController#comingsoon as HTML
+  Rendering users/comingsoon.html.erb within layouts/application
+  Rendered users/comingsoon.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 150ms (Views: 143.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-29 19:08:29 -0700
+Processing by UsersController#comingsoon as HTML
+  Rendering users/comingsoon.html.erb within layouts/application
+  Rendered users/comingsoon.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 148ms (Views: 139.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-29 19:08:38 -0700
+Processing by UsersController#comingsoon as HTML
+  Rendering users/comingsoon.html.erb within layouts/application
+  Rendered users/comingsoon.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 139ms (Views: 136.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-29 19:09:19 -0700
+Processing by UsersController#comingsoon as HTML
+  Rendering users/comingsoon.html.erb within layouts/application
+  Rendered users/comingsoon.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 161ms (Views: 150.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-29 19:09:26 -0700
+Processing by UsersController#comingsoon as HTML
+  Rendering users/comingsoon.html.erb within layouts/application
+  Rendered users/comingsoon.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 97ms (Views: 92.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-29 19:16:14 -0700
+Processing by UsersController#comingsoon as HTML
+  Rendering users/comingsoon.html.erb within layouts/application
+  Rendered users/comingsoon.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 155ms (Views: 144.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-29 19:16:29 -0700
+Processing by UsersController#comingsoon as HTML
+  Rendering users/comingsoon.html.erb within layouts/application
+  Rendered users/comingsoon.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 92ms (Views: 89.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-29 19:16:41 -0700
+Processing by UsersController#comingsoon as HTML
+  Rendering users/comingsoon.html.erb within layouts/application
+  Rendered users/comingsoon.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 220ms (Views: 211.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-29 19:16:54 -0700
+Processing by UsersController#comingsoon as HTML
+  Rendering users/comingsoon.html.erb within layouts/application
+  Rendered users/comingsoon.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 77ms (Views: 73.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-29 19:17:24 -0700
+Processing by UsersController#comingsoon as HTML
+  Rendering users/comingsoon.html.erb within layouts/application
+  Rendered users/comingsoon.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 114ms (Views: 109.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-29 19:18:54 -0700
+Processing by UsersController#comingsoon as HTML
+  Rendering users/comingsoon.html.erb within layouts/application
+  Rendered users/comingsoon.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 220ms (Views: 210.7ms | ActiveRecord: 0.0ms)
+
+

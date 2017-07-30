@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   	get "/users/:id/edit" => "users#edit"
   	patch "/users/:id/edit" => "users#update"
     resources :users
-    root to: "users#index"
+    root to: "users#comingsoon"
     post "/users/signin" => "sessions#signin"
-
+    get "/comingsoon" => "users#comingsoon"
+    
 end
