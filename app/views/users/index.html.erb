@@ -1,3 +1,5 @@
+<%= button_to "Browse Products", "/products", method: :get %>
+
 <div class="currentuser">
 	<% if current_user && !current_user.admin %>
 		<h4> Welcome <%= current_user.first_name %>!</h4>
@@ -47,15 +49,15 @@
           <h4> Edit User Information </h4>
           <%= form_tag "/users/:id/edit", method: :patch do %>
           <div>
-            First Name: <input type="text" name="first_name" value="<%= current_user.  first_name %>"%>
+            First Name: <input type="text" name="first_name" value="<%= current_user.first_name %>"%>
             <br>
             Last Name: <input type="text" name="last_name" value="<%= current_user.last_name %>"%>
             <br>
             Email: <input type="email" name="email" value="<%= current_user.email %>"%>
             <br>
-			Shipping Address Line 1: <input type="text" name="address_one" value="1234 Cherry Way Treesgrowingheresville, CA 93443">
+			Shipping Address Line 1: <input type="text" name="address_one" value="<% current_user.address%>">
 			<br>
-			Shipping Address Line 2(optional): <input type="text" name="address_two" value="Apt Tree">
+			Shipping Address Line 2(optional): <input type="text" name="address_two" value="optional">
             <br>
             <input type="submit" value="Edit User Info">
          </div>
@@ -79,17 +81,14 @@
 		<div class="submit_button">
 		<input type="submit" value="Login">
 		<br>
-		<%= button_to "Home", "/", method: :get %>
 		</div>
 	<% end %>
+		<%= button_to "Home", "/users", method: :get %>
 	</div>
 <% end %>
 
 
-
-
-
 <% if session[:id] %>
-	<%= button_to "Logout", "/users/signout", method: :get %>
+	<%= button_to "Logout", "/signout", method: :get %>
 
 <% end %>
