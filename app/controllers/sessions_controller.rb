@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
 			redirect_to "/users"
 		else
 			flash[:danger] = "Invalid Email or Password"
-			redirect_to "/signin"
+			redirect_to "/users/signin"
 		end
 	end
 
