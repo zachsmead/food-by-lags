@@ -1,0 +1,11 @@
+<h1> Your Order </h1>
+		User Id: <%= @order.user_id %>
+		<br>
+		Subtotal: $<%= @order.subtotal %>
+		<br>
+		Tax: <%= @order.tax %>
+		<br>
+		Total: <%= @order.total %>
+		<br>
+<br>
+		<%= button_to "Home", "/users", method: :get %>

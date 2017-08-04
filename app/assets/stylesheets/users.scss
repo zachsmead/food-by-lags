@@ -15,8 +15,6 @@
 }
 
 .signup-page {
-    float: center;
-    text-align: right;
    	margin: 0 0.9em;
 	color: #5cb85c;
 	font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
@@ -25,5 +23,11 @@
 
 .signup-page.body {
   	width:195%;
+
+}
+
+.comingsoonhtml {
+  float: center;
+  font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
 
 }

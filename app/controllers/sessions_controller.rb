@@ -13,10 +13,10 @@ class SessionsController < ApplicationController
 			puts "*" * 100
 			puts "*" * 100
 			flash[:success] = "You Have Successfully Logged In"
-			redirect_to "/"
+			redirect_to "/users"
 		else
 			flash[:danger] = "Invalid Email or Password"
-			redirect_to "/"
+			redirect_to "/signin"
 		end
 	end
 
@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
 		if session[:id]
 			session[:id] = nil
 			flash[:success] = "You have succussfully signed out"
-			redirect_to "/"
+			redirect_to "/users"
 		end
 
 	end

@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
+
 	def index
+	end
+
+	def show
+		redirect_to "/users"
 	end
 
 	def new
@@ -23,11 +28,11 @@ class UsersController < ApplicationController
 		@user.save
 		if @user.save
 			session[:id] = @user_id
-			flash[:success] = "You Have Successfully Signed Up, Please Log in Below"
+			flash[:success] = "Hello #{@user.first_name}! You Have Successfully Signed Up, Please Log in Below"
 		else 
 			flash[:danger] = "Invalid Match"
 		end
-		redirect_to "/"
+		redirect_to "/users"
 	end
 
 	def edit
@@ -41,7 +46,7 @@ class UsersController < ApplicationController
 		ship_two = params[:address_two]
 		if ship_one && ship_two
 			shippingaddress = ship_one + " " + ship_two
-		elsif 
+		else
 			shippingaddress = ship_one 
 		end
 		@user.address = shippingaddress
@@ -54,8 +59,14 @@ class UsersController < ApplicationController
 			puts "*" * 100
 			puts "*" * 100
 			puts "*" * 100
-			redirect_to "/"
-
+		flash[:success] = "You Have Succesfully Updated Your Account"
+		else
+		flash[:danger] = "Something Went Wrong With Update input"
 		end
+		redirect_to "/users"
 	end
+
+	def comingsoon
+	end
+
 end
