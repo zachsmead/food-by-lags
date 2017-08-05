@@ -10,37 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170803192137) do
+ActiveRecord::Schema.define(version: 20170805091929) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "carts", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "product_id"
-    t.integer  "quantity"
+    t.decimal  "user_id",    precision: 9, scale: 2
+    t.decimal  "product_id", precision: 9, scale: 2
+    t.decimal  "quantity",   precision: 9, scale: 2
     t.string   "status"
-    t.integer  "order_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.decimal  "order_id",   precision: 9, scale: 2
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
-    t.decimal  "subtotal"
-    t.decimal  "tax"
-    t.decimal  "total"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.decimal  "subtotal",   precision: 9, scale: 2
+    t.decimal  "tax",        precision: 9, scale: 2
+    t.decimal  "total",      precision: 9, scale: 2
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
     t.string   "product_type"
-    t.integer  "stock"
-    t.decimal  "cost"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.decimal  "stock",        precision: 9, scale: 2
+    t.decimal  "cost",         precision: 9, scale: 2
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -25,5 +25,6 @@ class OrdersController < ApplicationController
 
 	def show
 		@order = Order.find_by(id: params[:id])
+		@amount_in_cents = @order.total * 100
 	end
 end
