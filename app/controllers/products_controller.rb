@@ -1,7 +1,9 @@
 class ProductsController < ApplicationController
 	def index
 		@products = Product.all
-		@cart = current_user.carts.where(status: "carted")
+		if current_user
+			@cart = current_user.carts.where(status: "carted")
+		end
 		@total = 0
 	end
 
