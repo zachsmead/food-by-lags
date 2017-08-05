@@ -14379,3 +14379,127 @@ Processing by ChargesController#new as HTML
 Completed 200 OK in 9ms (Views: 5.8ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/products" for 127.0.0.1 at 2017-08-04 21:58:14 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (1.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (1.5ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 1], ["status", "carted"]]
+  Rendered products/index.html.erb within layouts/application (16.7ms)
+Completed 200 OK in 148ms (Views: 117.2ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/charges/new" for 127.0.0.1 at 2017-08-04 21:58:17 -0700
+Processing by ChargesController#new as HTML
+  Rendering charges/new.html.erb within layouts/charges
+  Rendered charges/new.html.erb within layouts/charges (1.9ms)
+Completed 200 OK in 10ms (Views: 7.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-04 22:01:18 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 1], ["status", "carted"]]
+  Rendered products/index.html.erb within layouts/application (6.3ms)
+Completed 200 OK in 132ms (Views: 121.6ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/charges/new" for 127.0.0.1 at 2017-08-04 22:01:20 -0700
+Processing by ChargesController#new as HTML
+  Rendering charges/new.html.erb within layouts/charges
+  Rendered charges/new.html.erb within layouts/charges (2.1ms)
+Completed 200 OK in 10ms (Views: 7.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/charges/new" for 127.0.0.1 at 2017-08-04 22:06:55 -0700
+Processing by ChargesController#new as HTML
+  Rendering charges/new.html.erb within layouts/charges
+  Rendered charges/new.html.erb within layouts/charges (6.0ms)
+Completed 200 OK in 22ms (Views: 13.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-08-04 22:32:38 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsersController#comingsoon as HTML
+  Rendering users/comingsoon.html.erb within layouts/application
+  Rendered users/comingsoon.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 419ms (Views: 404.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2017-08-04 22:32:44 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered users/index.html.erb within layouts/application (39.9ms)
+Completed 200 OK in 101ms (Views: 87.1ms | ActiveRecord: 10.9ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-04 22:32:46 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (1.3ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 1], ["status", "carted"]]
+  Rendered products/index.html.erb within layouts/application (15.3ms)
+Completed 200 OK in 109ms (Views: 69.6ms | ActiveRecord: 8.6ms)
+
+
+Started GET "/charges/new" for 127.0.0.1 at 2017-08-04 22:32:50 -0700
+Processing by ChargesController#new as HTML
+  Rendering charges/new.html.erb within layouts/charges
+  Rendered charges/new.html.erb within layouts/charges (1.2ms)
+Completed 200 OK in 8ms (Views: 5.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/charges" for 127.0.0.1 at 2017-08-04 22:33:14 -0700
+Processing by ChargesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"NIUFHfRhLYiXiR3QLIDn1It9H7kzeEK/UJAUy/vXENwNHsm3VsnZ30DntpKHg7+seX+avgSUy7u8pYMI34wieg==", "stripeToken"=>"tok_1AnKuQE8jSS0SGQdl1JoxDA3", "stripeTokenType"=>"card", "stripeEmail"=>"jimmy@gmail.com"}
+  Rendering charges/create.html.erb within layouts/charges
+  Rendered charges/create.html.erb within layouts/charges (0.5ms)
+Completed 200 OK in 1396ms (Views: 5.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-04 22:36:42 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (0.5ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 1], ["status", "carted"]]
+  Rendered products/index.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 92ms (Views: 83.5ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/charges/new" for 127.0.0.1 at 2017-08-04 22:36:44 -0700
+Processing by ChargesController#new as HTML
+  Rendering charges/new.html.erb within layouts/charges
+  Rendered charges/new.html.erb within layouts/charges (1.1ms)
+Completed 200 OK in 11ms (Views: 5.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-04 22:39:04 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (0.4ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 1], ["status", "carted"]]
+  Rendered products/index.html.erb within layouts/application (4.8ms)
+Completed 200 OK in 90ms (Views: 83.7ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/charges/new" for 127.0.0.1 at 2017-08-04 22:39:05 -0700
+Processing by ChargesController#new as HTML
+  Rendering charges/new.html.erb within layouts/charges
+  Rendered charges/new.html.erb within layouts/charges (1.7ms)
+Completed 200 OK in 11ms (Views: 7.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/charges" for 127.0.0.1 at 2017-08-04 22:39:19 -0700
+Processing by ChargesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"WST9aQb6+cZk3uDXy9MajhwYhb7d4hG4SGaMFR7xr55gvzHDpFINkbOwS5Vg0EL27hoAueoOmLykUxvWOqqdOA==", "stripeToken"=>"tok_1AnL0KE8jSS0SGQdIPiJwXej", "stripeTokenType"=>"card", "stripeEmail"=>"jimmy@gmail.com"}
+  Rendering charges/create.html.erb within layouts/charges
+  Rendered charges/create.html.erb within layouts/charges (0.4ms)
+Completed 200 OK in 1083ms (Views: 4.6ms | ActiveRecord: 0.0ms)
+
+
