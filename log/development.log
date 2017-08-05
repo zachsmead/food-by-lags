@@ -14541,3 +14541,843 @@ Processing by ChargesController#create as HTML
 Completed 200 OK in 1261ms (Views: 6.4ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/users" for 127.0.0.1 at 2017-08-05 01:51:58 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  Rendered users/index.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 384ms (Views: 377.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-08-05 01:59:23 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"t0Na1OZ3rPbFQMCXtsnuMw87fzCRK4fHTJxBGdkNzAehhUIpYmDJKN4C9/rnMrIpxsTSTSDBgDIAXDIcTjLbIA==", "first_name"=>"Fin", "last_name"=>"Fisher", "email"=>"fin@ocean.com", "address_one"=>"1212 Atlantis Iceberg, AK 93493", "address_two"=>"Apt Tree", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "admin"=>"false", "Create Account"=>"Submit"}
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (3.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "fin@ocean.com"], ["LIMIT", 1]]
+  [1m[35mSQL (8.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "address", "admin", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["first_name", "Fin"], ["last_name", "Fisher"], ["email", "fin@ocean.com"], ["address", "1212 Atlantis Iceberg, AK 93493 Apt Tree"], ["admin", "f"], ["password_digest", "$2a$10$UhifNuIRLqeTAlNtk5jLY.ajwRMDMpluGuI9CQxjYRQ1z/rhHTpa6"], ["created_at", "2017-08-05 08:59:23.330765"], ["updated_at", "2017-08-05 08:59:23.330765"]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 AND ("users"."id" != $2) LIMIT $3[0m  [["email", "fin@ocean.com"], ["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/users
+Completed 302 Found in 171ms (ActiveRecord: 30.7ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2017-08-05 01:59:23 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  Rendered users/index.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 151ms (Views: 147.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/signin" for 127.0.0.1 at 2017-08-05 01:59:35 -0700
+Processing by SessionsController#signin as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"N+S2hUwmPub3It2Sv0giGRY5uCimKIpw7d/b6CYdl0EhIq54yDFbOOxg6v/us34D38YVVRfCjYWhH6jtsSKAZg==", "email"=>"fin@ocean.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "fin@ocean.com"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/users
+Completed 302 Found in 87ms (ActiveRecord: 1.4ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2017-08-05 01:59:35 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered users/index.html.erb within layouts/application (9.9ms)
+Completed 200 OK in 101ms (Views: 96.9ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-05 01:59:38 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (1.4ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  Rendered products/index.html.erb within layouts/application (22.1ms)
+Completed 200 OK in 140ms (Views: 75.7ms | ActiveRecord: 17.4ms)
+
+
+Started POST "/carts" for 127.0.0.1 at 2017-08-05 01:59:41 -0700
+Processing by CartsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0MZZ5anHnCYYIq9+4PJM+S3PK5lEceTGYp74aJXZZ33GAEEYLdD5+ANgmBOxCRDj5DCG5PWb4zMuXottAuZwWg==", "product_id"=>"1", "quantity"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (2.0ms)[0m  [1m[32mINSERT INTO "carts" ("user_id", "product_id", "quantity", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["product_id", 1], ["quantity", 1], ["status", "carted"], ["created_at", "2017-08-05 08:59:41.200896"], ["updated_at", "2017-08-05 08:59:41.200896"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProduct Load (0.8ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1[0m  [["id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[33mUPDATE "products" SET "stock" = $1, "updated_at" = $2 WHERE "products"."id" = $3[0m  [["stock", 99], ["updated_at", "2017-08-05 08:59:41.210365"], ["id", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/products
+Completed 302 Found in 48ms (ActiveRecord: 9.2ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-05 01:59:41 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (4.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.8ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (1.8ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered products/index.html.erb within layouts/application (13.8ms)
+Completed 200 OK in 81ms (Views: 68.2ms | ActiveRecord: 7.8ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-05 02:04:34 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (1.7ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered products/index.html.erb within layouts/application (38.3ms)
+Completed 200 OK in 170ms (Views: 109.0ms | ActiveRecord: 22.3ms)
+
+
+Started GET "/charges/new" for 127.0.0.1 at 2017-08-05 02:04:43 -0700
+Processing by ChargesController#new as HTML
+  Rendering charges/new.html.erb within layouts/charges
+  Rendered charges/new.html.erb within layouts/charges (10.9ms)
+Completed 200 OK in 18ms (Views: 15.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-05 02:13:31 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered products/index.html.erb within layouts/application (23.3ms)
+Completed 200 OK in 132ms (Views: 94.5ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-05 02:13:46 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (0.5ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered products/index.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 94ms (Views: 87.1ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-05 02:13:47 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.9ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered products/index.html.erb within layouts/application (8.5ms)
+Completed 200 OK in 73ms (Views: 65.2ms | ActiveRecord: 3.0ms)
+
+
+Started POST "/orders" for 127.0.0.1 at 2017-08-05 02:13:49 -0700
+Processing by OrdersController#create as HTML
+  Parameters: {"authenticity_token"=>"UTj02t7z9A6k+UBVOi/xwnaIkEYpv6A45pX0k0DAedJH/uwnWuSR0L+7dzhr1K3Yv3c9O5hVp82qVYeW1/9u9Q=="}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCart Load (1.0ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "carts" SET "status" = $1, "order_id" = $2, "updated_at" = $3 WHERE "carts"."id" = $4[0m  [["status", "Purchased"], ["order_id", 1], ["updated_at", "2017-08-05 09:13:49.401729"], ["id", 1]]
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (2.9ms)[0m  [1m[32mINSERT INTO "orders" ("user_id", "subtotal", "tax", "total", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["subtotal", "40.0"], ["tax", "3.6"], ["total", "43.6"], ["created_at", "2017-08-05 09:13:49.412222"], ["updated_at", "2017-08-05 09:13:49.412222"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/orders/1
+Completed 302 Found in 58ms (ActiveRecord: 20.3ms)
+
+
+Started GET "/orders/1" for 127.0.0.1 at 2017-08-05 02:13:49 -0700
+Processing by OrdersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mOrder Load (0.6ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering orders/show.html.erb within layouts/application
+  Rendered orders/show.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 63ms (Views: 57.0ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/orders/1" for 127.0.0.1 at 2017-08-05 02:15:02 -0700
+Processing by OrdersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mOrder Load (0.8ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering orders/show.html.erb within layouts/application
+  Rendered orders/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 92ms (Views: 86.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2017-08-05 02:15:05 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered users/index.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 69ms (Views: 65.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-05 02:15:08 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (1.3ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  Rendered products/index.html.erb within layouts/application (6.7ms)
+Completed 200 OK in 84ms (Views: 75.6ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-05 02:15:12 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (1.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (0.5ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  Rendered products/index.html.erb within layouts/application (7.1ms)
+Completed 200 OK in 87ms (Views: 79.5ms | ActiveRecord: 2.1ms)
+
+
+Started POST "/carts" for 127.0.0.1 at 2017-08-05 02:15:14 -0700
+Processing by CartsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"T2m2//F/HYhEg1Nj95tHnA0FArb7zXNXrWLnD1DQ1CNZr64CdWh4Vl/BZA6mYBuGxPqvy0ondKLhopQKx+/DBA==", "product_id"=>"1", "quantity"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (1.6ms)[0m  [1m[32mINSERT INTO "carts" ("user_id", "product_id", "quantity", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["product_id", 1], ["quantity", 1], ["status", "carted"], ["created_at", "2017-08-05 09:15:14.345821"], ["updated_at", "2017-08-05 09:15:14.345821"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "products" SET "stock" = $1, "updated_at" = $2 WHERE "products"."id" = $3[0m  [["stock", 98], ["updated_at", "2017-08-05 09:15:14.353672"], ["id", 1]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/products
+Completed 302 Found in 17ms (ActiveRecord: 5.2ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-05 02:15:14 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (0.4ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered products/index.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 75ms (Views: 68.4ms | ActiveRecord: 1.7ms)
+
+
+Started POST "/orders" for 127.0.0.1 at 2017-08-05 02:15:17 -0700
+Processing by OrdersController#create as HTML
+  Parameters: {"authenticity_token"=>"0+I4k4OrZSy4eLUCtuuXIHdjt2Paku9E9UT6BHrQV2HFJCBuB7wA8qM6gm/nEMs6vpwaHmt46LG5hIkB7e9ARg=="}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.9ms)[0m  [1m[33mUPDATE "carts" SET "status" = $1, "order_id" = $2, "updated_at" = $3 WHERE "carts"."id" = $4[0m  [["status", "Purchased"], ["order_id", 2], ["updated_at", "2017-08-05 09:15:17.327388"], ["id", 2]]
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (2.2ms)[0m  [1m[32mINSERT INTO "orders" ("user_id", "subtotal", "tax", "total", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["subtotal", "40.0"], ["tax", "3.6"], ["total", "43.6"], ["created_at", "2017-08-05 09:15:17.334943"], ["updated_at", "2017-08-05 09:15:17.334943"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/orders/2
+Completed 302 Found in 24ms (ActiveRecord: 7.4ms)
+
+
+Started GET "/orders/2" for 127.0.0.1 at 2017-08-05 02:15:17 -0700
+Processing by OrdersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mOrder Load (0.6ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering orders/show.html.erb within layouts/application
+  Rendered orders/show.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 75ms (Views: 70.2ms | ActiveRecord: 0.6ms)
+
+
+  [1m[35m (5.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8127210905595193125);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to ChangeColumnDecimal (20170805091739)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (27.7ms)[0m  [1m[35mALTER TABLE "orders" ALTER COLUMN "total" TYPE decimal(9,2)[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170805091739"]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(8127210905595193125)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8127210905595193125);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CangeCoumnToDecimal (20170805091929)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (12.0ms)[0m  [1m[35mALTER TABLE "orders" ALTER COLUMN "tax" TYPE decimal(9,2)[0m
+  [1m[35m (3.9ms)[0m  [1m[35mALTER TABLE "orders" ALTER COLUMN "subtotal" TYPE decimal(9,2)[0m
+  [1m[35m (6.8ms)[0m  [1m[35mALTER TABLE "products" ALTER COLUMN "stock" TYPE decimal(9,2)[0m
+  [1m[35m (7.3ms)[0m  [1m[35mALTER TABLE "products" ALTER COLUMN "cost" TYPE decimal(9,2)[0m
+  [1m[35m (7.6ms)[0m  [1m[35mALTER TABLE "carts" ALTER COLUMN "user_id" TYPE decimal(9,2)[0m
+  [1m[35m (10.4ms)[0m  [1m[35mALTER TABLE "carts" ALTER COLUMN "product_id" TYPE decimal(9,2)[0m
+  [1m[35m (5.3ms)[0m  [1m[35mALTER TABLE "carts" ALTER COLUMN "quantity" TYPE decimal(9,2)[0m
+  [1m[35m (8.4ms)[0m  [1m[35mALTER TABLE "carts" ALTER COLUMN "order_id" TYPE decimal(9,2)[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170805091929"]]
+  [1m[35m (5.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(8127210905595193125)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/products" for 127.0.0.1 at 2017-08-05 02:38:16 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (1.5ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (3.4ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  Rendered products/index.html.erb within layouts/application (19.3ms)
+Completed 200 OK in 163ms (Views: 99.0ms | ActiveRecord: 5.5ms)
+
+
+Started POST "/carts" for 127.0.0.1 at 2017-08-05 02:38:41 -0700
+Processing by CartsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"orCitIUMf1EaifJTorVeenvZ5Skngfd7kjTyw34i1ZC0drpJARsajwHLxT7zTgJgsiZIVJZr8I7e9IHG6R3Ctw==", "product_id"=>"1", "quantity"=>"1"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "carts" ("user_id", "product_id", "quantity", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["product_id", 1], ["quantity", 1], ["status", "carted"], ["created_at", "2017-08-05 09:38:41.281303"], ["updated_at", "2017-08-05 09:38:41.281303"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "products" SET "stock" = $1, "updated_at" = $2 WHERE "products"."id" = $3[0m  [["stock", 97], ["updated_at", "2017-08-05 09:38:41.289694"], ["id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/products
+Completed 302 Found in 40ms (ActiveRecord: 14.3ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-05 02:38:41 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (1.2ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  [1m[36mProduct Load (3.0ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered products/index.html.erb within layouts/application (19.3ms)
+Completed 200 OK in 108ms (Views: 96.7ms | ActiveRecord: 6.1ms)
+
+
+Started POST "/carts" for 127.0.0.1 at 2017-08-05 02:38:42 -0700
+Processing by CartsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"p3iKETEBbdNNpdDRHnpwkyZAeop8qXWGcbInxu8ZAM+xvpLstRYIDVbn57xPgSyJ77/X981DcnM9clTDeCYX6A==", "product_id"=>"1", "quantity"=>"1"}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (2.3ms)[0m  [1m[32mINSERT INTO "carts" ("user_id", "product_id", "quantity", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["product_id", 1], ["quantity", 1], ["status", "carted"], ["created_at", "2017-08-05 09:38:42.784984"], ["updated_at", "2017-08-05 09:38:42.784984"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProduct Load (1.6ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "products" SET "stock" = $1, "updated_at" = $2 WHERE "products"."id" = $3[0m  [["stock", 96], ["updated_at", "2017-08-05 09:38:42.799467"], ["id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/products
+Completed 302 Found in 27ms (ActiveRecord: 7.9ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-05 02:38:42 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (1.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (1.3ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered products/index.html.erb within layouts/application (13.3ms)
+Completed 200 OK in 101ms (Views: 90.4ms | ActiveRecord: 4.9ms)
+
+
+Started POST "/orders" for 127.0.0.1 at 2017-08-05 02:38:45 -0700
+Processing by OrdersController#create as HTML
+  Parameters: {"authenticity_token"=>"eXvyza4yImMNWD5nH/ku1CDX2zm1uXFlDs4+Iv6PeNdvveowKiVHvRYaCQpOAnLO6Sh2RARTdpBCDk0nabBv8A=="}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  [1m[36mProduct Load (1.3ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Load (1.1ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (1.2ms)[0m  [1m[33mUPDATE "carts" SET "status" = $1, "order_id" = $2, "updated_at" = $3 WHERE "carts"."id" = $4[0m  [["status", "Purchased"], ["order_id", 3], ["updated_at", "2017-08-05 09:38:45.826568"], ["id", 3]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "carts" SET "status" = $1, "order_id" = $2, "updated_at" = $3 WHERE "carts"."id" = $4[0m  [["status", "Purchased"], ["order_id", 4], ["updated_at", "2017-08-05 09:38:45.833445"], ["id", 4]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (2.4ms)[0m  [1m[32mINSERT INTO "orders" ("user_id", "subtotal", "tax", "total", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["subtotal", "80.0"], ["tax", "7.2"], ["total", "87.2"], ["created_at", "2017-08-05 09:38:45.841849"], ["updated_at", "2017-08-05 09:38:45.841849"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/orders/3
+Completed 302 Found in 58ms (ActiveRecord: 16.7ms)
+
+
+Started GET "/orders/3" for 127.0.0.1 at 2017-08-05 02:38:45 -0700
+Processing by OrdersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mOrder Load (0.5ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering orders/show.html.erb within layouts/application
+  Rendered orders/show.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 69ms (Views: 63.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-05 02:39:10 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  Rendered products/index.html.erb within layouts/application (6.9ms)
+Completed 200 OK in 94ms (Views: 84.7ms | ActiveRecord: 2.3ms)
+
+
+Started POST "/carts" for 127.0.0.1 at 2017-08-05 02:39:11 -0700
+Processing by CartsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"FCWATW6As9JkGGDBpOC4rEAjsVYQhw4J04nB4mHuMbQC45iw6pfWDH9aV6z1G+S2idwcK6FtCfyfSbLn9tEmkw==", "product_id"=>"1", "quantity"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "carts" ("user_id", "product_id", "quantity", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["product_id", 1], ["quantity", 1], ["status", "carted"], ["created_at", "2017-08-05 09:39:11.872788"], ["updated_at", "2017-08-05 09:39:11.872788"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProduct Load (0.8ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "products" SET "stock" = $1, "updated_at" = $2 WHERE "products"."id" = $3[0m  [["stock", 95], ["updated_at", "2017-08-05 09:39:11.882328"], ["id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/products
+Completed 302 Found in 18ms (ActiveRecord: 4.4ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-05 02:39:11 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (1.1ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered products/index.html.erb within layouts/application (10.3ms)
+Completed 200 OK in 91ms (Views: 83.8ms | ActiveRecord: 2.6ms)
+
+
+Started POST "/carts" for 127.0.0.1 at 2017-08-05 02:39:13 -0700
+Processing by CartsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"AJPfDJK1S95aMPjMBRxAA2Uw9E3GToLD4CcxysWYjMEWVcfxFqIuAEFyz6FU5xwZrM9ZMHekhTas50LPUqeb5g==", "product_id"=>"1", "quantity"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "carts" ("user_id", "product_id", "quantity", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["product_id", 1], ["quantity", 1], ["status", "carted"], ["created_at", "2017-08-05 09:39:13.321826"], ["updated_at", "2017-08-05 09:39:13.321826"]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "products" SET "stock" = $1, "updated_at" = $2 WHERE "products"."id" = $3[0m  [["stock", 94], ["updated_at", "2017-08-05 09:39:13.330733"], ["id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/products
+Completed 302 Found in 17ms (ActiveRecord: 5.1ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-05 02:39:13 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  [1m[36mProduct Load (1.7ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered products/index.html.erb within layouts/application (13.5ms)
+Completed 200 OK in 98ms (Views: 89.7ms | ActiveRecord: 4.0ms)
+
+
+Started POST "/orders" for 127.0.0.1 at 2017-08-05 02:39:15 -0700
+Processing by OrdersController#create as HTML
+  Parameters: {"authenticity_token"=>"ylmkPEGeIkxdnOVEDW+jaRhCz2OitydUbl5BSHfCoJjcn7zBxYlHkkbe0ilclP9z0b1iHhNdIKEinjJN4P23vw=="}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (1.9ms)[0m  [1m[33mUPDATE "carts" SET "status" = $1, "order_id" = $2, "updated_at" = $3 WHERE "carts"."id" = $4[0m  [["status", "Purchased"], ["order_id", 5], ["updated_at", "2017-08-05 09:39:15.508357"], ["id", 5]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "carts" SET "status" = $1, "order_id" = $2, "updated_at" = $3 WHERE "carts"."id" = $4[0m  [["status", "Purchased"], ["order_id", 6], ["updated_at", "2017-08-05 09:39:15.519265"], ["id", 6]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "orders" ("user_id", "subtotal", "tax", "total", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["subtotal", "80.0"], ["tax", "7.2"], ["total", "87.2"], ["created_at", "2017-08-05 09:39:15.525010"], ["updated_at", "2017-08-05 09:39:15.525010"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/orders/4
+Completed 302 Found in 32ms (ActiveRecord: 9.6ms)
+
+
+Started GET "/orders/4" for 127.0.0.1 at 2017-08-05 02:39:15 -0700
+Processing by OrdersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mOrder Load (0.6ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering orders/show.html.erb within layouts/application
+  Rendered orders/show.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 68ms (Views: 62.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-05 02:42:15 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  Rendered products/index.html.erb within layouts/application (14.8ms)
+Completed 200 OK in 181ms (Views: 125.5ms | ActiveRecord: 1.6ms)
+
+
+Started POST "/carts" for 127.0.0.1 at 2017-08-05 02:42:17 -0700
+Processing by CartsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"UjrrozyxR3OOAI5cBHeDqsY/i4AIGs2Yr0Q3GRsMHI1E/PNeuKYirZVCuTFVjN+wD8Am/bnwym3jhEQcjDMLqg==", "product_id"=>"1", "quantity"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "carts" ("user_id", "product_id", "quantity", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["product_id", 1], ["quantity", 1], ["status", "carted"], ["created_at", "2017-08-05 09:42:17.037637"], ["updated_at", "2017-08-05 09:42:17.037637"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "products" SET "stock" = $1, "updated_at" = $2 WHERE "products"."id" = $3[0m  [["stock", 93], ["updated_at", "2017-08-05 09:42:17.043344"], ["id", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/products
+Completed 302 Found in 26ms (ActiveRecord: 3.6ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-05 02:42:17 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered products/index.html.erb within layouts/application (10.3ms)
+Completed 200 OK in 77ms (Views: 71.8ms | ActiveRecord: 1.8ms)
+
+
+Started POST "/carts" for 127.0.0.1 at 2017-08-05 02:42:18 -0700
+Processing by CartsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"s6ivbJs0aRDumrp7Q8u7pfmovjyDib6yJ1qyMDr8eAOlbreRHyMMzvXYjRYSMOe/MFcTQTJjuUdrmsE1rcNvJA==", "product_id"=>"1", "quantity"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "carts" ("user_id", "product_id", "quantity", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["product_id", 1], ["quantity", 1], ["status", "carted"], ["created_at", "2017-08-05 09:42:18.299683"], ["updated_at", "2017-08-05 09:42:18.299683"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "products" SET "stock" = $1, "updated_at" = $2 WHERE "products"."id" = $3[0m  [["stock", 92], ["updated_at", "2017-08-05 09:42:18.306786"], ["id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/products
+Completed 302 Found in 16ms (ActiveRecord: 4.1ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-05 02:42:18 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.9ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (0.5ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered products/index.html.erb within layouts/application (9.8ms)
+Completed 200 OK in 85ms (Views: 79.1ms | ActiveRecord: 2.1ms)
+
+
+Started POST "/orders" for 127.0.0.1 at 2017-08-05 02:42:20 -0700
+Processing by OrdersController#create as HTML
+  Parameters: {"authenticity_token"=>"hHsFpvEkwo9pfy9L0YOa5Hzil8+pco0sDNbiRpvigauSvR1bdTOnUXI9GCaAeMb+tR06shiYitlAFpFDDN2WjA=="}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "carts" SET "status" = $1, "order_id" = $2, "updated_at" = $3 WHERE "carts"."id" = $4[0m  [["status", "Purchased"], ["order_id", 7], ["updated_at", "2017-08-05 09:42:20.749694"], ["id", 7]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "carts" SET "status" = $1, "order_id" = $2, "updated_at" = $3 WHERE "carts"."id" = $4[0m  [["status", "Purchased"], ["order_id", 8], ["updated_at", "2017-08-05 09:42:20.755755"], ["id", 8]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "orders" ("user_id", "subtotal", "tax", "total", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["subtotal", "80.0"], ["tax", "7.2"], ["total", "87.2"], ["created_at", "2017-08-05 09:42:20.763065"], ["updated_at", "2017-08-05 09:42:20.763065"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/orders/5
+Completed 302 Found in 40ms (ActiveRecord: 5.5ms)
+
+
+Started GET "/orders/5" for 127.0.0.1 at 2017-08-05 02:42:20 -0700
+Processing by OrdersController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mOrder Load (0.4ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering orders/show.html.erb within layouts/application
+  Rendered orders/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 66ms (Views: 61.1ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/charges" for 127.0.0.1 at 2017-08-05 02:42:27 -0700
+Processing by ChargesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"e/zW/NyR4gIxka75a/BXqhXxOYcSaD2hGfwdRFVzoX1tOs4BWIaH3CrTmZQ6Cwuw3A6U+qOCOlRVPG5Bwky2Wg==", "stripeToken"=>"tok_1AnOndE8jSS0SGQdi7lh78fS", "stripeTokenType"=>"card", "stripeEmail"=>"jimmy@gmail.com"}
+  Rendering charges/create.html.erb within layouts/charges
+  Rendered charges/create.html.erb within layouts/charges (0.5ms)
+Completed 200 OK in 1402ms (Views: 6.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/charges" for 127.0.0.1 at 2017-08-05 02:42:55 -0700
+Processing by ChargesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"e/zW/NyR4gIxka75a/BXqhXxOYcSaD2hGfwdRFVzoX1tOs4BWIaH3CrTmZQ6Cwuw3A6U+qOCOlRVPG5Bwky2Wg==", "stripeToken"=>"tok_1AnOndE8jSS0SGQdi7lh78fS", "stripeTokenType"=>"card", "stripeEmail"=>"jimmy@gmail.com"}
+Completed 500 Internal Server Error in 223ms (ActiveRecord: 0.0ms)
+
+
+
+Stripe::InvalidRequestError - You cannot use a Stripe token more than once: tok_1AnOndE8jSS0SGQdi7lh78fS.:
+  stripe (2.9.0) lib/stripe/stripe_client.rb:253:in `handle_error_response'
+  stripe (2.9.0) lib/stripe/stripe_client.rb:200:in `rescue in execute_request_with_rescues'
+  stripe (2.9.0) lib/stripe/stripe_client.rb:184:in `execute_request_with_rescues'
+  stripe (2.9.0) lib/stripe/stripe_client.rb:136:in `execute_request'
+  stripe (2.9.0) lib/stripe/api_operations/request.rb:17:in `request'
+  stripe (2.9.0) lib/stripe/api_operations/create.rb:5:in `create'
+  app/controllers/charges_controller.rb:9:in `create'
+  actionpack (5.0.4) lib/action_controller/metal/basic_implicit_render.rb:4:in `send_action'
+  actionpack (5.0.4) lib/abstract_controller/base.rb:188:in `process_action'
+  actionpack (5.0.4) lib/action_controller/metal/rendering.rb:30:in `process_action'
+  actionpack (5.0.4) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:126:in `call'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:506:in `block (2 levels) in compile'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:455:in `call'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:101:in `__run_callbacks__'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:750:in `_run_process_action_callbacks'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:90:in `run_callbacks'
+  actionpack (5.0.4) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (5.0.4) lib/action_controller/metal/rescue.rb:20:in `process_action'
+  actionpack (5.0.4) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (5.0.4) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (5.0.4) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+  activesupport (5.0.4) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (5.0.4) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (5.0.4) lib/action_controller/metal/params_wrapper.rb:248:in `process_action'
+  activerecord (5.0.4) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (5.0.4) lib/abstract_controller/base.rb:126:in `process'
+  actionview (5.0.4) lib/action_view/rendering.rb:30:in `process'
+  actionpack (5.0.4) lib/action_controller/metal.rb:190:in `dispatch'
+  actionpack (5.0.4) lib/action_controller/metal.rb:262:in `dispatch'
+  actionpack (5.0.4) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+  actionpack (5.0.4) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+  actionpack (5.0.4) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+  actionpack (5.0.4) lib/action_dispatch/journey/router.rb:26:in `serve'
+  actionpack (5.0.4) lib/action_dispatch/routing/route_set.rb:725:in `call'
+  rack (2.0.3) lib/rack/etag.rb:25:in `call'
+  rack (2.0.3) lib/rack/conditional_get.rb:38:in `call'
+  rack (2.0.3) lib/rack/head.rb:12:in `call'
+  rack (2.0.3) lib/rack/session/abstract/id.rb:232:in `context'
+  rack (2.0.3) lib/rack/session/abstract/id.rb:226:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+  activerecord (5.0.4) lib/active_record/migration.rb:553:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:90:in `run_callbacks'
+  actionpack (5.0.4) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+  web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+  web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+  railties (5.0.4) lib/rails/rack/logger.rb:36:in `call_app'
+  railties (5.0.4) lib/rails/rack/logger.rb:24:in `block in call'
+  activesupport (5.0.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+  activesupport (5.0.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (5.0.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+  railties (5.0.4) lib/rails/rack/logger.rb:24:in `call'
+  sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+  rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+  rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+  activesupport (5.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/static.rb:136:in `call'
+  rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+  railties (5.0.4) lib/rails/engine.rb:522:in `call'
+  puma (3.9.1) lib/puma/configuration.rb:224:in `call'
+  puma (3.9.1) lib/puma/server.rb:602:in `handle_request'
+  puma (3.9.1) lib/puma/server.rb:435:in `process_client'
+  puma (3.9.1) lib/puma/server.rb:299:in `block in run'
+  puma (3.9.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+
+Started POST "/__better_errors/faa2407039278004/variables" for 127.0.0.1 at 2017-08-05 02:42:56 -0700
+Started GET "/users" for 127.0.0.1 at 2017-08-05 02:43:11 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered users/index.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 156ms (Views: 149.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-05 02:43:15 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  Rendered products/index.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 140ms (Views: 132.2ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/carts" for 127.0.0.1 at 2017-08-05 02:43:17 -0700
+Processing by CartsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"05Fp4+QnVkuPZSHZ6OsYerToCHTKqpWUlB2upmbVmQvFV3EeYDAzlZQnFrS5EERgfRelCXtAkmHY3d2j8eqOLA==", "product_id"=>"1", "quantity"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "carts" ("user_id", "product_id", "quantity", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["product_id", 1], ["quantity", 1], ["status", "carted"], ["created_at", "2017-08-05 09:43:17.841717"], ["updated_at", "2017-08-05 09:43:17.841717"]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "products" SET "stock" = $1, "updated_at" = $2 WHERE "products"."id" = $3[0m  [["stock", 91], ["updated_at", "2017-08-05 09:43:17.855065"], ["id", 1]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/products
+Completed 302 Found in 25ms (ActiveRecord: 5.9ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-05 02:43:17 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered products/index.html.erb within layouts/application (17.4ms)
+Completed 200 OK in 94ms (Views: 85.6ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/carts" for 127.0.0.1 at 2017-08-05 02:43:19 -0700
+Processing by CartsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"pN8cIthYKyz0ANcRWOBwWRQP/c9cJXxZxcTOmdhwBK2yGQTfXE9O8u9C4HwJGyxD3fBQsu3Pe6yJBL2cT08Tig==", "product_id"=>"1", "quantity"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "carts" ("user_id", "product_id", "quantity", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["product_id", 1], ["quantity", 1], ["status", "carted"], ["created_at", "2017-08-05 09:43:19.595278"], ["updated_at", "2017-08-05 09:43:19.595278"]]
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[33mUPDATE "products" SET "stock" = $1, "updated_at" = $2 WHERE "products"."id" = $3[0m  [["stock", 90], ["updated_at", "2017-08-05 09:43:19.604206"], ["id", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/products
+Completed 302 Found in 17ms (ActiveRecord: 5.5ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-05 02:43:19 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered products/index.html.erb within layouts/application (10.9ms)
+Completed 200 OK in 83ms (Views: 75.3ms | ActiveRecord: 2.2ms)
+
+
+Started POST "/carts" for 127.0.0.1 at 2017-08-05 02:43:21 -0700
+Processing by CartsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"2BFFTdsEgtHHpoQqkNGqJFCUUmed7T5VkwYa+qoNEYHO112wXxPnD9zks0fBKvY+mWv/GiwHOaDfxmn/PTIGpg==", "product_id"=>"1", "quantity"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "carts" ("user_id", "product_id", "quantity", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["product_id", 1], ["quantity", 1], ["status", "carted"], ["created_at", "2017-08-05 09:43:21.050639"], ["updated_at", "2017-08-05 09:43:21.050639"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "products" SET "stock" = $1, "updated_at" = $2 WHERE "products"."id" = $3[0m  [["stock", 89], ["updated_at", "2017-08-05 09:43:21.060109"], ["id", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/products
+Completed 302 Found in 18ms (ActiveRecord: 4.2ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-05 02:43:21 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered products/index.html.erb within layouts/application (12.2ms)
+Completed 200 OK in 84ms (Views: 78.3ms | ActiveRecord: 1.7ms)
+
+
+Started POST "/orders" for 127.0.0.1 at 2017-08-05 02:43:24 -0700
+Processing by OrdersController#create as HTML
+  Parameters: {"authenticity_token"=>"f1joF/zNXqXu19wXSul1akhDmuWyyZIykmOCA7aHbb1pnvDqeNo7e/WV63obEilwgbw3mAMjlcfeo/EGIbh6mg=="}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCart Load (0.5ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 2], ["status", "carted"]]
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "carts" SET "status" = $1, "order_id" = $2, "updated_at" = $3 WHERE "carts"."id" = $4[0m  [["status", "Purchased"], ["order_id", 9], ["updated_at", "2017-08-05 09:43:24.892749"], ["id", 9]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "carts" SET "status" = $1, "order_id" = $2, "updated_at" = $3 WHERE "carts"."id" = $4[0m  [["status", "Purchased"], ["order_id", 10], ["updated_at", "2017-08-05 09:43:24.900895"], ["id", 10]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "carts" SET "status" = $1, "order_id" = $2, "updated_at" = $3 WHERE "carts"."id" = $4[0m  [["status", "Purchased"], ["order_id", 11], ["updated_at", "2017-08-05 09:43:24.906784"], ["id", 11]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "orders" ("user_id", "subtotal", "tax", "total", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 2], ["subtotal", "120.0"], ["tax", "10.8"], ["total", "130.8"], ["created_at", "2017-08-05 09:43:24.919785"], ["updated_at", "2017-08-05 09:43:24.919785"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/orders/6
+Completed 302 Found in 45ms (ActiveRecord: 8.8ms)
+
+
+Started GET "/orders/6" for 127.0.0.1 at 2017-08-05 02:43:24 -0700
+Processing by OrdersController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mOrder Load (0.6ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  Rendering orders/show.html.erb within layouts/application
+  Rendered orders/show.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 65ms (Views: 61.0ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/charges" for 127.0.0.1 at 2017-08-05 02:43:30 -0700
+Processing by ChargesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"aVGqsOC5iOghNxnpkjKQhMWIr1kIqzZBabhdcTDI4sV/l7JNZK7tNjp1LoTDycyeDHcCJLlBMbQleC50p/f14g==", "stripeToken"=>"tok_1AnOoeE8jSS0SGQdcRYeURIv", "stripeTokenType"=>"card", "stripeEmail"=>"jimmy@gmail.com"}
+  Rendering charges/create.html.erb within layouts/charges
+  Rendered charges/create.html.erb within layouts/charges (0.5ms)
+Completed 200 OK in 1399ms (Views: 5.8ms | ActiveRecord: 0.0ms)
+
+
