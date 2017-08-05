@@ -14503,3 +14503,41 @@ Processing by ChargesController#create as HTML
 Completed 200 OK in 1083ms (Views: 4.6ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/charges/new" for 127.0.0.1 at 2017-08-04 22:46:53 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ChargesController#new as HTML
+  Rendering charges/new.html.erb within layouts/charges
+  Rendered charges/new.html.erb within layouts/charges (11.1ms)
+Completed 200 OK in 36ms (Views: 21.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/charges" for 127.0.0.1 at 2017-08-04 22:47:00 -0700
+Processing by ChargesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"p0Odi7ZbRYcY9jenaL4EZ8kkn70tdcJwiJIz4cmSFYSe2FEhFPOx0M+YnOXDvVwfOyYauhqZS3Rkp6Qi7cknIg==", "stripeToken"=>"tok_1AnL7mE8jSS0SGQdIgwhlWlE", "stripeTokenType"=>"card", "stripeEmail"=>"jimmy@gmail.com"}
+  Rendering charges/create.html.erb within layouts/charges
+  Rendered charges/create.html.erb within layouts/charges (0.7ms)
+Completed 200 OK in 1421ms (Views: 5.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/charges/new" for 127.0.0.1 at 2017-08-04 22:47:19 -0700
+Processing by ChargesController#new as HTML
+  Rendering charges/new.html.erb within layouts/charges
+  Rendered charges/new.html.erb within layouts/charges (1.6ms)
+Completed 200 OK in 10ms (Views: 7.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/charges/new" for 127.0.0.1 at 2017-08-04 22:47:22 -0700
+Processing by ChargesController#new as HTML
+  Rendering charges/new.html.erb within layouts/charges
+  Rendered charges/new.html.erb within layouts/charges (1.5ms)
+Completed 200 OK in 7ms (Views: 5.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/charges" for 127.0.0.1 at 2017-08-04 22:47:59 -0700
+Processing by ChargesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"f09/p/0U5vbWP+IT78HPOUvliGE1mg2b1EQ5mswGFL3WKAFM8bDREkxoN1kL7sNcagZijqZIEwMkuuVRY1u4pw==", "stripeToken"=>"tok_1AnL8jE8jSS0SGQdWDHQgJMp", "stripeTokenType"=>"card", "stripeEmail"=>"jimmy@gmail.com"}
+  Rendering charges/create.html.erb within layouts/charges
+  Rendered charges/create.html.erb within layouts/charges (0.8ms)
+Completed 200 OK in 1261ms (Views: 6.4ms | ActiveRecord: 0.0ms)
+
+
