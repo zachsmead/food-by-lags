@@ -10,8 +10,8 @@
 User.create(first_name: "Juliana", 
 			last_name: "Lagattuta",
 			email: "babygirl32604@gmail.com",
-			password: "1234",
-			password_confirmation: "1234",
+			password: "treeville123",
+			password_confirmation: "treeville123",
 			admin: true)
 
 Product.create(name: "Cookbook",
