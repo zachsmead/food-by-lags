@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
 
 	def signin
 		user = User.find_by(email: params[:email])
-		if user
+		if user && user.authenticate(params[:password])
 			session[:id] = user.id
 			puts "*" * 100
 			puts "*" * 100
