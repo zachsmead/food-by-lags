@@ -76,7 +76,10 @@
 		Total(without tax): $<%= @total %>
 		<br>
 		<br>
-		<%= button_to "Go To Checkout", "/orders", method: :post %>
+		<% if !@cart.empty? %>
+			<%= button_to "Go To Checkout", "/orders", method: :post %>
+		<% end %>
+	
 		<br>
 
 <% end %>
