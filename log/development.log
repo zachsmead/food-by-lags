@@ -29291,3 +29291,1068 @@ Processing by UsersController#index as HTML
 Completed 200 OK in 103ms (Views: 98.5ms | ActiveRecord: 0.3ms)
 
 
+Started GET "/users" for 127.0.0.1 at 2017-08-09 12:33:58 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered users/index.html.erb within layouts/application (53.8ms)
+Completed 200 OK in 623ms (Views: 589.4ms | ActiveRecord: 13.0ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-09 12:34:02 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (2.8ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 3], ["status", "carted"]]
+  Rendered products/index.html.erb within layouts/application (29.9ms)
+Completed 200 OK in 182ms (Views: 99.2ms | ActiveRecord: 21.2ms)
+
+
+Started POST "/carts" for 127.0.0.1 at 2017-08-09 12:34:03 -0700
+Processing by CartsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TQ0ah0F7OgHcMv2ymsZqbTjCQ0kMrVJri5GrBwVcCgVbywJ6xWxf38dwyt/LPTZ38T3uNL1HVZ7HUdgCkmMdIg==", "product_id"=>"1", "quantity"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (8.4ms)[0m  [1m[32mINSERT INTO "carts" ("user_id", "product_id", "quantity", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", "3.0"], ["product_id", "1.0"], ["quantity", "1.0"], ["status", "carted"], ["created_at", "2017-08-09 19:34:03.997802"], ["updated_at", "2017-08-09 19:34:03.997802"]]
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProduct Load (2.8ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1[0m  [["id", 1]]
+  [1m[35m (2.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (3.9ms)[0m  [1m[33mUPDATE "products" SET "stock" = $1, "updated_at" = $2 WHERE "products"."id" = $3[0m  [["stock", "282.0"], ["updated_at", "2017-08-09 19:34:04.036072"], ["id", 1]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/products
+Completed 302 Found in 113ms (ActiveRecord: 33.6ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-09 12:34:04 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (2.0ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 3], ["status", "carted"]]
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered products/index.html.erb within layouts/application (18.9ms)
+Completed 200 OK in 108ms (Views: 96.4ms | ActiveRecord: 5.2ms)
+
+
+Started POST "/carts" for 127.0.0.1 at 2017-08-09 12:34:04 -0700
+Processing by CartsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wjXtUjNoIKjZ0QrgeYAyUJ/mV1FMjqVfCrCwarjvjHzU8/Wvt39FdsKTPY0oe25KVhn6LP1koqpGcMNvL9CbWw==", "product_id"=>"1", "quantity"=>"1"}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "carts" ("user_id", "product_id", "quantity", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", "3.0"], ["product_id", "1.0"], ["quantity", "1.0"], ["status", "carted"], ["created_at", "2017-08-09 19:34:04.731341"], ["updated_at", "2017-08-09 19:34:04.731341"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "products" SET "stock" = $1, "updated_at" = $2 WHERE "products"."id" = $3[0m  [["stock", "281.0"], ["updated_at", "2017-08-09 19:34:04.740479"], ["id", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/products
+Completed 302 Found in 23ms (ActiveRecord: 7.7ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-09 12:34:04 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 3], ["status", "carted"]]
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered products/index.html.erb within layouts/application (10.6ms)
+Completed 200 OK in 111ms (Views: 104.5ms | ActiveRecord: 2.2ms)
+
+
+Started POST "/orders" for 127.0.0.1 at 2017-08-09 12:34:06 -0700
+Processing by OrdersController#create as HTML
+  Parameters: {"authenticity_token"=>"xD/SrJ8Q+1w+DFP4Qk3wdKI2N9oIDroe9zh3NDbTox3S+cpRGweegiVOZJUTtqxua8map7nkveu7+AQxoey0Og=="}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCart Load (2.8ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 3], ["status", "carted"]]
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (1.8ms)[0m  [1m[33mUPDATE "carts" SET "status" = $1, "order_id" = $2, "updated_at" = $3 WHERE "carts"."id" = $4[0m  [["status", "Purchased"], ["order_id", "115.0"], ["updated_at", "2017-08-09 19:34:06.560470"], ["id", 115]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "carts" SET "status" = $1, "order_id" = $2, "updated_at" = $3 WHERE "carts"."id" = $4[0m  [["status", "Purchased"], ["order_id", "116.0"], ["updated_at", "2017-08-09 19:34:06.570639"], ["id", 116]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (2.0ms)[0m  [1m[32mINSERT INTO "orders" ("user_id", "subtotal", "tax", "total", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 3], ["subtotal", "80.0"], ["tax", "7.2"], ["total", "87.2"], ["created_at", "2017-08-09 19:34:06.581904"], ["updated_at", "2017-08-09 19:34:06.581904"]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/orders/78
+Completed 302 Found in 62ms (ActiveRecord: 20.1ms)
+
+
+Started GET "/orders/78" for 127.0.0.1 at 2017-08-09 12:34:06 -0700
+Processing by OrdersController#show as HTML
+  Parameters: {"id"=>"78"}
+  [1m[36mOrder Load (0.9ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 78], ["LIMIT", 1]]
+  Rendering orders/show.html.erb within layouts/application
+  Rendered orders/show.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 98ms (Views: 89.3ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/charges" for 127.0.0.1 at 2017-08-09 12:34:40 -0700
+Processing by ChargesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"e2r6YfHLTUuem6Wsa0j/LmfWpiZ242DhutR/6YuJLWdtrOKcddwolYXZksE6s6M0rikLW8cJZxT2FAzsHLY6QA==", "stripeToken"=>"tok_1AozwvE8jSS0SGQd9JJmBq83", "stripeTokenType"=>"card", "stripeEmail"=>"sandrasarabia94@gmail.com"}
+  [1m[36mOrder Load (4.3ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering order_mailer/order_confirmation.html.erb within layouts/mailer
+  Rendered order_mailer/order_confirmation.html.erb within layouts/mailer (0.8ms)
+  Rendering order_mailer/order_confirmation.text.erb within layouts/mailer
+  Rendered order_mailer/order_confirmation.text.erb within layouts/mailer (0.5ms)
+OrderMailer#order_confirmation: processed outbound mail in 327.6ms
+Sent mail to sandrasarabia94@gmail.com (391.7ms)
+Date: Wed, 09 Aug 2017 12:34:42 -0700
+From: foodbylags@gmail.com
+To: sandrasarabia94@gmail.com
+Message-ID: <598b63d263703_cfce3fe75670a37821f2@Jamess-MacBook-Pro.local.mail>
+Subject: Order Completed!
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_598b63d260bf5_cfce3fe75670a3782061";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_598b63d260bf5_cfce3fe75670a3782061
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Sandra, 
+
+Thank you for your order!
+
+
+
+----==_mimepart_598b63d260bf5_cfce3fe75670a3782061
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    Thank you for your order Sandra! An email has been sent to the owner of @food_by_lags with your order details.
+  </body>
+</html>
+
+----==_mimepart_598b63d260bf5_cfce3fe75670a3782061--
+
+Completed 500 Internal Server Error in 2670ms (ActiveRecord: 5.0ms)
+
+
+
+Net::SMTPAuthenticationError - 530-5.5.1 Authentication Required. Learn more at
+:
+  /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/2.4.0/net/smtp.rb:969:in `check_response'
+  /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/2.4.0/net/smtp.rb:937:in `getok'
+  /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/2.4.0/net/smtp.rb:837:in `mailfrom'
+  /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/2.4.0/net/smtp.rb:658:in `send_message'
+  mail (2.6.6) lib/mail/network/delivery_methods/smtp.rb:112:in `block in deliver!'
+  /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/2.4.0/net/smtp.rb:519:in `start'
+  mail (2.6.6) lib/mail/network/delivery_methods/smtp.rb:111:in `deliver!'
+  mail (2.6.6) lib/mail/message.rb:2149:in `do_delivery'
+  mail (2.6.6) lib/mail/message.rb:237:in `block in deliver'
+  actionmailer (5.0.4) lib/action_mailer/base.rb:543:in `block in deliver_mail'
+  activesupport (5.0.4) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (5.0.4) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+  activesupport (5.0.4) lib/active_support/notifications.rb:164:in `instrument'
+  actionmailer (5.0.4) lib/action_mailer/base.rb:541:in `deliver_mail'
+  mail (2.6.6) lib/mail/message.rb:237:in `deliver'
+  /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/2.4.0/delegate.rb:83:in `method_missing'
+  app/controllers/charges_controller.rb:25:in `create'
+  actionpack (5.0.4) lib/action_controller/metal/basic_implicit_render.rb:4:in `send_action'
+  actionpack (5.0.4) lib/abstract_controller/base.rb:188:in `process_action'
+  actionpack (5.0.4) lib/action_controller/metal/rendering.rb:30:in `process_action'
+  actionpack (5.0.4) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:126:in `call'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:506:in `block (2 levels) in compile'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:455:in `call'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:101:in `__run_callbacks__'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:750:in `_run_process_action_callbacks'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:90:in `run_callbacks'
+  actionpack (5.0.4) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (5.0.4) lib/action_controller/metal/rescue.rb:20:in `process_action'
+  actionpack (5.0.4) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (5.0.4) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (5.0.4) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+  activesupport (5.0.4) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (5.0.4) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (5.0.4) lib/action_controller/metal/params_wrapper.rb:248:in `process_action'
+  activerecord (5.0.4) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (5.0.4) lib/abstract_controller/base.rb:126:in `process'
+  actionview (5.0.4) lib/action_view/rendering.rb:30:in `process'
+  actionpack (5.0.4) lib/action_controller/metal.rb:190:in `dispatch'
+  actionpack (5.0.4) lib/action_controller/metal.rb:262:in `dispatch'
+  actionpack (5.0.4) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+  actionpack (5.0.4) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+  actionpack (5.0.4) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+  actionpack (5.0.4) lib/action_dispatch/journey/router.rb:26:in `serve'
+  actionpack (5.0.4) lib/action_dispatch/routing/route_set.rb:725:in `call'
+  rack (2.0.3) lib/rack/etag.rb:25:in `call'
+  rack (2.0.3) lib/rack/conditional_get.rb:38:in `call'
+  rack (2.0.3) lib/rack/head.rb:12:in `call'
+  rack (2.0.3) lib/rack/session/abstract/id.rb:232:in `context'
+  rack (2.0.3) lib/rack/session/abstract/id.rb:226:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+  activerecord (5.0.4) lib/active_record/migration.rb:553:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:90:in `run_callbacks'
+  actionpack (5.0.4) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+  web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+  web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+  railties (5.0.4) lib/rails/rack/logger.rb:36:in `call_app'
+  railties (5.0.4) lib/rails/rack/logger.rb:24:in `block in call'
+  activesupport (5.0.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+  activesupport (5.0.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (5.0.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+  railties (5.0.4) lib/rails/rack/logger.rb:24:in `call'
+  sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+  rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+  rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+  activesupport (5.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/static.rb:136:in `call'
+  rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+  railties (5.0.4) lib/rails/engine.rb:522:in `call'
+  puma (3.9.1) lib/puma/configuration.rb:224:in `call'
+  puma (3.9.1) lib/puma/server.rb:602:in `handle_request'
+  puma (3.9.1) lib/puma/server.rb:435:in `process_client'
+  puma (3.9.1) lib/puma/server.rb:299:in `block in run'
+  puma (3.9.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+
+Started POST "/__better_errors/43481723a74a2fa3/variables" for 127.0.0.1 at 2017-08-09 12:34:43 -0700
+Started POST "/charges" for 127.0.0.1 at 2017-08-09 12:35:04 -0700
+Processing by ChargesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"e2r6YfHLTUuem6Wsa0j/LmfWpiZ242DhutR/6YuJLWdtrOKcddwolYXZksE6s6M0rikLW8cJZxT2FAzsHLY6QA==", "stripeToken"=>"tok_1AozwvE8jSS0SGQd9JJmBq83", "stripeTokenType"=>"card", "stripeEmail"=>"sandrasarabia94@gmail.com"}
+  [1m[36mOrder Load (3.0ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+Completed 500 Internal Server Error in 308ms (ActiveRecord: 3.0ms)
+
+
+
+Stripe::InvalidRequestError - You cannot use a Stripe token more than once: tok_1AozwvE8jSS0SGQd9JJmBq83.:
+  stripe (2.9.0) lib/stripe/stripe_client.rb:253:in `handle_error_response'
+  stripe (2.9.0) lib/stripe/stripe_client.rb:200:in `rescue in execute_request_with_rescues'
+  stripe (2.9.0) lib/stripe/stripe_client.rb:184:in `execute_request_with_rescues'
+  stripe (2.9.0) lib/stripe/stripe_client.rb:136:in `execute_request'
+  stripe (2.9.0) lib/stripe/api_operations/request.rb:17:in `request'
+  stripe (2.9.0) lib/stripe/api_operations/create.rb:5:in `create'
+  app/controllers/charges_controller.rb:10:in `create'
+  actionpack (5.0.4) lib/action_controller/metal/basic_implicit_render.rb:4:in `send_action'
+  actionpack (5.0.4) lib/abstract_controller/base.rb:188:in `process_action'
+  actionpack (5.0.4) lib/action_controller/metal/rendering.rb:30:in `process_action'
+  actionpack (5.0.4) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:126:in `call'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:506:in `block (2 levels) in compile'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:455:in `call'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:101:in `__run_callbacks__'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:750:in `_run_process_action_callbacks'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:90:in `run_callbacks'
+  actionpack (5.0.4) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (5.0.4) lib/action_controller/metal/rescue.rb:20:in `process_action'
+  actionpack (5.0.4) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (5.0.4) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (5.0.4) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+  activesupport (5.0.4) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (5.0.4) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (5.0.4) lib/action_controller/metal/params_wrapper.rb:248:in `process_action'
+  activerecord (5.0.4) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (5.0.4) lib/abstract_controller/base.rb:126:in `process'
+  actionview (5.0.4) lib/action_view/rendering.rb:30:in `process'
+  actionpack (5.0.4) lib/action_controller/metal.rb:190:in `dispatch'
+  actionpack (5.0.4) lib/action_controller/metal.rb:262:in `dispatch'
+  actionpack (5.0.4) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+  actionpack (5.0.4) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+  actionpack (5.0.4) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+  actionpack (5.0.4) lib/action_dispatch/journey/router.rb:26:in `serve'
+  actionpack (5.0.4) lib/action_dispatch/routing/route_set.rb:725:in `call'
+  rack (2.0.3) lib/rack/etag.rb:25:in `call'
+  rack (2.0.3) lib/rack/conditional_get.rb:38:in `call'
+  rack (2.0.3) lib/rack/head.rb:12:in `call'
+  rack (2.0.3) lib/rack/session/abstract/id.rb:232:in `context'
+  rack (2.0.3) lib/rack/session/abstract/id.rb:226:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+  activerecord (5.0.4) lib/active_record/migration.rb:553:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:90:in `run_callbacks'
+  actionpack (5.0.4) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+  web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+  web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+  railties (5.0.4) lib/rails/rack/logger.rb:36:in `call_app'
+  railties (5.0.4) lib/rails/rack/logger.rb:24:in `block in call'
+  activesupport (5.0.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+  activesupport (5.0.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (5.0.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+  railties (5.0.4) lib/rails/rack/logger.rb:24:in `call'
+  sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+  rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+  rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+  activesupport (5.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/static.rb:136:in `call'
+  rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+  railties (5.0.4) lib/rails/engine.rb:522:in `call'
+  puma (3.9.1) lib/puma/configuration.rb:224:in `call'
+  puma (3.9.1) lib/puma/server.rb:602:in `handle_request'
+  puma (3.9.1) lib/puma/server.rb:435:in `process_client'
+  puma (3.9.1) lib/puma/server.rb:299:in `block in run'
+  puma (3.9.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+
+Started POST "/__better_errors/ea43af4b62c5c1e4/variables" for 127.0.0.1 at 2017-08-09 12:35:05 -0700
+Started GET "/products" for 127.0.0.1 at 2017-08-09 12:35:24 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.9ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (2.1ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 3], ["status", "carted"]]
+  Rendered products/index.html.erb within layouts/application (14.3ms)
+Completed 200 OK in 133ms (Views: 122.0ms | ActiveRecord: 4.0ms)
+
+
+Started POST "/carts" for 127.0.0.1 at 2017-08-09 12:35:25 -0700
+Processing by CartsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"JGXKWQSEOk+n8F+RWHWXmAIwdBly8fMeJ4K097aH3n0yo9KkgJNfkbyyaPwJjsuCy8/ZZMMb9OtrQsfyIbjJWg==", "product_id"=>"1", "quantity"=>"1"}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (1.6ms)[0m  [1m[32mINSERT INTO "carts" ("user_id", "product_id", "quantity", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", "3.0"], ["product_id", "1.0"], ["quantity", "1.0"], ["status", "carted"], ["created_at", "2017-08-09 19:35:25.450649"], ["updated_at", "2017-08-09 19:35:25.450649"]]
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProduct Load (0.8ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[33mUPDATE "products" SET "stock" = $1, "updated_at" = $2 WHERE "products"."id" = $3[0m  [["stock", "280.0"], ["updated_at", "2017-08-09 19:35:25.459474"], ["id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/products
+Completed 302 Found in 22ms (ActiveRecord: 7.0ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-09 12:35:25 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (1.0ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 3], ["status", "carted"]]
+  [1m[36mProduct Load (0.8ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered products/index.html.erb within layouts/application (11.5ms)
+Completed 200 OK in 150ms (Views: 141.7ms | ActiveRecord: 3.2ms)
+
+
+Started POST "/orders" for 127.0.0.1 at 2017-08-09 12:35:27 -0700
+Processing by OrdersController#create as HTML
+  Parameters: {"authenticity_token"=>"KJVBHOmNJjtcTIl9LPl7P72kS3e/PO2+GQIe41khTCM+U1nhbZpD5UcOvhB9AicldFvmCg7W6ktVwm3mzh5bBA=="}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 3], ["status", "carted"]]
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "carts" SET "status" = $1, "order_id" = $2, "updated_at" = $3 WHERE "carts"."id" = $4[0m  [["status", "Purchased"], ["order_id", "117.0"], ["updated_at", "2017-08-09 19:35:27.635837"], ["id", 117]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (1.9ms)[0m  [1m[32mINSERT INTO "orders" ("user_id", "subtotal", "tax", "total", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 3], ["subtotal", "40.0"], ["tax", "3.6"], ["total", "43.6"], ["created_at", "2017-08-09 19:35:27.643428"], ["updated_at", "2017-08-09 19:35:27.643428"]]
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/orders/79
+Completed 302 Found in 27ms (ActiveRecord: 7.5ms)
+
+
+Started GET "/orders/79" for 127.0.0.1 at 2017-08-09 12:35:27 -0700
+Processing by OrdersController#show as HTML
+  Parameters: {"id"=>"79"}
+  [1m[36mOrder Load (0.7ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 79], ["LIMIT", 1]]
+  Rendering orders/show.html.erb within layouts/application
+  Rendered orders/show.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 89ms (Views: 83.0ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/charges" for 127.0.0.1 at 2017-08-09 12:36:10 -0700
+Processing by ChargesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"1RfPSvpPThWja4Ab/Iz/UAJF5Q2ORf/32UsKgV6ITrvD0de3flgry7gpt3atd6NKy7pIcD+v+AKVi3mEybdZnA==", "stripeToken"=>"tok_1AozyNE8jSS0SGQd197sjKXA", "stripeTokenType"=>"card", "stripeEmail"=>"sandrasarabia94@gmail.com"}
+  [1m[36mOrder Load (1.0ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering order_mailer/order_confirmation.html.erb within layouts/mailer
+  Rendered order_mailer/order_confirmation.html.erb within layouts/mailer (1.1ms)
+  Rendering order_mailer/order_confirmation.text.erb within layouts/mailer
+  Rendered order_mailer/order_confirmation.text.erb within layouts/mailer (0.6ms)
+OrderMailer#order_confirmation: processed outbound mail in 48.5ms
+Sent mail to sandrasarabia94@gmail.com (389.4ms)
+Date: Wed, 09 Aug 2017 12:36:12 -0700
+From: foodbylags@gmail.com
+To: sandrasarabia94@gmail.com
+Message-ID: <598b642c4bc3a_cfce3fe75670bf5c23fa@Jamess-MacBook-Pro.local.mail>
+Subject: Order Completed!
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_598b642c48c71_cfce3fe75670bf5c224b";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_598b642c48c71_cfce3fe75670bf5c224b
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Sandra, 
+
+Thank you for your order!
+
+
+
+----==_mimepart_598b642c48c71_cfce3fe75670bf5c224b
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    Thank you for your order Sandra! An email has been sent to the owner of @food_by_lags with your order details.
+  </body>
+</html>
+
+----==_mimepart_598b642c48c71_cfce3fe75670bf5c224b--
+
+Completed 500 Internal Server Error in 2115ms (ActiveRecord: 1.6ms)
+
+
+
+Net::SMTPAuthenticationError - 530-5.5.1 Authentication Required. Learn more at
+:
+  /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/2.4.0/net/smtp.rb:969:in `check_response'
+  /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/2.4.0/net/smtp.rb:937:in `getok'
+  /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/2.4.0/net/smtp.rb:837:in `mailfrom'
+  /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/2.4.0/net/smtp.rb:658:in `send_message'
+  mail (2.6.6) lib/mail/network/delivery_methods/smtp.rb:112:in `block in deliver!'
+  /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/2.4.0/net/smtp.rb:519:in `start'
+  mail (2.6.6) lib/mail/network/delivery_methods/smtp.rb:111:in `deliver!'
+  mail (2.6.6) lib/mail/message.rb:2149:in `do_delivery'
+  mail (2.6.6) lib/mail/message.rb:237:in `block in deliver'
+  actionmailer (5.0.4) lib/action_mailer/base.rb:543:in `block in deliver_mail'
+  activesupport (5.0.4) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (5.0.4) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+  activesupport (5.0.4) lib/active_support/notifications.rb:164:in `instrument'
+  actionmailer (5.0.4) lib/action_mailer/base.rb:541:in `deliver_mail'
+  mail (2.6.6) lib/mail/message.rb:237:in `deliver'
+  /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/2.4.0/delegate.rb:83:in `method_missing'
+  app/controllers/charges_controller.rb:25:in `create'
+  actionpack (5.0.4) lib/action_controller/metal/basic_implicit_render.rb:4:in `send_action'
+  actionpack (5.0.4) lib/abstract_controller/base.rb:188:in `process_action'
+  actionpack (5.0.4) lib/action_controller/metal/rendering.rb:30:in `process_action'
+  actionpack (5.0.4) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:126:in `call'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:506:in `block (2 levels) in compile'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:455:in `call'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:101:in `__run_callbacks__'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:750:in `_run_process_action_callbacks'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:90:in `run_callbacks'
+  actionpack (5.0.4) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (5.0.4) lib/action_controller/metal/rescue.rb:20:in `process_action'
+  actionpack (5.0.4) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (5.0.4) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (5.0.4) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+  activesupport (5.0.4) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (5.0.4) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (5.0.4) lib/action_controller/metal/params_wrapper.rb:248:in `process_action'
+  activerecord (5.0.4) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (5.0.4) lib/abstract_controller/base.rb:126:in `process'
+  actionview (5.0.4) lib/action_view/rendering.rb:30:in `process'
+  actionpack (5.0.4) lib/action_controller/metal.rb:190:in `dispatch'
+  actionpack (5.0.4) lib/action_controller/metal.rb:262:in `dispatch'
+  actionpack (5.0.4) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+  actionpack (5.0.4) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+  actionpack (5.0.4) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+  actionpack (5.0.4) lib/action_dispatch/journey/router.rb:26:in `serve'
+  actionpack (5.0.4) lib/action_dispatch/routing/route_set.rb:725:in `call'
+  rack (2.0.3) lib/rack/etag.rb:25:in `call'
+  rack (2.0.3) lib/rack/conditional_get.rb:38:in `call'
+  rack (2.0.3) lib/rack/head.rb:12:in `call'
+  rack (2.0.3) lib/rack/session/abstract/id.rb:232:in `context'
+  rack (2.0.3) lib/rack/session/abstract/id.rb:226:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+  activerecord (5.0.4) lib/active_record/migration.rb:553:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:90:in `run_callbacks'
+  actionpack (5.0.4) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+  web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+  web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+  railties (5.0.4) lib/rails/rack/logger.rb:36:in `call_app'
+  railties (5.0.4) lib/rails/rack/logger.rb:24:in `block in call'
+  activesupport (5.0.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+  activesupport (5.0.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (5.0.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+  railties (5.0.4) lib/rails/rack/logger.rb:24:in `call'
+  sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+  rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+  rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+  activesupport (5.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/static.rb:136:in `call'
+  rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+  railties (5.0.4) lib/rails/engine.rb:522:in `call'
+  puma (3.9.1) lib/puma/configuration.rb:224:in `call'
+  puma (3.9.1) lib/puma/server.rb:602:in `handle_request'
+  puma (3.9.1) lib/puma/server.rb:435:in `process_client'
+  puma (3.9.1) lib/puma/server.rb:299:in `block in run'
+  puma (3.9.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+
+Started POST "/__better_errors/7be60ba552780731/variables" for 127.0.0.1 at 2017-08-09 12:36:12 -0700
+Started GET "/products" for 127.0.0.1 at 2017-08-09 12:36:32 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (1.9ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (0.8ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 3], ["status", "carted"]]
+  Rendered products/index.html.erb within layouts/application (29.0ms)
+Completed 200 OK in 627ms (Views: 520.8ms | ActiveRecord: 18.2ms)
+
+
+Started POST "/carts" for 127.0.0.1 at 2017-08-09 12:36:35 -0700
+Processing by CartsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"UtvP4JMGHtncJ5Frv1Ee3Uqnynn5LBkm8tApOE+MkDtEHdcdFxF7B8dlpgbuqkLHg1hnBEjGHtO+EFo92LOHHA==", "product_id"=>"1", "quantity"=>"1"}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "carts" ("user_id", "product_id", "quantity", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", "3.0"], ["product_id", "1.0"], ["quantity", "1.0"], ["status", "carted"], ["created_at", "2017-08-09 19:36:35.947794"], ["updated_at", "2017-08-09 19:36:35.947794"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "products" SET "stock" = $1, "updated_at" = $2 WHERE "products"."id" = $3[0m  [["stock", "279.0"], ["updated_at", "2017-08-09 19:36:35.955340"], ["id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/products
+Completed 302 Found in 40ms (ActiveRecord: 11.5ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-09 12:36:35 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (1.4ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 3], ["status", "carted"]]
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered products/index.html.erb within layouts/application (16.0ms)
+Completed 200 OK in 101ms (Views: 93.5ms | ActiveRecord: 2.9ms)
+
+
+Started POST "/orders" for 127.0.0.1 at 2017-08-09 12:36:37 -0700
+Processing by OrdersController#create as HTML
+  Parameters: {"authenticity_token"=>"HBMxjwB7lzS2HjCTmqiUyq1u4376QPZZD1PF8XtceoQK1SlyhGzy6q1cB/7LU8jQZJFOA0uq8axDk7b07GNtow=="}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 3], ["status", "carted"]]
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "carts" SET "status" = $1, "order_id" = $2, "updated_at" = $3 WHERE "carts"."id" = $4[0m  [["status", "Purchased"], ["order_id", "118.0"], ["updated_at", "2017-08-09 19:36:37.874864"], ["id", 118]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (1.6ms)[0m  [1m[32mINSERT INTO "orders" ("user_id", "subtotal", "tax", "total", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 3], ["subtotal", "40.0"], ["tax", "3.6"], ["total", "43.6"], ["created_at", "2017-08-09 19:36:37.896749"], ["updated_at", "2017-08-09 19:36:37.896749"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/orders/80
+Completed 302 Found in 57ms (ActiveRecord: 14.1ms)
+
+
+Started GET "/orders/80" for 127.0.0.1 at 2017-08-09 12:36:37 -0700
+Processing by OrdersController#show as HTML
+  Parameters: {"id"=>"80"}
+  [1m[36mOrder Load (0.7ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 80], ["LIMIT", 1]]
+  Rendering orders/show.html.erb within layouts/application
+  Rendered orders/show.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 81ms (Views: 74.2ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/charges" for 127.0.0.1 at 2017-08-09 12:36:44 -0700
+Processing by ChargesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hBTYAiFZKS7SwJOl95DXehcJi5NFqPE6i+01UAVRYuOS0sD/pU5M8MmCpMima4tg3vYm7vRC9s/HLUZVkm51xA==", "stripeToken"=>"tok_1AozyvE8jSS0SGQdbwI5wrtN", "stripeTokenType"=>"card", "stripeEmail"=>"sandrasarabia94@gmail.com"}
+  [1m[36mOrder Load (1.3ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering order_mailer/order_confirmation.html.erb within layouts/mailer
+  Rendered order_mailer/order_confirmation.html.erb within layouts/mailer (0.7ms)
+  Rendering order_mailer/order_confirmation.text.erb within layouts/mailer
+  Rendered order_mailer/order_confirmation.text.erb within layouts/mailer (0.4ms)
+OrderMailer#order_confirmation: processed outbound mail in 211.2ms
+Sent mail to sandrasarabia94@gmail.com (1597.0ms)
+Date: Wed, 09 Aug 2017 12:36:46 -0700
+From: foodbylags@gmail.com
+To: sandrasarabia94@gmail.com
+Message-ID: <598b644e78106_d0443ffec51d454473532@Jamess-MacBook-Pro.local.mail>
+Subject: Order Completed!
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_598b644e75a5d_d0443ffec51d4544734f9";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_598b644e75a5d_d0443ffec51d4544734f9
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Sandra, 
+
+Thank you for your order!
+
+
+
+----==_mimepart_598b644e75a5d_d0443ffec51d4544734f9
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    Thank you for your order Sandra! An email has been sent to the owner of @food_by_lags with your order details.
+  </body>
+</html>
+
+----==_mimepart_598b644e75a5d_d0443ffec51d4544734f9--
+
+Redirected to http://localhost:3000/users/3
+Completed 302 Found in 3969ms (ActiveRecord: 1.8ms)
+
+
+Started GET "/users/3" for 127.0.0.1 at 2017-08-09 12:36:48 -0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+Redirected to http://localhost:3000/users
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2017-08-09 12:36:48 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered users/index.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 71ms (Views: 67.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-09 12:41:39 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 3], ["status", "carted"]]
+  Rendered products/index.html.erb within layouts/application (21.6ms)
+Completed 200 OK in 580ms (Views: 488.7ms | ActiveRecord: 16.0ms)
+
+
+Started POST "/carts" for 127.0.0.1 at 2017-08-09 12:41:42 -0700
+Processing by CartsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OvH49kRpZPhc63dnqgR4g7hg3aAYwWL+87lTWovdV6IsN+ALwH4BJkepQAr7/ySZcZ9w3akrZQu/eSBfHOJAhQ==", "product_id"=>"1", "quantity"=>"1"}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO "carts" ("user_id", "product_id", "quantity", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", "3.0"], ["product_id", "1.0"], ["quantity", "1.0"], ["status", "carted"], ["created_at", "2017-08-09 19:41:42.898509"], ["updated_at", "2017-08-09 19:41:42.898509"]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "products" SET "stock" = $1, "updated_at" = $2 WHERE "products"."id" = $3[0m  [["stock", "278.0"], ["updated_at", "2017-08-09 19:41:42.910886"], ["id", 1]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/products
+Completed 302 Found in 51ms (ActiveRecord: 16.8ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-09 12:41:42 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (1.5ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 3], ["status", "carted"]]
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered products/index.html.erb within layouts/application (14.1ms)
+Completed 200 OK in 115ms (Views: 102.6ms | ActiveRecord: 3.2ms)
+
+
+Started POST "/orders" for 127.0.0.1 at 2017-08-09 12:41:45 -0700
+Processing by OrdersController#create as HTML
+  Parameters: {"authenticity_token"=>"8AbSUm7F8DfNxldX6p6eavF8S6Ux4HHoRhHDNcQwDqHmwMqv6tKV6daEYDq7ZcJwOIPm2IAKdh0K0bAwUw8Zhg=="}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCart Load (0.9ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 3], ["status", "carted"]]
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "carts" SET "status" = $1, "order_id" = $2, "updated_at" = $3 WHERE "carts"."id" = $4[0m  [["status", "Purchased"], ["order_id", "119.0"], ["updated_at", "2017-08-09 19:41:45.980895"], ["id", 119]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (2.1ms)[0m  [1m[32mINSERT INTO "orders" ("user_id", "subtotal", "tax", "total", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 3], ["subtotal", "40.0"], ["tax", "3.6"], ["total", "43.6"], ["created_at", "2017-08-09 19:41:45.998921"], ["updated_at", "2017-08-09 19:41:45.998921"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/orders/81
+Completed 302 Found in 75ms (ActiveRecord: 14.9ms)
+
+
+Started GET "/orders/81" for 127.0.0.1 at 2017-08-09 12:41:46 -0700
+Processing by OrdersController#show as HTML
+  Parameters: {"id"=>"81"}
+  [1m[36mOrder Load (0.5ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 81], ["LIMIT", 1]]
+  Rendering orders/show.html.erb within layouts/application
+  Rendered orders/show.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 84ms (Views: 79.0ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/charges" for 127.0.0.1 at 2017-08-09 12:41:51 -0700
+Processing by ChargesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4I/N/+OoQO5osBVODaHT/1gApqR7hOiy8uQ1RyuGv6H2SdUCZ78lMHPyIiNcWo/lkf8L2cpu70e+JEZCvLmohg==", "stripeToken"=>"tok_1Ap03tE8jSS0SGQdd37JUstZ", "stripeTokenType"=>"card", "stripeEmail"=>"sandrasarabia94@gmail.com"}
+  [1m[36mOrder Load (15.0ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering order_mailer/order_confirmation.html.erb within layouts/mailer
+  Rendered order_mailer/order_confirmation.html.erb within layouts/mailer (0.8ms)
+  Rendering order_mailer/order_confirmation.text.erb within layouts/mailer
+  Rendered order_mailer/order_confirmation.text.erb within layouts/mailer (0.4ms)
+OrderMailer#order_confirmation: processed outbound mail in 212.6ms
+Sent mail to sandrasarabia94@gmail.com (247.5ms)
+Date: Wed, 09 Aug 2017 12:41:54 -0700
+From: foodbylags@gmail.com
+To: sandrasarabia94@gmail.com
+Message-ID: <598b6582c7229_d0d33fe90596fc34821f7@Jamess-MacBook-Pro.local.mail>
+Subject: Order Completed!
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_598b6582c4fd2_d0d33fe90596fc3482010";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_598b6582c4fd2_d0d33fe90596fc3482010
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Sandra, 
+
+Thank you for your order!
+
+
+
+----==_mimepart_598b6582c4fd2_d0d33fe90596fc3482010
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    Thank you for your order Sandra! An email has been sent to the owner of @food_by_lags with your order details.
+  </body>
+</html>
+
+----==_mimepart_598b6582c4fd2_d0d33fe90596fc3482010--
+
+Completed 500 Internal Server Error in 3313ms (ActiveRecord: 15.5ms)
+
+
+
+TypeError - no implicit conversion of Symbol into Integer:
+  /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/2.4.0/net/smtp.rb:576:in `ssl_socket'
+  /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/2.4.0/net/smtp.rb:581:in `tlsconnect'
+  /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/2.4.0/net/smtp.rb:561:in `do_start'
+  /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/2.4.0/net/smtp.rb:518:in `start'
+  mail (2.6.6) lib/mail/network/delivery_methods/smtp.rb:111:in `deliver!'
+  mail (2.6.6) lib/mail/message.rb:2149:in `do_delivery'
+  mail (2.6.6) lib/mail/message.rb:237:in `block in deliver'
+  actionmailer (5.0.4) lib/action_mailer/base.rb:543:in `block in deliver_mail'
+  activesupport (5.0.4) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (5.0.4) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+  activesupport (5.0.4) lib/active_support/notifications.rb:164:in `instrument'
+  actionmailer (5.0.4) lib/action_mailer/base.rb:541:in `deliver_mail'
+  mail (2.6.6) lib/mail/message.rb:237:in `deliver'
+  /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/2.4.0/delegate.rb:83:in `method_missing'
+  app/controllers/charges_controller.rb:25:in `create'
+  actionpack (5.0.4) lib/action_controller/metal/basic_implicit_render.rb:4:in `send_action'
+  actionpack (5.0.4) lib/abstract_controller/base.rb:188:in `process_action'
+  actionpack (5.0.4) lib/action_controller/metal/rendering.rb:30:in `process_action'
+  actionpack (5.0.4) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:126:in `call'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:506:in `block (2 levels) in compile'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:455:in `call'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:101:in `__run_callbacks__'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:750:in `_run_process_action_callbacks'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:90:in `run_callbacks'
+  actionpack (5.0.4) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (5.0.4) lib/action_controller/metal/rescue.rb:20:in `process_action'
+  actionpack (5.0.4) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (5.0.4) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (5.0.4) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+  activesupport (5.0.4) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (5.0.4) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (5.0.4) lib/action_controller/metal/params_wrapper.rb:248:in `process_action'
+  activerecord (5.0.4) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (5.0.4) lib/abstract_controller/base.rb:126:in `process'
+  actionview (5.0.4) lib/action_view/rendering.rb:30:in `process'
+  actionpack (5.0.4) lib/action_controller/metal.rb:190:in `dispatch'
+  actionpack (5.0.4) lib/action_controller/metal.rb:262:in `dispatch'
+  actionpack (5.0.4) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+  actionpack (5.0.4) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+  actionpack (5.0.4) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+  actionpack (5.0.4) lib/action_dispatch/journey/router.rb:26:in `serve'
+  actionpack (5.0.4) lib/action_dispatch/routing/route_set.rb:725:in `call'
+  rack (2.0.3) lib/rack/etag.rb:25:in `call'
+  rack (2.0.3) lib/rack/conditional_get.rb:38:in `call'
+  rack (2.0.3) lib/rack/head.rb:12:in `call'
+  rack (2.0.3) lib/rack/session/abstract/id.rb:232:in `context'
+  rack (2.0.3) lib/rack/session/abstract/id.rb:226:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+  activerecord (5.0.4) lib/active_record/migration.rb:553:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:90:in `run_callbacks'
+  actionpack (5.0.4) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+  web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+  web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+  railties (5.0.4) lib/rails/rack/logger.rb:36:in `call_app'
+  railties (5.0.4) lib/rails/rack/logger.rb:24:in `block in call'
+  activesupport (5.0.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+  activesupport (5.0.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (5.0.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+  railties (5.0.4) lib/rails/rack/logger.rb:24:in `call'
+  sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+  rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+  rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+  activesupport (5.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/static.rb:136:in `call'
+  rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+  railties (5.0.4) lib/rails/engine.rb:522:in `call'
+  puma (3.9.1) lib/puma/configuration.rb:224:in `call'
+  puma (3.9.1) lib/puma/server.rb:602:in `handle_request'
+  puma (3.9.1) lib/puma/server.rb:435:in `process_client'
+  puma (3.9.1) lib/puma/server.rb:299:in `block in run'
+  puma (3.9.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+
+Started POST "/__better_errors/cc9a82eae8efd555/variables" for 127.0.0.1 at 2017-08-09 12:41:55 -0700
+Started GET "/products" for 127.0.0.1 at 2017-08-09 12:42:50 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (0.7ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 3], ["status", "carted"]]
+  Rendered products/index.html.erb within layouts/application (23.3ms)
+Completed 200 OK in 613ms (Views: 512.0ms | ActiveRecord: 17.5ms)
+
+
+Started POST "/carts" for 127.0.0.1 at 2017-08-09 12:42:52 -0700
+Processing by CartsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wRFxPuZVfe3xqOjLTc72+zxRvW8oUaScnybHgpgDafrX12nDYkIYM+rq36YcNarh9a4QEpm7o2nT5rSHDzx+3Q==", "product_id"=>"1", "quantity"=>"1"}
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "carts" ("user_id", "product_id", "quantity", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", "3.0"], ["product_id", "1.0"], ["quantity", "1.0"], ["status", "carted"], ["created_at", "2017-08-09 19:42:52.648368"], ["updated_at", "2017-08-09 19:42:52.648368"]]
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProduct Load (1.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "products" SET "stock" = $1, "updated_at" = $2 WHERE "products"."id" = $3[0m  [["stock", "277.0"], ["updated_at", "2017-08-09 19:42:52.661434"], ["id", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/products
+Completed 302 Found in 69ms (ActiveRecord: 27.8ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-09 12:42:52 -0700
+Processing by ProductsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (1.9ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 3], ["status", "carted"]]
+  [1m[36mProduct Load (1.0ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered products/index.html.erb within layouts/application (16.8ms)
+Completed 200 OK in 140ms (Views: 129.2ms | ActiveRecord: 4.0ms)
+
+
+Started POST "/orders" for 127.0.0.1 at 2017-08-09 12:42:54 -0700
+Processing by OrdersController#create as HTML
+  Parameters: {"authenticity_token"=>"Undz9lOW4mD9nRWLUJ7EOr60nWWADhW04ejBs206wIFEsWsL14GHvubfIuYBZZggd0swGDHkEkGtKLK2+gXXpg=="}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCart Load (0.5ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."user_id" = $1 AND "carts"."status" = $2[0m  [["user_id", 3], ["status", "carted"]]
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "carts" SET "status" = $1, "order_id" = $2, "updated_at" = $3 WHERE "carts"."id" = $4[0m  [["status", "Purchased"], ["order_id", "120.0"], ["updated_at", "2017-08-09 19:42:54.083704"], ["id", 120]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "orders" ("user_id", "subtotal", "tax", "total", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["user_id", 3], ["subtotal", "40.0"], ["tax", "3.6"], ["total", "43.6"], ["created_at", "2017-08-09 19:42:54.102912"], ["updated_at", "2017-08-09 19:42:54.102912"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/orders/82
+Completed 302 Found in 51ms (ActiveRecord: 10.6ms)
+
+
+Started GET "/orders/82" for 127.0.0.1 at 2017-08-09 12:42:54 -0700
+Processing by OrdersController#show as HTML
+  Parameters: {"id"=>"82"}
+  [1m[36mOrder Load (1.2ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 82], ["LIMIT", 1]]
+  Rendering orders/show.html.erb within layouts/application
+  Rendered orders/show.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 88ms (Views: 81.4ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/charges" for 127.0.0.1 at 2017-08-09 12:42:59 -0700
+Processing by ChargesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"69L4RzetVLGlkV8qmvgGa5ToNllq4W2AkSiYbDGxflz9FOC6s7oxb77TaEfLA1pxXRebJNsLanXd6Otppo5pew==", "stripeToken"=>"tok_1Ap04yE8jSS0SGQdBjFmV6yA", "stripeTokenType"=>"card", "stripeEmail"=>"sandrasarabia94@gmail.com"}
+  [1m[36mOrder Load (1.7ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering order_mailer/order_confirmation.html.erb within layouts/mailer
+  Rendered order_mailer/order_confirmation.html.erb within layouts/mailer (0.6ms)
+  Rendering order_mailer/order_confirmation.text.erb within layouts/mailer
+  Rendered order_mailer/order_confirmation.text.erb within layouts/mailer (0.5ms)
+OrderMailer#order_confirmation: processed outbound mail in 217.1ms
+Sent mail to sandrasarabia94@gmail.com (1296.3ms)
+Date: Wed, 09 Aug 2017 12:43:01 -0700
+From: foodbylags@gmail.com
+To: sandrasarabia94@gmail.com
+Message-ID: <598b65c5ad71b_d1263fdb6f0e8adc8317@Jamess-MacBook-Pro.local.mail>
+Subject: Order Completed!
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_598b65c5aaac4_d1263fdb6f0e8adc830b4";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_598b65c5aaac4_d1263fdb6f0e8adc830b4
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Sandra, 
+
+Thank you for your order!
+
+
+
+----==_mimepart_598b65c5aaac4_d1263fdb6f0e8adc830b4
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    Thank you for your order Sandra! An email has been sent to the owner of @food_by_lags with your order details.
+  </body>
+</html>
+
+----==_mimepart_598b65c5aaac4_d1263fdb6f0e8adc830b4--
+
+Redirected to http://localhost:3000/users/3
+Completed 302 Found in 3600ms (ActiveRecord: 2.4ms)
+
+
+Started GET "/users/3" for 127.0.0.1 at 2017-08-09 12:43:03 -0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+Redirected to http://localhost:3000/users
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2017-08-09 12:43:03 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered users/index.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 74ms (Views: 71.2ms | ActiveRecord: 0.3ms)
+
+
