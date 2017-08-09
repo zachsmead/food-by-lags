@@ -27,8 +27,23 @@ Rails.application.configure do
   end
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
+  #Change mail delivery to either :smtp, :sendmail, :file, :test
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "gmail.com",
+    authentication: "plain",
+    user_name: "foodbylags@gmail.com",
+    password: "Jl4g4ttut4",
+    enable_starttls_auto: true,
+  }
+
+  # specify what domain to use for mailerURLs
+  config.action_mailer.default_url_options = { host: "localhost:3000" }
+  
   config.action_mailer.perform_caching = false
 
   # Print deprecation notices to the Rails logger.

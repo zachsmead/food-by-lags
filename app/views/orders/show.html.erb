@@ -22,9 +22,11 @@
 
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="A month's subscription"
+          data-description="Product Bought"
           data-amount="<%= @amount_in_cents %>"
           data-locale="auto"></script>
+
 <% end %>
+
 <br>
 		<%= button_to "Home", "/users", method: :get %>
