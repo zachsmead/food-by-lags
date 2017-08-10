@@ -1,32 +1,27 @@
 <h1> Your Final Order </h1>
-		User Id: <%= @order.user_id %>
-		<br>
-		Subtotal: $<%= @order.subtotal %>
-		<br>
-		Tax: <%= @order.tax %>
-		<br>
-		Total: <%= @order.total %>
-		<br>
+<div class="container">
+    User Id: <%= @order.user_id %>
+    <br>
+    Subtotal: $<%= @order.subtotal %>
+    <br>
+    Tax: <%= @order.tax %>
+    <br>
+    Total: <%= @order.total %>
+    <br>
+    <br>
 
-<%= form_tag charges_path do %> 
-  <article>
-    <% if flash[:error].present? %>
-      <div id="error_explanation">
-        <p><%= flash[:error] %></p>
-      </div>
-    <% end %>
-    <label class="amount">
-      <span>Amount: $<%= @order.total %></span>
-    </label>
-  </article>
+    <%= button_to "Go To Payment", "/charges/new", method: :get %>
 
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="Product Bought"
-          data-amount="<%= @amount_in_cents %>"
-          data-locale="auto"></script>
 
-<% end %>
+</div>
 
 <br>
-		<%= button_to "Home", "/users", method: :get %>
+<div id="logout_buttons">
+  <% if current_user %>
+    <% if current_user.admin %>
+      <%= button_to "Logout", "/signout", method: :get %>
+
+  
+    <% end %> 
+  <% end %>
+</div>

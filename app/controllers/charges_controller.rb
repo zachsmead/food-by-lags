@@ -1,5 +1,7 @@
 class ChargesController < ApplicationController
 	def new
+		@order = Order.last
+		@amount_in_cents = @order.total * 100
 	end
 
 	def create
@@ -19,11 +21,11 @@ class ChargesController < ApplicationController
 			:currency => 'usd'
 		)
 
-		@buyer = User.find_by(id: current_user.id)
+		@order = Order.last
 
 		if charge.save
-			OrderMailer.order_confirmation(@buyer).deliver
-			redirect_to @buyer, notice: "Order Completed! We Sent You a Confirmation Email"
+			OrderMailer.order_confirmation(@order.email).deliver
+			redirect_to "/users" , notice: "Order Completed! We Sent You a Confirmation Email"
 		else
 			flash[:danger] = "Something went wrong"
 			redirect_to "/orders"

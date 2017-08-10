@@ -1,0 +1,22 @@
+
+
+
+	<h1> Admin Login</h1>
+	<div class="log">
+	<%= form_tag "/users/signin", method: :post do %>
+		<div>
+		Email: <input type="text" name="email">
+		</div>
+	<br>
+		<div>
+		Password: <input type="password" name="password">
+		</div>
+	<br>
+		<div class="submit_button">
+		<input type="submit" value="Login">
+		<br>
+		</div>
+	<% end %>
+		<div id="adminsignin">
+		</div>
+	</div>

@@ -9,6 +9,6 @@ class OrderMailer < ApplicationMailer
   def order_confirmation(buyer)
     @buyer = buyer
 
-    mail to: @buyer.email, subject: "Order Completed!", cc: "foodbylags@gmail.com"
+    mail to: @buyer, subject: "Order Completed!", cc: "foodbylags@gmail.com"
   end
 end
