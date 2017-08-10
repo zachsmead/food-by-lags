@@ -13,3 +13,55 @@
  *= require_tree .
  *= require_self
  */
+
+.navbar .collapse .active a {
+    float:none;
+    display:inline-block;
+    zoom:1;
+	/*padding-left:100px;*/
+	/*padding-right:100px;*/
+    margin: auto 100px;
+    background-color: #B9EEF7;
+    font-weight: bold;
+    font-size: 125%;
+
+
+}
+
+.navbar .collapse .active>a:hover {
+	background: transparent;
+}
+
+.navbar {
+	background-color: #B9EEF7;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    border: 1px underline #3c763d;
+
+}
+
+#pic_of_you {
+	padding:80px;
+	float: left;
+}
+
+#about_me {
+	padding:20px;
+	float: right;
+}
+
+#pic_of_food_one {
+	text-align: center;
+	margin: 100px;
+}
+
+#pic_of_food_two {
+	text-align: center;
+	margin: 100px;
+}
+
+#pic_of_food_three {
+	text-align: center;
+	margin: 100px;
+}

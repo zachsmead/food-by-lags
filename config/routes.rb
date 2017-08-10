@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   	patch "/users/:id/edit" => "users#update"
     resources :users
     resources :charges
+
+
     root to: "users#comingsoon"
+
+    
     post "/users/signin" => "sessions#signin"
     get "/signout" => "sessions#signout"
     get "/comingsoon" => "users#comingsoon"
