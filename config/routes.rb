@@ -6,7 +6,8 @@ Rails.application.routes.draw do
     resources :charges
 
 
-    root to: "users#comingsoon"
+    # root to: "users#comingsoon"
+    root to: "comments#index"
 
     
     post "/users/signin" => "sessions#signin"
@@ -28,5 +29,9 @@ Rails.application.routes.draw do
     post "/orders" => "orders#create"
     get "/orders/:id" => "orders#show"
     get "/sessions/admin_signin" => "sessions#admin_signin"
+
+    get "/contact" => "comments#index"
+
+
 
 end
