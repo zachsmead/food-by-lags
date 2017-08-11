@@ -22,9 +22,9 @@ class ChargesController < ApplicationController
 		)
 
 		@order = Order.last
-
+		email = @order.email
 		if charge.save
-			OrderMailer.order_confirmation(@order.email).deliver
+			OrderMailer.order_confirmation(email).deliver
 			redirect_to "/users" , notice: "Order Completed! We Sent You a Confirmation Email"
 		else
 			flash[:danger] = "Something went wrong"
