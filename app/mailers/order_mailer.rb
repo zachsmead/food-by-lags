@@ -12,4 +12,10 @@ class OrderMailer < ApplicationMailer
 
     mail to: @buyer, subject: "Order Completed!", cc: "foodbylags@gmail.com"
   end
+
+  def comment_approval(comment)
+  end
+
+
+
 end
