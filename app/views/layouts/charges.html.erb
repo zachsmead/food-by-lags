@@ -1,7 +1,69 @@
 <!DOCTYPE html>
 <html>
-  <head></head>
+  <head>
+    <title>food_by_lags</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
   <body>
+
+  	<!-- As a default, Rails will use application.html.erb as the layout file for all views. But if it detects a layout file that shares the name of a view, such as this file, then Rails will use the named layout file instead of defaulting to application.html.erb.  -->
+
+
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+         <% if current_user && current_user.admin %>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/users">Home <span class="sr-only">(current)</span></a></li>
+        </ul>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/products"> Cookbooks <span class="sr-only">(current)</span></a></li>
+          </ul>
+          <ul class="nav navbar-nav">
+          <li class="active"><a href="/contact"> Contact <span class="sr-only">(current)</span></a></li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/products/new">New Product <span class="sr-only">(current)</span></a></li>
+        </ul>
+         <% end %>
+
+
+        <% if !current_user || current_user && !current_user.admin %>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/users"> Home <span class="sr-only">(current)</span></a></li>
+          </ul>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/products"> Cookbooks <span class="sr-only">(current)</span></a></li>
+          </ul>
+          <ul class="nav navbar-nav">
+          <li class="active"><a href="/contact"> Contact <span class="sr-only">(current)</span></a></li>
+        </ul>
+        <% end %>     
+
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+
+
+
+
+
+
     <%= yield %>
   </body>
 </html>
