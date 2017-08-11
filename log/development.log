@@ -43364,3 +43364,378 @@ Migrating to AddApprovalToComment (20170811053126)
   [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
   [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(8127210905595193125)[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/products" for 127.0.0.1 at 2017-08-10 23:04:45 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (2.3ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (1.4ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."status" = $1[0m  [["status", "carted"]]
+  Rendered products/index.html.erb within layouts/application (27.6ms)
+Completed 200 OK in 229ms (Views: 163.2ms | ActiveRecord: 15.2ms)
+
+
+Started POST "/carts" for 127.0.0.1 at 2017-08-10 23:05:01 -0700
+Processing by CartsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"2vFNfZuX/1h11LN3lJrzX0QWaml9F+E/z2oPSMKeu6puPI0JYq1xTg5917e9Tvg1p5lPglwXnbP2lR7nwb0O6A==", "product_id"=>"1", "quantity"=>"1"}
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1[0m  [["id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (5.8ms)[0m  [1m[32mINSERT INTO "carts" ("product_id", "quantity", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["product_id", "1.0"], ["quantity", 1], ["status", "carted"], ["created_at", "2017-08-11 06:05:01.866874"], ["updated_at", "2017-08-11 06:05:01.866874"]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[33mUPDATE "products" SET "stock" = $1, "updated_at" = $2 WHERE "products"."id" = $3[0m  [["stock", "768.0"], ["updated_at", "2017-08-11 06:05:01.879538"], ["id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/products
+Completed 302 Found in 30ms (ActiveRecord: 12.3ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-10 23:05:01 -0700
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (0.5ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."status" = $1[0m  [["status", "carted"]]
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered products/index.html.erb within layouts/application (28.3ms)
+Completed 200 OK in 101ms (Views: 97.0ms | ActiveRecord: 1.6ms)
+
+
+Started POST "/orders" for 127.0.0.1 at 2017-08-10 23:06:11 -0700
+Processing by OrdersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"usI3oWAvTF2uqExBGK68r2+ROY7XxtFYqjai2e3GqqAOD/fVmRXCS9UBKIExerfFjB4cZfbGrdSTybN27uUf4g==", "first_name"=>"a", "last_name"=>"a", "email"=>"jimmy.lagattuta@gmail.com", "address_one"=>"1234 Cherry Ave, Long Beach, CA, 90804", "address_two"=>"Apt 3"}
+  [1m[36mCart Load (0.5ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."status" = $1[0m  [["status", "carted"]]
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "orders" ("subtotal", "tax", "total", "created_at", "updated_at", "address", "first_name", "last_name", "email") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["subtotal", "12.0"], ["tax", "1.08"], ["total", "13.08"], ["created_at", "2017-08-11 06:06:11.452174"], ["updated_at", "2017-08-11 06:06:11.452174"], ["address", "1234 Cherry Ave, Long Beach, CA, 90804 Apt 3"], ["first_name", "a"], ["last_name", "a"], ["email", "jimmy.lagattuta@gmail.com"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "carts" SET "status" = $1, "order_id" = $2, "updated_at" = $3 WHERE "carts"."id" = $4[0m  [["status", "Purchased"], ["order_id", "170.0"], ["updated_at", "2017-08-11 06:06:11.457259"], ["id", 170]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/orders/100
+Completed 302 Found in 37ms (ActiveRecord: 8.8ms)
+
+
+Started GET "/orders/100" for 127.0.0.1 at 2017-08-10 23:06:11 -0700
+Processing by OrdersController#show as HTML
+  Parameters: {"id"=>"100"}
+  [1m[36mOrder Load (0.5ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 100], ["LIMIT", 1]]
+  Rendering orders/show.html.erb within layouts/application
+  Rendered orders/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 84ms (Views: 79.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/charges/new" for 127.0.0.1 at 2017-08-10 23:06:15 -0700
+Processing by ChargesController#new as HTML
+  [1m[36mOrder Load (1.2ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  Rendering charges/new.html.erb within layouts/charges
+  Rendered charges/new.html.erb within layouts/charges (2.6ms)
+Completed 200 OK in 107ms (Views: 101.6ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/charges" for 127.0.0.1 at 2017-08-10 23:08:12 -0700
+Processing by ChargesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EoCvIWNJCsxjfYpaEbwL71TjxcfILBAETrKaIXc9o1SmTW9VmnOE2hjU7po4aACFt2zgLOksbIh3TYuOdB4WFg==", "stripeToken"=>"tok_1ApWJaEwpSsuAKxg9hKy827Y", "stripeTokenType"=>"card", "stripeEmail"=>"jimmy.lagattuta@gmail.com"}
+  [1m[36mOrder Load (0.7ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  Rendering order_mailer/order_confirmation.html.erb within layouts/mailer
+  Rendered order_mailer/order_confirmation.html.erb within layouts/mailer (0.7ms)
+  Rendering order_mailer/order_confirmation.text.erb within layouts/mailer
+  Rendered order_mailer/order_confirmation.text.erb within layouts/mailer (0.5ms)
+OrderMailer#order_confirmation: processed outbound mail in 277.1ms
+Sent mail to jimmy.lagattuta@gmail.com (657.3ms)
+Date: Thu, 10 Aug 2017 23:08:15 -0700
+From: foodbylags@gmail.com
+To: jimmy.lagattuta@gmail.com
+Cc: foodbylags@gmail.com
+Message-ID: <598d49cfda721_17a1e3fe7a8d6b65c1156c@Jamess-MacBook-Pro.local.mail>
+Subject: Order Completed!
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_598d49cfd80da_17a1e3fe7a8d6b65c11464";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_598d49cfd80da_17a1e3fe7a8d6b65c11464
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Thank you for your order! An email has been sent to jimmy.lagattuta@gmail.com and to the owner of @food_by_lags with your order details.
+
+----==_mimepart_598d49cfd80da_17a1e3fe7a8d6b65c11464
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    Thank you for your order!
+<br>
+First Name: a
+<br>
+Last Name: a
+<br>
+Address: 1234 Cherry Ave, Long Beach, CA, 90804 Apt 3
+<br>
+Email: jimmy.lagattuta@gmail.com
+<br>
+Total: 13.08
+
+  </body>
+</html>
+
+----==_mimepart_598d49cfd80da_17a1e3fe7a8d6b65c11464--
+
+Completed 500 Internal Server Error in 3717ms (ActiveRecord: 0.7ms)
+
+
+
+Net::SMTPAuthenticationError - 535-5.7.8 Username and Password not accepted. Learn more at
+:
+  /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/2.4.0/net/smtp.rb:981:in `check_auth_response'
+  /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/2.4.0/net/smtp.rb:736:in `auth_plain'
+  /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/2.4.0/net/smtp.rb:728:in `authenticate'
+  /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/2.4.0/net/smtp.rb:565:in `do_start'
+  /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/2.4.0/net/smtp.rb:518:in `start'
+  mail (2.6.6) lib/mail/network/delivery_methods/smtp.rb:111:in `deliver!'
+  mail (2.6.6) lib/mail/message.rb:2149:in `do_delivery'
+  mail (2.6.6) lib/mail/message.rb:237:in `block in deliver'
+  actionmailer (5.0.4) lib/action_mailer/base.rb:543:in `block in deliver_mail'
+  activesupport (5.0.4) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (5.0.4) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+  activesupport (5.0.4) lib/active_support/notifications.rb:164:in `instrument'
+  actionmailer (5.0.4) lib/action_mailer/base.rb:541:in `deliver_mail'
+  mail (2.6.6) lib/mail/message.rb:237:in `deliver'
+  /Users/jameslagattuta/.rbenv/versions/2.4.0/lib/ruby/2.4.0/delegate.rb:83:in `method_missing'
+  app/controllers/charges_controller.rb:27:in `create'
+  actionpack (5.0.4) lib/action_controller/metal/basic_implicit_render.rb:4:in `send_action'
+  actionpack (5.0.4) lib/abstract_controller/base.rb:188:in `process_action'
+  actionpack (5.0.4) lib/action_controller/metal/rendering.rb:30:in `process_action'
+  actionpack (5.0.4) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:126:in `call'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:506:in `block (2 levels) in compile'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:455:in `call'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:101:in `__run_callbacks__'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:750:in `_run_process_action_callbacks'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:90:in `run_callbacks'
+  actionpack (5.0.4) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (5.0.4) lib/action_controller/metal/rescue.rb:20:in `process_action'
+  actionpack (5.0.4) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (5.0.4) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (5.0.4) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+  activesupport (5.0.4) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (5.0.4) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (5.0.4) lib/action_controller/metal/params_wrapper.rb:248:in `process_action'
+  activerecord (5.0.4) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (5.0.4) lib/abstract_controller/base.rb:126:in `process'
+  actionview (5.0.4) lib/action_view/rendering.rb:30:in `process'
+  actionpack (5.0.4) lib/action_controller/metal.rb:190:in `dispatch'
+  actionpack (5.0.4) lib/action_controller/metal.rb:262:in `dispatch'
+  actionpack (5.0.4) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+  actionpack (5.0.4) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+  actionpack (5.0.4) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+  actionpack (5.0.4) lib/action_dispatch/journey/router.rb:26:in `serve'
+  actionpack (5.0.4) lib/action_dispatch/routing/route_set.rb:725:in `call'
+  rack (2.0.3) lib/rack/etag.rb:25:in `call'
+  rack (2.0.3) lib/rack/conditional_get.rb:38:in `call'
+  rack (2.0.3) lib/rack/head.rb:12:in `call'
+  rack (2.0.3) lib/rack/session/abstract/id.rb:232:in `context'
+  rack (2.0.3) lib/rack/session/abstract/id.rb:226:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+  activerecord (5.0.4) lib/active_record/migration.rb:553:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+  activesupport (5.0.4) lib/active_support/callbacks.rb:90:in `run_callbacks'
+  actionpack (5.0.4) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+  web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+  web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+  railties (5.0.4) lib/rails/rack/logger.rb:36:in `call_app'
+  railties (5.0.4) lib/rails/rack/logger.rb:24:in `block in call'
+  activesupport (5.0.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+  activesupport (5.0.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (5.0.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+  railties (5.0.4) lib/rails/rack/logger.rb:24:in `call'
+  sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+  rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+  rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+  activesupport (5.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+  actionpack (5.0.4) lib/action_dispatch/middleware/static.rb:136:in `call'
+  rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+  railties (5.0.4) lib/rails/engine.rb:522:in `call'
+  puma (3.9.1) lib/puma/configuration.rb:224:in `call'
+  puma (3.9.1) lib/puma/server.rb:602:in `handle_request'
+  puma (3.9.1) lib/puma/server.rb:435:in `process_client'
+  puma (3.9.1) lib/puma/server.rb:299:in `block in run'
+  puma (3.9.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+
+Started POST "/__better_errors/8ac1894f1dfab6cb/variables" for 127.0.0.1 at 2017-08-10 23:08:16 -0700
+Started GET "/products" for 127.0.0.1 at 2017-08-10 23:08:52 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.7ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."status" = $1[0m  [["status", "carted"]]
+  Rendered products/index.html.erb within layouts/application (23.4ms)
+Completed 200 OK in 512ms (Views: 460.6ms | ActiveRecord: 9.8ms)
+
+
+Started POST "/carts" for 127.0.0.1 at 2017-08-10 23:08:57 -0700
+Processing by CartsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"kjGxfRgNGT9M/llCoaXpUUWMysB3b20nrt4nUj6spqUm/HEJ4TeXKTdXPYKIceI7pgPvK1ZvEauXITb9PY8T5w==", "product_id"=>"1", "quantity"=>"1"}
+  [1m[36mProduct Load (1.2ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.8ms)[0m  [1m[32mINSERT INTO "carts" ("product_id", "quantity", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["product_id", "1.0"], ["quantity", 1], ["status", "carted"], ["created_at", "2017-08-11 06:08:57.895144"], ["updated_at", "2017-08-11 06:08:57.895144"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProduct Load (0.5ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "products" SET "stock" = $1, "updated_at" = $2 WHERE "products"."id" = $3[0m  [["stock", "767.0"], ["updated_at", "2017-08-11 06:08:57.904772"], ["id", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/products
+Completed 302 Found in 28ms (ActiveRecord: 11.9ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-10 23:08:57 -0700
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (1.2ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."status" = $1[0m  [["status", "carted"]]
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered products/index.html.erb within layouts/application (20.8ms)
+Completed 200 OK in 92ms (Views: 87.3ms | ActiveRecord: 2.2ms)
+
+
+Started POST "/orders" for 127.0.0.1 at 2017-08-10 23:09:16 -0700
+Processing by OrdersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"2AkK0WraFKDx7jgLUxYFbq+jXWhg/Qasbk7WHOY19hFsxMqlk+CatopHXMt6wg4ETCx4g0H9eiBXscez5RZDUw==", "first_name"=>"bob", "last_name"=>"dole", "email"=>"jimmy.lagattuta@gmail.com", "address_one"=>"1234 Cherry Ave, Long Beach, CA, 90804", "address_two"=>"Apt 3"}
+  [1m[36mCart Load (0.6ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."status" = $1[0m  [["status", "carted"]]
+  [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "orders" ("subtotal", "tax", "total", "created_at", "updated_at", "address", "first_name", "last_name", "email") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["subtotal", "12.0"], ["tax", "1.08"], ["total", "13.08"], ["created_at", "2017-08-11 06:09:16.206526"], ["updated_at", "2017-08-11 06:09:16.206526"], ["address", "1234 Cherry Ave, Long Beach, CA, 90804 Apt 3"], ["first_name", "bob"], ["last_name", "dole"], ["email", "jimmy.lagattuta@gmail.com"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "carts" SET "status" = $1, "order_id" = $2, "updated_at" = $3 WHERE "carts"."id" = $4[0m  [["status", "Purchased"], ["order_id", "171.0"], ["updated_at", "2017-08-11 06:09:16.217582"], ["id", 171]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/orders/101
+Completed 302 Found in 41ms (ActiveRecord: 13.6ms)
+
+
+Started GET "/orders/101" for 127.0.0.1 at 2017-08-10 23:09:16 -0700
+Processing by OrdersController#show as HTML
+  Parameters: {"id"=>"101"}
+  [1m[36mOrder Load (0.7ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" WHERE "orders"."id" = $1 LIMIT $2[0m  [["id", 101], ["LIMIT", 1]]
+  Rendering orders/show.html.erb within layouts/application
+  Rendered orders/show.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 68ms (Views: 61.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/charges/new" for 127.0.0.1 at 2017-08-10 23:09:19 -0700
+Processing by ChargesController#new as HTML
+  [1m[36mOrder Load (0.8ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  Rendering charges/new.html.erb within layouts/charges
+  Rendered charges/new.html.erb within layouts/charges (1.0ms)
+Completed 200 OK in 82ms (Views: 77.8ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/charges" for 127.0.0.1 at 2017-08-10 23:10:08 -0700
+Processing by ChargesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"DvygPy2n5x1lStZ+xonh3HHHM18KLy2pNJMLKX0BJjq6MWBL1J1pCx7jsr7vXeq2kkgWtCsvUSUNbBqGfiKTeA==", "stripeToken"=>"tok_1ApWLREwpSsuAKxgJvCTSY63", "stripeTokenType"=>"card", "stripeEmail"=>"jimmy.lagattuta@gmail.com"}
+  [1m[36mOrder Load (0.6ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "orders".* FROM "orders" ORDER BY "orders"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  Rendering order_mailer/order_confirmation.html.erb within layouts/mailer
+  Rendered order_mailer/order_confirmation.html.erb within layouts/mailer (0.8ms)
+  Rendering order_mailer/order_confirmation.text.erb within layouts/mailer
+  Rendered order_mailer/order_confirmation.text.erb within layouts/mailer (0.5ms)
+OrderMailer#order_confirmation: processed outbound mail in 275.5ms
+Sent mail to jimmy.lagattuta@gmail.com (1192.2ms)
+Date: Thu, 10 Aug 2017 23:10:11 -0700
+From: foodbylags@gmail.com
+To: jimmy.lagattuta@gmail.com
+Cc: foodbylags@gmail.com
+Message-ID: <598d4a43558b4_17e883ff5268fa8bc34469@Jamess-MacBook-Pro.local.mail>
+Subject: Order Completed!
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_598d4a435384c_17e883ff5268fa8bc34344";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_598d4a435384c_17e883ff5268fa8bc34344
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Thank you for your order! An email has been sent to jimmy.lagattuta@gmail.com and to the owner of @food_by_lags with your order details.
+
+----==_mimepart_598d4a435384c_17e883ff5268fa8bc34344
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    Thank you for your order!
+<br>
+First Name: bob
+<br>
+Last Name: dole
+<br>
+Address: 1234 Cherry Ave, Long Beach, CA, 90804 Apt 3
+<br>
+Email: jimmy.lagattuta@gmail.com
+<br>
+Total: 13.08
+
+  </body>
+</html>
+
+----==_mimepart_598d4a435384c_17e883ff5268fa8bc34344--
+
+Redirected to http://localhost:3000/users
+Completed 302 Found in 4194ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2017-08-10 23:10:12 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  Rendered users/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 76ms (Views: 73.1ms | ActiveRecord: 0.0ms)
+
+

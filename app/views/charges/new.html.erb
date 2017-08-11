@@ -13,6 +13,6 @@
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
           data-description="Final Step"
-          data-amount="@amount_in_cents"
+          data-amount="<%= @amount_in_cents %>"
           data-locale="auto"></script>
 <% end %>
