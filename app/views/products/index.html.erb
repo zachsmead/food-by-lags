@@ -1,9 +1,3 @@
-<br>
-<% if session[:id] %>
-	<%= button_to "Logout", "/signout", method: :get %>
-
-<% end %>
-<br>
 
 
 <h1> Products Available </h1>
@@ -17,43 +11,20 @@
 	<br>
 	Item Stock: <%= item.stock %>
 	<br>
-<% end %> 
-
-
-
-
-
-<% if current_user %>
-	<h3> Buy Product Here </h3>
-	
-
-
-	<% @products.each do |item| %>
-		Product Name: <%= item.name %>
-		<br>
-		Price: $<%= item.cost %>
-		<br>
-		Stock: <%= item.stock %>
-		<br>
-		<% if item.stock == 0 %>
-			In/Out of Stock: Out of Stock
-		<% elsif item.stock > 0 %>
-			In/Out of Stock: In stock!
-		<% end %>
-		<%= form_tag "/carts", method: :post do %>
-			<input type="hidden" name="product_id" value="<%= item.id %>">
-			<br>
-			<% if item.stock > 0 %>
-				<input type="hidden" name="quantity" value=1>
-			<input type="submit" value="Add To Cart">
-			<% elsif item.stock == 0 %>
-			<br>
-			<% end %>
-		<% end %>
-
-
-	<% end %>
+			<div id="container">	
+				<% if item.stock > 0 %>
+					<%= form_tag "/carts", method: :post do %>
+						<input type="hidden" name="product_id" value="<%= item.id %>">
+						Quantity <input type="text" name="quantity">
+						<br>
+						<input type="submit" value="Add To Cart">
+						<br>
+					<% end %>
+				<% end %>
+			</div>
 <% end %>
+
+
 
 
 
@@ -67,19 +38,49 @@
 		<% @cart.each do |item| %>
 			<%= item.product.name %>
 			<br>
-			$<%= item.product.cost %>
-			<% @total += item.product.cost %>
+			$<%= item.product.cost %> x <%= item.quantity %>
+			<% @total += item.product.cost * item.quantity %>
 			<br>
 			<%= button_to "Remove From Cart", "/carts/#{item.id}", method: :patch %>
 		<% end %>
 		Total(without tax): $<%= @total %>
 		<br>
 		<br>
+
+		<button class="buttons" v-if="this.buttons[0].visible === false" v-on:click="showButton">Checkout</button>
+		
+
+
 		<% if !@cart.empty? %>
-			<%= button_to "Go To Checkout", "/orders", method: :post %>
+			<div id="checkout_vue" v-if="this.buttons[0].visible === true">
+				<h3> Please Fill Out Form </h3> 
+				<%= form_tag "/orders", method: :post do %>
+					<div>
+					First Name: <input type="text" name="first_name">
+					</div>
+					<br>
+					<div>
+					Last Name: <input type="text" name="last_name">
+					</div>
+					<br>
+					<div>
+					Email: <input type="text" name="email">
+					</div>
+					<br>
+					<div>
+					Address 1: <input type="text" name="address_one">
+					</div>
+					<br>
+					<div>
+					Address 2: <input type="text" name="address_two">
+					</div>
+					<br>
+					<input type="submit" value="Checkout">
+					<br>
+				<% end %>
+			</div>
 		<% end %>
 	
-		<br>
 
 <% end %>
 
@@ -87,41 +88,35 @@
 
 
 
-
-<% if current_user && current_user.admin %>
-	<h2> New Product Admin Only </h2> 
-	<%= form_tag "/products/new", method: :post do %>
-		<h4> Name: <input type="text" name="name"> </h4>
-		<br>
-		<h4> Product Type: <input type="text" name="product_type"> </h4>
-		<br>
-		<h4> Stock: <input type="text" name="stock"> </h4>
-		<br>
-		<h4> Cost: <input type="text" name="cost"> </h4>
-		<br>
-		<input type="submit" name="Enter">
+<% if current_user %>
+	<% if current_user.admin %>
+		<h2> New Product Admin Only </h2> 
+		<%= form_tag "/products/new", method: :post do %>
+			<h4> Name: <input type="text" name="name"> </h4>
+			<br>
+			<h4> Product Type: <input type="text" name="product_type"> </h4>
+			<br>
+			<h4> Stock: <input type="text" name="stock"> </h4>
+			<br>
+			<h4> Cost: <input type="text" name="cost"> </h4>
+			<br>
+			<input type="submit" name="Enter">
+		<% end %>
 	<% end %>
 <% end %>
-
-
-<% if !current_user %>
-	<h1> Login Here</h1>
-	<div class="log">
-	<%= form_tag "/users/signin", method: :post do %>
-		<div>
-		Email: <input type="text" name="email">
-		</div>
-	<br>
-		<div>
-		Password: <input type="password" name="password">
-		</div>
-	<br>
-		<div class="submit_button">
-		<input type="submit" value="Login">
-		<br>
+<% if current_user %>
+	<% if !current_user.admin %>
+		<div id="admin_signin">
+			<%= button_to "admin signin", "/sessions/admin_signin", method: :get %>
 		</div>
 	<% end %>
-		<%= button_to "Home", "/users", method: :get %>
+	<div id="logout_buttons">
+		<% if current_user %>
+			<% if current_user.admin %>
+				<%= button_to "Logout", "/signout", method: :get %>
+
+	
+			<% end %>	
+		<% end %>
 	</div>
 <% end %>
-

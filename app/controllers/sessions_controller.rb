@@ -1,6 +1,9 @@
 class SessionsController < ApplicationController
 
+	def admin_signin
+		user = User.find_by(email: params[:email])
 
+	end
 	def signin
 		user = User.find_by(email: params[:email])
 		if user && user.authenticate(params[:password])
@@ -23,7 +26,7 @@ class SessionsController < ApplicationController
 	def signout
 		if session[:id]
 			session[:id] = nil
-			flash[:success] = "You have succussfully signed out"
+			flash[:success] = "You Have Succussfully Logged Out"
 			redirect_to "/users"
 		end
 

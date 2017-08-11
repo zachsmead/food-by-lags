@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     patch "/carts/:id" => "carts#update"
 
     post "/orders" => "orders#create"
-    get "orders/:id" => "orders#show"
-
+    get "/orders/:id" => "orders#show"
+    get "/sessions/admin_signin" => "sessions#admin_signin"
 
 end

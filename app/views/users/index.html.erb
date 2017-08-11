@@ -14,7 +14,12 @@
 <div class="container">
 	<h4 id="pic_of_food_three"> Picture of Food </h4>
 </div>
-<% if session[:id] %>
-	<%= button_to "Logout", "/signout", method: :get %>
+<div id="logout_buttons">
+	<% if current_user %>
+		<% if current_user.admin %>
+			<%= button_to "Logout", "/signout", method: :get %>
 
-<% end %>
+	
+		<% end %>	
+	<% end %>
+</div>
