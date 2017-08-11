@@ -23,3 +23,9 @@
 		<% end %>	
 	<% end %>
 </div>
+<% if !current_user %>
+		<div id="adminsignin">
+			<%= button_to "admin signin", "/sessions/admin_signin", method: :get %>
+
+		</div>
+<% end %>

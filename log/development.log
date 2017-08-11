@@ -42249,3 +42249,41 @@ Processing by ProductsController#index as HTML
 Completed 200 OK in 247ms (Views: 204.9ms | ActiveRecord: 2.2ms)
 
 
+Started GET "/users" for 127.0.0.1 at 2017-08-10 19:59:12 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  Rendered users/index.html.erb within layouts/application (21.8ms)
+Completed 200 OK in 564ms (Views: 542.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2017-08-10 19:59:17 -0700
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (10.3ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  [1m[36mCart Load (3.9ms)[0m  [1m[34mSELECT "carts".* FROM "carts" WHERE "carts"."status" = $1[0m  [["status", "carted"]]
+  Rendered products/index.html.erb within layouts/application (24.3ms)
+Completed 200 OK in 124ms (Views: 106.1ms | ActiveRecord: 14.3ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2017-08-10 19:59:20 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  Rendered users/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 78ms (Views: 75.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2017-08-10 20:01:24 -0700
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  Rendered users/index.html.erb within layouts/application (14.5ms)
+Completed 200 OK in 211ms (Views: 195.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/sessions/admin_signin" for 127.0.0.1 at 2017-08-10 20:01:27 -0700
+Processing by SessionsController#admin_signin as HTML
+  [1m[36mUser Load (15.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  Rendering sessions/admin_signin.html.erb within layouts/application
+  Rendered sessions/admin_signin.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 284ms (Views: 141.6ms | ActiveRecord: 42.0ms)
+
+
