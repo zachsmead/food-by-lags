@@ -67,6 +67,7 @@ class UsersController < ApplicationController
 	end
 
 	def comingsoon
+		
 	end
 
 end
