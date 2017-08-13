@@ -6,10 +6,14 @@ Rails.application.routes.draw do
     resources :charges
 
 
-    root to: "users#comingsoon"
-    # root to: "comments#index"
+    # root to: "users#comingsoon"
+    root to: "comments#index"
 
-    
+    get "/contacts" => "comments#index"
+    post "/contacts" => "comments#create"
+    get "/contacts/approved/:id" => "comments#approved"
+    get "/contacts/comment_delete/:id" => "comments#comment_delete"
+
     post "/users/signin" => "sessions#signin"
     get "/signout" => "sessions#signout"
     get "/comingsoon" => "users#comingsoon"
@@ -30,7 +34,6 @@ Rails.application.routes.draw do
     get "/orders/:id" => "orders#show"
     get "/sessions/admin_signin" => "sessions#admin_signin"
 
-    get "/contacts" => "comments#index"
 
 
 

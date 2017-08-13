@@ -1,19 +1,42 @@
-<div class="container">
-	<h2 id="pic_of_you"> Picture of You </h2>
-</div>
-<div class="container">
-	<h2 id="about_me"> About Me </h2>
+<div id="kabobs">
+	<div class="container"><img src="/img/kabobs.jpg" width="300px" height="300px" alt="kabobs.jpg">
+	</div>
 </div>
 
-<div class="container">
-	<h4 id="pic_of_food_one"> Picture of Food </h4>
+<div id="emailquestions">
+	<div class="container">
+		<h2> For any questions feel free to email<br> <p>
+		<a href="mailto:foodbylags@gmail.com" target="_top">foodbylags@gmail.com</a>
+		</p> </h2>
+	</div>
 </div>
-<div class="container">
-	<h4 id="pic_of_food_two"> Picture of Food </h4>
+
+<div id="commentbox">
+	<div class="box">
+		<h3> Any comments or reviews?<br> Please submit them below. </h3>
+
+			<%= form_tag "/contacts", method: :post do %>
+			<br>
+				<div id="nameform">
+					Name: <input type="text" name="name">
+				</div>
+				<br>
+				<br>
+				<textarea class="longInput" name="text" placeholder="Write a message" cols="60" rows="10"></textarea>
+
+				<div id="commentsubmitbutton">
+					<input type="submit" value="Submit">
+				</div>
+
+			<% end %>
+
+	</div>
 </div>
-<div class="container">
-	<h4 id="pic_of_food_three"> Picture of Food </h4>
-</div>
+
+
+
+
+
 <div id="logout_buttons">
 	<% if current_user %>
 		<% if current_user.admin %>

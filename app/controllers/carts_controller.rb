@@ -33,21 +33,13 @@ class CartsController < ApplicationController
 			puts "*" * 100
 			puts "*" * 100
 			puts "Saved"
-
-			puts "*" * 100
-			puts "*" * 100
-			puts "*" * 100
-
-		puts "*" * 100
-		puts "*" * 100
-		puts "*" * 100
 		end
 		@subtractproduct = Product.where(id: product_id)
 		@subtractproduct.each do |item|
 			item.stock = item.stock - quantity.to_i
 			item.save
 		end
-		redirect_to "/products"
+
 
 	end
 
