@@ -3,6 +3,9 @@ class ProductsController < ApplicationController
 		@products = Product.all
 		@cart = Cart.where(status: "carted")
 		@total = 0
+		@cart.each do |item|
+			@total += item.product.cost
+		end
 	end
 
 	def show

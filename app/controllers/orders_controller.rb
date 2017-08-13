@@ -34,9 +34,7 @@ class OrdersController < ApplicationController
 				puts "*" * 100
 				puts "*" * 100
 
-				item.status = "Purchased"
-				item.order_id = item.id
-				item.save
+				item.delete
 			end
 		end
 		redirect_to "/orders/#{@order.id}"

@@ -1,88 +1,52 @@
+<nav class="floating-menu" v-if="buttons[1].visible">
+      <h3> Cart <!-- <i class="icon-large icon-fast-food icon-white"></i> --> </h3>
+        <% @cart.each do |item| %>
+        	<%= item.product.name %>
+        	<br>
+        <% end %>
+        Total(without tax): $<%= @total %>	
+      
+    <!--   <div v-for="item in bag">
+        <p class="itemname"> {{item.name}} </p>
+        <p class="itemname"> ${{item.price}}0 </p>
+      </div>
+        <div class="itemnametwo">Total: ${{total}} </div>
+      <br>
+      <div class="bagcheck">
+
+      </div> -->
+</nav>
 
 
-<h1> Products Available </h1>
 
-<% @products.each do |item| %>
-	Item Name: <%= item.name %>
-	<br>
-	Item Type: <%= item.product_type %>
-	<br>
-	Item Cost: $<%= item.cost %>
-	<br>
-	Item Stock: <%= item.stock %>
-	<br>
+
+<img id="cuttingboard" src="/img/cuttingboardmealprep.jpg" alt="cuttingboardmealprep.jpg">
+
+<div id="add">
+	<div class="container">
+		<img id="cookbook" src="" width="350px" height="350px" alt="Cookbook Image">
+		<% @products.each do |item| %>
 			<div id="container">	
 				<% if item.stock > 0 %>
-					<%= form_tag "/carts", method: :post do %>
-						<input type="hidden" name="product_id" value="<%= item.id %>">
-						Quantity <input type="text" name="quantity">
-						<br>
-						<input type="submit" value="Add To Cart">
-						<br>
-					<% end %>
-				<% end %>
-			</div>
-<% end %>
-
-
-
-
-
-
-
-
-
-
-<% if @cart %>
-		<h2> Here is your cart </h2>
-		<% @cart.each do |item| %>
-			<%= item.product.name %>
-			<br>
-			$<%= item.product.cost %> x <%= item.quantity %>
-			<% @total += item.product.cost * item.quantity %>
-			<br>
-			<%= button_to "Remove From Cart", "/carts/#{item.id}", method: :patch %>
-		<% end %>
-		Total(without tax): $<%= @total %>
-		<br>
-		<br>
-
-		<button class="buttons" v-if="this.buttons[0].visible === false" v-on:click="showButton">Checkout</button>
-		
-
-
-		<% if !@cart.empty? %>
-			<div id="checkout_vue" v-if="this.buttons[0].visible === true">
-				<h3> Please Fill Out Form </h3> 
-				<%= form_tag "/orders", method: :post do %>
-					<div>
-					First Name: <input type="text" name="first_name">
+					<div id="addtocartform">
+						<%= form_tag "/carts", method: :post do %>
+							<input type="hidden" name="product_id" value="<%= item.id %>">
+							<input type="hidden" name="quantity" value="1">
+							<br>
+							<input v-on:click="addToBag()" type="submit" value="Add To Cart">
+							<br>
+						<% end %>
 					</div>
-					<br>
-					<div>
-					Last Name: <input type="text" name="last_name">
-					</div>
-					<br>
-					<div>
-					Email: <input type="text" name="email">
-					</div>
-					<br>
-					<div>
-					Address 1: <input type="text" name="address_one">
-					</div>
-					<br>
-					<div>
-					Address 2: <input type="text" name="address_two">
-					</div>
-					<br>
-					<input type="submit" value="Checkout">
-					<br>
 				<% end %>
 			</div>
 		<% end %>
-	
+	</div>
+</div>
 
-<% end %>
+
+
+
+
 
 
 

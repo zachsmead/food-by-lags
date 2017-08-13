@@ -54,14 +54,124 @@
 #pic_of_food_one {
 	text-align: center;
 	margin: 100px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
 }
 
 #pic_of_food_two {
 	text-align: center;
 	margin: 100px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
 }
 
 #pic_of_food_three {
 	text-align: center;
 	margin: 100px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+#logolocation {
+	text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+
+#cuttingboard {
+	text-align: center;
+	margin: 100px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+#cookbook {
+	float:left;
+	margin: 150px;
+}
+
+#addtocartform {
+	padding-top: 250px;
+	float: left;
+	margin: 50px;
+}
+
+#add {
+	width: 300px;
+}
+
+#nameform {
+	text-align: left;
+}
+
+.longinput {
+	width: 500px;
+	height: 200px;
+}
+
+#checkout {
+	bottom: 0;
+	float: right;
+}
+
+#kabobs {
+	text-align: center;
+	margin: 50px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+
+.floating-menu {
+font-family: sans-serif;
+background: lightgreen;
+opacity: initial;
+padding: 5px;
+width: 240px;
+z-index: 1000;
+position: fixed;
+top: 60px;
+right: 20px;
+border-radius: 2px;
+border: 2px solid grey;
+
+}
+
+
+#commentsubmitbutton {
+	margin: 15px;
+	text-align: right;
+}
+
+#commentbox {
+	text-align: center;
+	margin: 50px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+#emailquestions {
+	text-align: center;
+	margin: 100px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+#logout_buttons {
+	bottom: 0;
+	float: right;
+	position: fixed;
+}
+
+#adminsignin {
+	bottom: 0;
+	position: fixed;
 }

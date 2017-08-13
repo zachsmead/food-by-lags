@@ -14,6 +14,11 @@ class OrderMailer < ApplicationMailer
   end
 
   def comment_approval(comment)
+    email = 'foodbylags@gmail.com'
+    @comment = comment
+    @text = comment.text
+    @id = comment.id
+    mail to: email, subject: "Do you you approve this comment?"
   end
 
 
