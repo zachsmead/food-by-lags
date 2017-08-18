@@ -11,12 +11,12 @@
 
       		<div v-on:click="checkoutOrder"><h3> Checkout </h3>
       		</div>
-      			<div v-if="this.buttons[2].visible">
-      			  <p>First Name: <input type="text" v-model="firstNameBox"></p>
-      			  <p>Last Name: <input type="text" v-model="lastNameBox"></p>
-      			  <p>Email: <input type="text" v-model="emailBox"></p>
-      			  <p>Address 1: <input type="text" v-model="addressOneBox"></p>
-      			  <p>Address 2: <input type="text" v-model="addressTwoBox"></p>
+      			<div id="checkoutform" v-if="this.buttons[2].visible">
+      			  <p>First Name:<input type="text" v-model="firstNameBox"></p>
+      			  <p>Last Name:<input type="text" v-model="lastNameBox"></p>
+      			  <p>Email:<input type="text" v-model="emailBox"></p>
+      			  <p>Address 1:<input type="text" v-model="addressOneBox" placeholder="1234 Cherry Rd, Treesville, CA 97899"></p>
+      			  <p>Address 2:<input type="text" v-model="addressTwoBox" placeholder="Apt Tree"></p>
 
       				<button v-on:click="createOrder"> Create Order </button>   
 				</div> 
