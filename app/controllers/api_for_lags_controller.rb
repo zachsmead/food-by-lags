@@ -12,6 +12,69 @@ class ApiForLagsController < ApplicationController
 	def new
 	end
 
+
+
+
+
+
+	def create_order
+		@bag = params
+		subtotal = 0
+
+		@carts = Cart.where(status: "carted")
+			
+		@carts.each do |item|
+			subtotal += item.quantity * item.product.cost
+		end
+
+		puts "*" * 100
+		puts "*" * 100
+
+		puts "subtotal below"
+		puts subtotal
+
+
+		puts "*" * 100
+		puts "*" * 100
+		tax = subtotal * 0.09
+		total = subtotal + tax
+
+
+
+
+		@new_order = Order.create(
+			first_name: @bag['first_name'],
+			last_name: @bag['last_name'],
+			email: @bag['email'],
+			address: @bag['address'],
+			tax: tax,
+			subtotal: subtotal,
+			total: total
+			)
+		if @new_order.save
+			@cart_item.each do |item|
+				item.status = "Purchased"
+				--item.product.stock
+				item.save
+			end
+		else
+			@cart_item.each do |item|
+				item.delete
+			end
+		end
+
+
+		render 'create_order.json.jbuilder'
+
+	end
+
+
+
+
+
+
+
+
 	def delete_cart_item
 		@bag = params
 		newCart = @bag['newCart']
@@ -70,36 +133,6 @@ class ApiForLagsController < ApplicationController
 
 	def show
 		@order = Order.find_by(id: params[:id])
-	end
-
-	def checkout 
-		puts "*" * 100
-		puts "*" * 100
-		puts "*" * 100
-		puts "*" * 100
-		puts "*" * 100
-		puts "*" * 100
-
-		@bag = params
-		newBag = @bag['newOrder']
-
-		puts "@bag below"
-		puts @bag
-		puts "newBag below"
-		puts newBag
-
-
-
-
-		puts "*" * 100
-		puts "*" * 100
-		puts "*" * 100
-		puts "*" * 100
-		puts "*" * 100
-		puts "*" * 100
-
-		# @new_order = Order.create()
-		render 'checkout.json.jbuilder'
 	end
 
 

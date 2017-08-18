@@ -38,7 +38,6 @@ Rails.application.routes.draw do
     get "/api_for_lags/products_index" => "api_for_lags#products_index"
     post "/api_for_lags/create" => "api_for_lags#create"
     post "/api_for_lags/delete_cart_item" => "api_for_lags#delete_cart_item"
-    post "/api_for_lags/checkout" => "api_for_lags#checkout"
-
+    post "/api_for_lags/create_order" => "api_for_lags#create_order"
 
 end
