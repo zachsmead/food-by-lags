@@ -34,7 +34,11 @@ Rails.application.routes.draw do
     get "/orders/:id" => "orders#show"
     get "/sessions/admin_signin" => "sessions#admin_signin"
 
-
+    get "/api_for_lags/index" => "api_for_lags#index"
+    get "/api_for_lags/products_index" => "api_for_lags#products_index"
+    post "/api_for_lags/create" => "api_for_lags#create"
+    post "/api_for_lags/delete_cart_item" => "api_for_lags#delete_cart_item"
+    post "/api_for_lags/checkout" => "api_for_lags#checkout"
 
 
 end

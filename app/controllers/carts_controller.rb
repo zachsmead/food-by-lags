@@ -18,9 +18,14 @@ class CartsController < ApplicationController
 		if products.length > 0
 
 			quantity = params[:quantity]
-			@add_to_cart = Cart.new(product_id: product_id,
-									quantity: quantity,
-									status: "carted")
+			@add_to_cart = Unirest.post "https://localhost:3000/api_for_lags/create",
+				headers:{ "Accept" => "application/json" },
+				parameters:{ 
+					:product_id => product_id,
+					:quantity => quantity,
+					:status => status
+				}.to_json
+
 		else
 			flash[:info] = "Sorry, we are out of this product."
 		end

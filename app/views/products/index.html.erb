@@ -1,11 +1,25 @@
-<nav class="floating-menu" v-if="buttons[1].visible">
+<nav class="floating-menu" v-if="this.bag.length > 0">
       <h3> Cart <!-- <i class="icon-large icon-fast-food icon-white"></i> --> </h3>
-        <% @cart.each do |item| %>
-        	<%= item.product.name %>
-        	<br>
-        <% end %>
-        Total(without tax): $<%= @total %>	
-      
+      	<div v-for="item in bag">
+      		<h4> {{item[0].name}} </h4>
+
+      		<div v-on:click="removeFromCart(item[0])">Remove</div>
+
+
+
+      	</div>
+
+      		<div v-on:click="checkoutOrder"><h3> Checkout </h3>
+      		</div>
+      			<div v-if="this.buttons[2].visible">
+      			  <p>First Name: <input type="text" v-model="firstNameBox"></p>
+      			  <p>Last Name: <input type="text" v-model="lastNameBox"></p>
+      			  <p>Email: <input type="text" v-model="emailBox"></p>
+      			  <p>Address 1: <input type="text" v-model="addressOneBox"></p>
+      			  <p>Address 2: <input type="text" v-model="addressTwoBox"></p>
+
+      				<button v-on:click="createOrder"> Create Order </button>   
+				</div> 
     <!--   <div v-for="item in bag">
         <p class="itemname"> {{item.name}} </p>
         <p class="itemname"> ${{item.price}}0 </p>
@@ -22,24 +36,14 @@
 
 <img id="cuttingboard" src="/img/cuttingboardmealprep.jpg" alt="cuttingboardmealprep.jpg">
 
-<div id="add">
+<div class="add">
 	<div class="container">
 		<img id="cookbook" src="" width="350px" height="350px" alt="Cookbook Image">
-		<% @products.each do |item| %>
-			<div id="container">	
-				<% if item.stock > 0 %>
-					<div id="addtocartform">
-						<%= form_tag "/carts", method: :post do %>
-							<input type="hidden" name="product_id" value="<%= item.id %>">
-							<input type="hidden" name="quantity" value="1">
-							<br>
-							<input v-on:click="addToBag()" type="submit" value="Add To Cart">
-							<br>
-						<% end %>
-					</div>
-				<% end %>
+		<div class="addtocartform">
+			<div v-for="item in products">
+				<div id ="add-to-cart" v-on:click="addToBag(item)">Add to Cart</div>
 			</div>
-		<% end %>
+		</div>
 	</div>
 </div>
 

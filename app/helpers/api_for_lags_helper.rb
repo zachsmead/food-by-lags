@@ -1,0 +1,2 @@
+module ApiForLagsHelper
+end
