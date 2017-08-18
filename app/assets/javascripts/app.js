@@ -110,6 +110,34 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			},
 			createOrder: function() {
 				console.log('createOrder Functioning');
+				console.log('Order form texts below');
+				console.log(this.firstNameBox);
+				console.log(this.lastNameBox);
+				console.log(this.emailBox);
+				console.log(this.addressOneBox);
+				console.log(this.addressTwoBox);
+
+
+				var firstName = JSON.stringify(this.firstNameBox);
+				var lastName = JSON.stringify(this.lastNameBox);
+				var email = JSON.stringify(this.emailBox);
+				var address = JSON.stringify(this.addressOneBox) + JSON.stringify(this.addressTwoBox);
+
+				var form = {
+					first_name: firstName,
+					last_name: lastName,
+					email: email,
+					address: address
+				}
+
+
+
+
+				$.post('http://localhost:3000/api_for_lags/create_order.json', form, function(result) {
+					console.log('result below of create_order.json');
+					console.log(result);
+				})
+				window.location = "http://localhost:3000/charges/new";
 			}
 		}
 
