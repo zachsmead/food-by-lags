@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		},
 		mounted: function() {
 			console.log('Vue.js!');
-			$.get('http://localhost:3000/api_for_lags/products_index.json', function(result) {
+			$.get('http://foodbylags.com/api_for_lags/products_index.json', function(result) {
 				console.log(result);
 				this.products = result;
 				console.log('products below');
@@ -54,10 +54,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 					newCart: jsonCartItem
 				}
 
-				$.post('http://localhost:3000/api_for_lags/delete_cart_item.json', json_to_send, function(result) {
+				$.post('http://foodbylags.com/api_for_lags/delete_cart_item.json', json_to_send, function(result) {
 					console.log(result);
 				})
-				window.location = "http://localhost:3000/products";
+				window.location = "http://foodbylags.com/products";
 
 			},
 			showButton: function() {
@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				this.bag.push(cart_item);
 
 				console.log('jsonBag below')
-				$.post('http://localhost:3000/api_for_lags/create.json', json_to_send, function(result) {
+				$.post('http://foodbylags.com/api_for_lags/create.json', json_to_send, function(result) {
 					console.log('result below');
 					console.log(result);
 				}.bind(this));
@@ -135,11 +135,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
 
-				$.post('http://localhost:3000/api_for_lags/create_order.json', form, function(result) {
+				$.post('http://foodbylags.com/api_for_lags/create_order.json', form, function(result) {
 					console.log('result below of create_order.json');
 					console.log(result);
 				})
-				window.location = "http://localhost:3000/charges/new";
+				window.location = "http://foodbylags.com/charges/new";
 			},
 			sendComment: function(id) {
 				console.log('Send Comment Functioning');
@@ -151,11 +151,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 					name: this.nameAdd,
 					comment_id: id
 				}
-				$.post('http://localhost:3000/api_for_lags/create_comment.json', comment_to_send, function(result) {
+				$.post('http://foodbylags.com/api_for_lags/create_comment.json', comment_to_send, function(result) {
 					console.log('sendComment api call running');
 					console.log(result);
 				})
-				window.location = "http://localhost:3000/contacts";
+				window.location = "http://foodbylags.com/contacts";
 			}
 		}
 
