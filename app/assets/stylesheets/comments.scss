@@ -1,3 +1,48 @@
 // Place all the styles related to the Comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.approvedcomments {
+	margin: 80px;
+}
+
+
+.chatbox {
+	border: solid 2px;
+	width: 500px;
+	min-width: 390px;
+	height: 350px;
+	background: #fff;
+	padding: 25px;
+	margin: 10px auto;
+	border-radius: 8px;
+}
+
+.chatlogs {
+	width: 140%;
+	height: 160px;
+	padding: 5px;
+}
+
+
+.chat {
+	// display: flex;
+	flex-flow: row wrap;
+	align-items: flex-start;
+	margin-bottom: 10px;
+}
+
+.chat-message-name {
+	width: 60px;
+	border-radius: 30%;
+	font-size: 120%;
+}
+
+.chat .chat-message {
+	width: 70%;
+	padding: 5px;
+	margin: 5px, 10px, 0;
+	border-radius: 8px;
+	font-size: 14px;
+}

@@ -135,5 +135,57 @@ class ApiForLagsController < ApplicationController
 		@order = Order.find_by(id: params[:id])
 	end
 
+	def create_comment
+		@bag = params
+		newBag = @bag['newComment']
+		name = @bag['name']
+		id = @bag['comment_id']
+		puts "*" * 100
+		puts "*" * 100
+		puts "*" * 100
+
+		puts "newBag inspect below"
+		puts newBag.inspect
+		puts @bag['comment_id']
+
+		puts "*" * 100
+		puts "*" * 100
+		puts "*" * 100
+
+
+
+
+		puts "&" * 100
+		@text = Text.create(
+			name: name,
+			text: newBag,
+			comment_id: id,
+			approved: false
+		)
+		puts "&" * 100
+
+
+
+
+
+
+
+		puts "&" * 100
+		# OrderMailer
+		if @text.save
+			OrderMailer.text_approval(@text).deliver
+		flash[:success] = "Your comment or question has been successfully sent."
+		redirect_to "/contacts"
+
+		else
+			flash[:danger] = "Something went wrong with the mailing process."
+			redirect_to "/contacts"
+
+		end
+		puts "&" * 100
+
+
+	end
+
 
 end
