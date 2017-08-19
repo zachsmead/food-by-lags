@@ -45,7 +45,7 @@
 					<p class="chat-message"><%= item.name %>: <%= item.text %></p>
 					<% item.texts.each do |text| %>
 						<% if text.approved %>
-							<p> <%=text.name %>: <%= text.text %>
+							<p> <span> <%=text.name %>: </span> <%= text.text %></p>
 						<% end %>
 					<% end %>
 				</div>
