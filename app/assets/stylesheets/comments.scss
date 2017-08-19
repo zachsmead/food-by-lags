@@ -10,7 +10,7 @@
 
 .chatbox {
 	border: solid 2px;
-	width: 500px;
+	width:500px;
 	min-width: 390px;
 	height: 350px;
 	background: #fff;
@@ -20,9 +20,11 @@
 }
 
 .chatlogs {
-	width: 140%;
+	width: 90%;
 	height: 160px;
 	padding: 5px;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
 
 
