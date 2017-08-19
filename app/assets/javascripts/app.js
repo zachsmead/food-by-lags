@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			products: [],
 			finalBag: [],
 			brand_new_bag: [],
+			commentAdd: "",
+			nameAdd: "",
 
 
 			total: 0,
@@ -138,6 +140,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
 					console.log(result);
 				})
 				window.location = "http://localhost:3000/charges/new";
+			},
+			sendComment: function(id) {
+				console.log('Send Comment Functioning');
+				console.log('this.commentAdd below');
+				console.log(this.commentAdd);
+
+				var comment_to_send = {
+					newComment: this.commentAdd,
+					name: this.nameAdd,
+					comment_id: id
+				}
+				$.post('http://localhost:3000/api_for_lags/create_comment.json', comment_to_send, function(result) {
+					console.log('sendComment api call running');
+					console.log(result);
+					window.location = "http://localhost:3000/contacts";
+				})
 			}
 		}
 

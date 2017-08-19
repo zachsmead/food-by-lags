@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     post "/contacts" => "comments#create"
     get "/contacts/approved/:id" => "comments#approved"
     get "/contacts/comment_delete/:id" => "comments#comment_delete"
+    get "/contacts/text_approved/:id" => "comments#text_approved"
+    get "/contacts/text_delete/:id" => "comments#text_delete"
 
     post "/users/signin" => "sessions#signin"
     get "/signout" => "sessions#signout"
@@ -39,5 +41,6 @@ Rails.application.routes.draw do
     post "/api_for_lags/create" => "api_for_lags#create"
     post "/api_for_lags/delete_cart_item" => "api_for_lags#delete_cart_item"
     post "/api_for_lags/create_order" => "api_for_lags#create_order"
+    post "/api_for_lags/create_comment" => "api_for_lags#create_comment"
 
 end

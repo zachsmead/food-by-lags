@@ -5,7 +5,7 @@
 
 <div id="emailquestions">
 	<div class="container">
-		<h2> For any questions feel free to email<br> <p>
+		<h2> For any questions email<br> <p>
 		<a href="mailto:foodbylags@gmail.com" target="_top">foodbylags@gmail.com</a>
 		</p> </h2>
 	</div>
@@ -13,7 +13,7 @@
 
 <div id="commentbox">
 	<div class="box">
-		<h3> Any comments or reviews?<br> Please submit them below. </h3>
+		<h3> Any comments or reviews?<br> Please submit below. </h3>
 
 			<%= form_tag "/contacts", method: :post do %>
 			<br>
@@ -32,6 +32,43 @@
 
 	</div>
 </div>
+
+<% @approved_comments.each do |item| %>
+
+	<div class="approvedcomments">
+		<div class="chatbox">
+
+
+			<div class="chatlogs">
+				<div class="chat">
+
+					<p class="chat-message"><%= item.name %>: <%= item.text %></p>
+					<% item.texts.each do |text| %>
+						<% if text.approved %>
+							<p> <%=text.name %>: <%= text.text %>
+						<% end %>
+					<% end %>
+				</div>
+
+			</div>
+
+			<div class="chat-forum">
+				<div class="container">
+					Name: <input type="text" v-model="nameAdd">
+				</div>			
+				<textarea v-model="commentAdd" placeholder="Write a message" cols="45" rows="6"></textarea>
+				<button v-on:click="sendComment(<%= item.id %>)">Send</button>
+			</div>
+
+
+
+		</div>
+	</div>
+
+<% end %>
+
+
+
 
 
 

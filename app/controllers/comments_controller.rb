@@ -12,6 +12,15 @@ class CommentsController < ApplicationController
 		redirect_to "/contacts"
 	end
 
+	def text_approved
+		@text = Text.find(params[:id])
+		@text.approved = true
+		@text.save
+		flash[:success] = "You successfully approved the comment"
+		redirect_to "/contacts"
+	end
+
+
 	def comment_delete
 		@comment = Comment.find(params[:id])
 		@comment.delete
@@ -19,6 +28,15 @@ class CommentsController < ApplicationController
 		flash[:danger] = "You deleted the comment"
 		redirect_to "/contacts"
 	end
+
+	def text__delete
+		@text = Text.find(params[:id])
+		@text.delete
+		@text.save
+		flash[:danger] = "You deleted the comment"
+		redirect_to "/contacts"
+	end
+
 
 	def new
 	end

@@ -1,0 +1,2 @@
+class AdditionalCommentsController < ApplicationController
+end
