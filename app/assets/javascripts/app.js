@@ -154,8 +154,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				$.post('http://localhost:3000/api_for_lags/create_comment.json', comment_to_send, function(result) {
 					console.log('sendComment api call running');
 					console.log(result);
-					window.location = "http://localhost:3000/contacts";
 				})
+				window.location = "http://localhost:3000/contacts";
 			}
 		}
 
