@@ -74,9 +74,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 				var jsonBag = JSON.stringify(cart_item);
 
-				json_to_send = {
+				var json_to_send = {
 					newCart: jsonBag
-				}
+				};
 
 				this.bag.push(cart_item);
 

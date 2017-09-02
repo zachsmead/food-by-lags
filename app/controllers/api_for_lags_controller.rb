@@ -107,6 +107,10 @@ class ApiForLagsController < ApplicationController
 
 	def create
 		@bag = params
+		puts "&" * 100
+		puts @bag.inspect
+		puts "&" * 100
+
 		new_cart = @bag['newCart']
 		final_cart = JSON.parse(new_cart)
 		puts "*" * 100
@@ -114,7 +118,7 @@ class ApiForLagsController < ApplicationController
 		puts "*" * 100
 
 
-		puts "final_cart inspect below"
+		puts "final_cart inspect belowHERERER"
 		puts final_cart.inspect
 		puts "final_cart.id"
 		puts final_cart[0]['id']
