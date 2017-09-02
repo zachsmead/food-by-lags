@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20170902040807) do
 
   create_table "carts", force: :cascade do |t|
     t.decimal  "user_id",    precision: 9, scale: 2
-    t.decimal  "product_id", precision: 9, scale: 2
+    t.integer  "product_id"
     t.integer  "quantity"
     t.string   "status"
     t.decimal  "order_id",   precision: 9, scale: 2

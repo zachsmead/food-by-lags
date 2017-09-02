@@ -42,8 +42,8 @@
 		<div class="addtocartform">
 			<div v-for="item in products">
 				<img v-bind:src="item.image">
-				{{item}}
-				<div id ="add-to-cart" v-on:click="addToBag(item)">Add to Cart</div>
+					<div id ="add-to-cart" v-on:click="addToBag(item)">Add to Cart</div>
+				  {{item}}
 			</div>
 		</div>
 	</div>
