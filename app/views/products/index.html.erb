@@ -42,6 +42,9 @@
 		<div class="addtocartform">
 			<div v-for="item in products">
 					<div id ="add-to-cart" v-on:click="addToBag(item)">Add to Cart</div>
+				{{item}}
+				<!-- <div>{{ item.name }}</div> -->
+				<div id ="add-to-cart" v-on:click="addToBag(item)">Add to Cart</div>
 			</div>
 		</div>
 	</div>

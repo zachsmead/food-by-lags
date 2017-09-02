@@ -38,8 +38,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		mounted: function() {
 			console.log('Vue.js!');
 			$.get('http://localhost:3000/api_for_lags/products_index.json', function(result) {
-				console.log(result);
-				this.products = result;
+				console.log(result.products);
+				this.products = result.products;
 				console.log('products below');
 				console.log(this.products);
 			}.bind(this));
