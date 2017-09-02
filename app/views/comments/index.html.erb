@@ -43,10 +43,10 @@
 			<div class="chatlogs">
 				<div class="chat">
 
-					<p class="chat-message"><%= item.name %>: <%= item.text %></p>
+					<p class="chat-message"><span><%= item.name %></span>: <%= item.text %></p>
 					<% item.texts.each do |text| %>
 						<% if text.approved %>
-							<p> <span> <%=text.name %>: </span> <%= text.text %></p>
+							<p id="textname"> <span> <%=text.name %></span>: <%= text.text %></p>
 						<% end %>
 					<% end %>
 				</div>
