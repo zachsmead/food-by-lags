@@ -19,7 +19,8 @@ class ProductsController < ApplicationController
 		product_type = params[:product_type]
 		stock = params[:stock]
 		cost = params[:cost]
-		item = Product.new(name: name, product_type: product_type, stock: stock, cost: cost)
+		image = params[:image]
+		item = Product.new(name: name, product_type: product_type, stock: stock, cost: cost, image: image)
 		item.save
 		redirect_to "/products"
 	end
