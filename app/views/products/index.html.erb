@@ -37,13 +37,11 @@
 <img id="cuttingboard" src="http://i.imgur.com/n48sy2P.jpg" alt="cuttingboardmealprep.jpg">
 
 <div class="add">
-	<div class="container">
-		<img id="cookbook" src="" width="350px" height="350px" alt="Cookbook Image">
-		<div class="addtocartform">
-			<div v-for="item in products">
-				<img v-bind:src="item.image">
-					<div id ="add-to-cart" v-on:click="addToBag(item)">Add to Cart</div>
-				  {{item}}
+	<div v-for="item in products">
+		<div class="container">
+			<div class="addtocartform">
+				<img v-bind:src="item.image" width="350px" height="350px">
+					<p id="add-to-cart" v-on:click="addToBag(item)">Add to Cart</p>					
 			</div>
 		</div>
 	</div>

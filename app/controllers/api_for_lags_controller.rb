@@ -176,19 +176,26 @@ class ApiForLagsController < ApplicationController
 
 
 		puts "&" * 100
+
+		puts "&" * 100
+
+		puts "&" * 100
+
+		puts "&" * 100
+
+		puts "&" * 100
+
 		# OrderMailer
 		if @text.save
 			OrderMailer.text_approval(@text).deliver
-			flash[:success] = "Your comment or question has been successfully sent."
-			redirect_to "/contacts"
+			redirect_to "/contacts" 
+			flash[:success] = "Your text has been successfully sent."
 
 		else
 			flash[:danger] = "Something went wrong with the mailing process."
 			redirect_to "/contacts"
 
 		end
-		puts "&" * 100
-
 
 	end
 

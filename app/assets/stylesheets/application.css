@@ -89,19 +89,42 @@
     display: flex;
     justify-content: center;
     flex-direction: row;
+	margin-left: 393px;
+
 }
 
 #cookbook {
 	float:left;
 	margin: 150px;
+
 }
+
+#checkoutform {
+	text-align: right;
+}
+
+
+
+
+#add-to-cart {
+	border: solid;
+	border-radius: 17%;
+	float: right;
+    margin-top: 21%;
+    margin-right: 23%;
+}
+
 
 .addtocartform {
 	padding-top: 250px;
-	float: left;
+	padding-left: 200px;
 	margin: 50px;
 }
 
+/*.addtocartform img {
+	margin-left:20%;
+}
+*/
 .add {
 	width: 300px;
 }

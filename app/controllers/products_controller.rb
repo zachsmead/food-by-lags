@@ -3,8 +3,10 @@ class ProductsController < ApplicationController
 		@products = Product.all
 		@cart = Cart.where(status: "carted")
 		@total = 0
-		@cart.each do |item|
-			@total += item.product.cost
+		if @cart.length > 0
+			@cart.each do |item|
+				@total += item.product.cost
+			end
 		end
 	end
 
