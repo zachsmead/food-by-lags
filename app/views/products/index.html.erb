@@ -41,6 +41,7 @@
 		<img id="cookbook" src="" width="350px" height="350px" alt="Cookbook Image">
 		<div class="addtocartform">
 			<div v-for="item in products">
+				<img v-bind:src="item.image">
 				{{item}}
 				<div id ="add-to-cart" v-on:click="addToBag(item)">Add to Cart</div>
 			</div>
@@ -71,16 +72,21 @@
 			<br>
 			<h4> Cost: <input type="text" name="cost"> </h4>
 			<br>
-			<input type="submit" name="Enter">
+			<div>
+				<input type="submit" name="Enter">
+			</div>
 		<% end %>
 	<% end %>
 <% end %>
+
+
 <% if current_user %>
 	<% if !current_user.admin %>
 		<div id="admin_signin">
 			<%= button_to "admin signin", "/sessions/admin_signin", method: :get %>
 		</div>
 	<% end %>
+
 	<div id="logout_buttons">
 		<% if current_user %>
 			<% if current_user.admin %>
