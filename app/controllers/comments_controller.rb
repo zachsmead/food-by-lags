@@ -29,7 +29,7 @@ class CommentsController < ApplicationController
 		redirect_to "/contacts"
 	end
 
-	def text__delete
+	def text_delete
 		@text = Text.find(params[:id])
 		@text.delete
 		@text.save
