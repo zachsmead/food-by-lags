@@ -52,13 +52,18 @@ class ApiForLagsController < ApplicationController
 			total: total
 			)
 		if @new_order.save
-			@cart_item.each do |item|
+			@carts.each do |item|
 				item.status = "Purchased"
 				--item.product.stock
+				puts "&" * 100
+				puts "item.status below"
+				puts item.status
+				puts "&" * 100
+
 				item.save
 			end
 		else
-			@cart_item.each do |item|
+			@carts.each do |item|
 				item.delete
 			end
 		end
@@ -111,24 +116,22 @@ class ApiForLagsController < ApplicationController
 		puts @bag.inspect
 		puts "&" * 100
 
-		new_cart = @bag['newCart']
-		final_cart = JSON.parse(new_cart)
+		# new_cart = @bag['newCart']
+		# final_cart = JSON.parse(new_cart)
 		puts "*" * 100
 		puts "*" * 100
 		puts "*" * 100
-
-
-		puts "final_cart inspect belowHERERER"
-		puts final_cart.inspect
+		final_cart = JSON.parse(@bag['newCart'])
+		puts "final cart beloooow"
+		puts final_cart
 		puts "final_cart.id"
-		puts final_cart[0]['id']
+		puts final_cart['id']
 
 		puts "*" * 100
 		puts "*" * 100
 		puts "*" * 100
-
 		@cart_item = Cart.create(
-			product_id: final_cart[0]['id'],
+			product_id: final_cart['id'],
 			quantity: 1,
 			status: 'carted'
 		)
