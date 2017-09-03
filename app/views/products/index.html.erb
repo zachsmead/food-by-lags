@@ -1,9 +1,12 @@
-<nav class="floating-menu" v-if="this.bag.length > 0">
+<nav class="floating-menu" v-if="this.buttons[1].visible || this.bag.length > 0 ">
       <h3> Cart <!-- <i class="icon-large icon-fast-food icon-white"></i> --> </h3>
       	<div v-for="item in bag">
+       		<h4> {{item.id}} </h4>
       		<h4> {{item.name}} </h4>
 
-      		<div v-on:click="removeFromCart(item[0])">Remove</div>
+      		<div v-on:click="removeFromCart(item.id)">Remove</div>
+      		<!-- <div v-on:click={"'removeFromCart(' + {item.id} + ')'"}>Remove</div> -->
+
 
 
 

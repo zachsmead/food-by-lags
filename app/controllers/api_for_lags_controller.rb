@@ -9,6 +9,10 @@ class ApiForLagsController < ApplicationController
 		@products = Product.all
 	end
 
+	def carted_items
+		@carts = Cart.where(status: "carted")
+	end
+
 	def new
 	end
 
@@ -83,30 +87,25 @@ class ApiForLagsController < ApplicationController
 	def delete_cart_item
 		@bag = params
 		newCart = @bag['newCart']
-		final_cart = JSON.parse(newCart)
-
 
 		puts "*" * 100
-		puts "*" * 100
+		puts "U" * 100
 		puts "*" * 100
 
-		puts "final_cart inspect below"
-		puts final_cart.inspect
-		puts "final_cart['id'] inspect below"
-		puts final_cart['id']
-		id = final_cart['id']
-		puts "id below"
-		puts id
+		puts "newCart below"
+		puts newCart
 
 		puts "*" * 100
-		puts "*" * 100
+		puts "U" * 100
 		puts "*" * 100
 
 
 
 
-		@item_to_delete = Cart.last
+		@item_to_delete = Cart.find_by(id: newCart)
 		@item_to_delete.delete
+		flash[:info] = "You Deleted the item from your cart"
+		redirect_to "/products"
 	end
 
 
@@ -146,7 +145,7 @@ class ApiForLagsController < ApplicationController
 		@bag = params
 		newBag = @bag['newComment']
 		name = @bag['name']
-		id = @bag['comment_id']
+		id = JSON.parse(@bag['comment_id'])
 		puts "*" * 100
 		puts "*" * 100
 		puts "*" * 100
