@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			brand_new_bag: [],
 			commentAdd: "",
 			nameAdd: "",
+			addToBagID: "",
 
 
 			total: 0,
@@ -40,9 +41,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			$.get('http://localhost:3000/api_for_lags/products_index.json', function(result) {
 				console.log(result.products);
 				this.products = result.products;
-				console.log('products below');
-				console.log(this.products);
-			}.bind(this));
+				console.log('bag below');
+				console.log(this.bag);
+					if(this.bag.length === 0) {
+						this.buttons[1].visible = false;
+					} else if(this.bag.length >= 1) {
+						this.buttons[1].visible = true;
+					}
+				}.bind(this));
+			$.get('http://localhost:3000/api_for_lags/carted_items.json', function(result) {
+				console.log('carts below yo');
+				console.log(result.carts);
+			})
 		},
 		methods: {
 			removeFromCart: function(cart_item) {
@@ -77,13 +87,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				var json_to_send = {
 					newCart: jsonBag
 				};
-
-				this.bag.push(cart_item);
+				console.log(this.bag.inpsect)
+				this.bag.push(json_to_send);
 
 				console.log('jsonBag below')
 				$.post('http://localhost:3000/api_for_lags/create.json', json_to_send, function(result) {
-					console.log('result below');
-					console.log(result);
+					this.addToBagID = "";
+					this.addToBagID = result['id'];
+					json_to_send.id = this.addToBagID;
+					console.log('updated json_to_send below');
+					console.log(json_to_send);
+
 				}.bind(this));
 
 

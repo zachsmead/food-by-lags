@@ -1,9 +1,12 @@
-<nav class="floating-menu" v-if="this.bag.length > 0">
+<nav class="floating-menu" v-if="this.buttons[1].visible || this.bag.length > 0 ">
       <h3> Cart <!-- <i class="icon-large icon-fast-food icon-white"></i> --> </h3>
       	<div v-for="item in bag">
+       		<h4> {{item.id}} </h4>
       		<h4> {{item.name}} </h4>
 
-      		<div v-on:click="removeFromCart(item[0])">Remove</div>
+      		<div v-on:click="removeFromCart(item.id)">Remove</div>
+      		<!-- <div v-on:click={"'removeFromCart(' + {item.id} + ')'"}>Remove</div> -->
+
 
 
 
@@ -37,13 +40,46 @@
 <img id="cuttingboard" src="http://i.imgur.com/n48sy2P.jpg" alt="cuttingboardmealprep.jpg">
 
 <div class="add">
-	<div class="container">
-		<img id="cookbook" src="" width="350px" height="350px" alt="Cookbook Image">
-		<div class="addtocartform">
-			<div v-for="item in products">
-				<img v-bind:src="item.image">
-					<div id ="add-to-cart" v-on:click="addToBag(item)">Add to Cart</div>
-				  {{item}}
+	<div v-for="item in products">
+		<div class="container">
+			<div class="addtocartform">
+				<img v-bind:src="item.image" width="350px" height="350px">
+					<p id="add-to-cart" v-on:click="addToBag(item)">Add to Cart</p>	
+					<% if current_user && current_user.admin %>
+						<div id="editproductform">
+							<h2>Edit Product Admin Only</h2>
+
+								<%= form_tag "/products/update", method: :post do %>
+							<h4> Name: {{item.name}} <input type="text" name="name" placeholder="update name"> </h4>
+							<br>
+							<h4 class="small-font"><span>(add image directions)<br> 
+									1) Sign into Imgur account FoodByLags<br> 
+									2) Copy 'direct link' url after adding your new image<br>
+									3) Paste your image in the text box.</span><br>
+								Image URL: <input type="text" name="image" placeholder="update url"> </h4>
+							<br>
+							<h4> Product Type: {{item.product_type}} <input type="text" name="product_type" placeholder="update type"> </h4>
+							<br>
+							<h4> Stock: {{item.stock}} <input type="text" name="stock" placeholder="update stock"> </h4>
+							<br>
+							<h4> Cost: ${{item.cost}} <input type="text" name="cost" placeholder="update cost"> </h4>
+							<br>
+							<h4> Id: {{item.id}} <input type="text" name="id" placeholder="update product's id">
+							<br>
+							<br>
+								<input type="submit" name="Enter">
+								<br>
+								<% end %>
+							<br>
+								<div id="delete">
+									<%= form_tag "/products/delete", method: :post do %>
+										Put product id in box box and submit to delete: <input type="text" name="id" placeholder="product id"><br>
+										<input type="submit" name="Enter">
+										Product ID: {{item.id}}<br>
+									<% end %>
+								</div>
+						</div>
+					<% end %>				
 			</div>
 		</div>
 	</div>
@@ -64,7 +100,11 @@
 		<%= form_tag "/products/new", method: :post do %>
 			<h4> Name: <input type="text" name="name"> </h4>
 			<br>
-			<h4> Image URL: <input type="text" name="image"> </h4>
+			<h4 class="small-font"><span>(adding image directions)<br> 
+					1) Sign into Imgur account FoodByLags<br> 
+					2) Copy 'direct link' url after adding your new image<br>
+					3) Paste your image in the text box.</span><br>
+					 Image URL: <input type="text" name="image"> </h4>
 			<br>
 			<h4> Product Type: <input type="text" name="product_type"> </h4>
 			<br>
