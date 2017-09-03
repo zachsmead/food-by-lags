@@ -34,27 +34,20 @@ class ProductsController < ApplicationController
 		product.stock = params[:stock]
 		product.cost = params[:cost]
 		product.image = params[:image]
-		@image_url = product.image
-		puts "$" * 100
-		puts "$" * 100
-		puts "*" * 100
-		puts "$" * 100
-		puts "$" * 100
-		puts '@image_url below'
-		puts @image_url
-		puts "$" * 100
-		puts "$" * 100
-		puts "*" * 100
-		puts "$" * 100
-		puts "$" * 100
+
 
 		product.save
-		flash[:success] = "You succesfully updated your product"
+		flash[:info] = "You succesfully updated your product"
 		redirect_to "/products"
 
 	end
 
 	def destroy
+		product = Product.find_by(id: params[:id])
+		product.delete
+		flash[:info] = "You Succefully Deleted Your Product"
+		redirect_to "/products"
+
 	end
 
 end
