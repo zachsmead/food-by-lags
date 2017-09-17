@@ -4,7 +4,7 @@ class Product < ApplicationRecord
 
 	validates :name, presence: true
   	validates :name, length: { minimum: 2 }
-  	validates :name, length: { maximum: 20 }
+  	validates :name, length: { maximum: 40 }
 
 
 	validates :product_type, presence: true

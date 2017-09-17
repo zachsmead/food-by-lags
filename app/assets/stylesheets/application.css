@@ -82,6 +82,10 @@
     flex-direction: row;
 }
 
+#checkout-button {
+cursor: pointer;
+
+}
 
 #cuttingboard {
 	text-align: center;
@@ -91,6 +95,10 @@
     flex-direction: row;
 	margin-left: 393px;
 
+}
+
+#editproductform h3 {
+	color: red;
 }
 
 #cookbook {
@@ -112,6 +120,7 @@
 	float: right;
     margin-top: 21%;
     margin-right: 23%;
+    cursor: pointer;
 }
 
 
@@ -127,6 +136,7 @@
 */
 .add {
 	width: 300px;
+	margin: 50px;
 }
 
 #nameform {

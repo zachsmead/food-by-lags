@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			brand_new_bag: [],
 			commentAdd: "",
 			nameAdd: "",
+			commentId: 0,
+
 			addToBagID: "",
 
 
@@ -72,8 +74,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			},
 			showButton: function() {
 				console.log('showButton Running');
-				variable = document.querySelector('buttons');
-				this.buttons[0].visible = !this.buttons[0].visible;
+				// variable = document.querySelector('buttons');
+				// this.buttons[0].visible = !this.buttons[0].visible;
 			},
 			addToBag: function(cart_item) {
 				console.log("addToBag Functioning");
@@ -85,11 +87,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				var jsonBag = JSON.stringify(cart_item);
 
 				var json_to_send = {
-					newCart: jsonBag
+					newCart: cart_item
 				};
-				console.log(this.bag.inpsect)
+				console.log(this.bag.inspect)
 				this.bag.push(json_to_send);
-
 				console.log('jsonBag below')
 				$.post('http://localhost:3000/api_for_lags/create.json', json_to_send, function(result) {
 					this.addToBagID = "";
@@ -97,12 +98,25 @@ document.addEventListener("DOMContentLoaded", function(event) {
 					json_to_send.id = this.addToBagID;
 					console.log('updated json_to_send below');
 					console.log(json_to_send);
+					this.buttons[2].visible = true;
+					console.log('ASGADFGASFGAFSG');
+					this.buttons[1].visible = false;
+					this.buttons[2].visible = true;
+					console.log('ASGADFGASFGAFSG');
+					this.buttons[2].visible = false;
+					this.buttons[2].visible = true;
+					console.log('ASGADFGASFGAFSG');
+					this.buttons[2].visible = false;
+					this.buttons[2].visible = true;
+					console.log('ASGADFGASFGAFSG');
+					this.buttons[2].visible = false;
+					console.log('bag below here yo');
+					console.log(this.bag.inspect);			
+
 
 				}.bind(this));
-
-
 			},
-			checkoutOrder: function() {
+			checkoutOrder: function(item) {
 				this.buttons[2].visible = !this.buttons[2].visible;
 				// $.get('http://localhost:3000/api_for_lags/index.json', function(result) {
 				// 	console.log('checkoutOrder results below');
@@ -134,18 +148,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				console.log(this.addressTwoBox);
 
 
-				var firstName = JSON.stringify(this.firstNameBox);
-				var lastName = JSON.stringify(this.lastNameBox);
+
 				var email = JSON.stringify(this.emailBox);
-				var address = JSON.stringify(this.addressOneBox) + JSON.stringify(this.addressTwoBox);
+				var address = this.addressOneBox + " " + this.addressTwoBox;
 
 				var form = {
-					first_name: firstName,
-					last_name: lastName,
-					email: email,
+					firstName: this.firstNameBox,
+					lastName: this.lastNameBox,
+					email: this.emailBox,
 					address: address
 				}
-
+				console.log('form below @__@ @__@ @__@ @__@ @__@ @__@ @__@ @__@ @__@ @__@ @__@');
 
 
 
@@ -155,7 +168,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				})
 				window.location = "http://localhost:3000/charges/new";
 			},
-			sendComment: function(id) {
+			sendComment: function() {
 				console.log('Send Comment Functioning');
 				console.log('this.commentAdd below');
 				console.log(this.commentAdd);
@@ -163,13 +176,26 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				var comment_to_send = {
 					newComment: this.commentAdd,
 					name: this.nameAdd,
-					comment_id: id
+					comment_id: parseInt(this.commentId)
 				}
 				$.post('http://localhost:3000/api_for_lags/create_comment.json', comment_to_send, function(result) {
 					console.log('sendComment api call running');
 					console.log(result);
 				})
 				window.location = "http://localhost:3000/contacts";
+			}.bind(this),
+			seeCart: function() {
+				console.log('seeCart function activated');
+				if(this.bag.length === 0) {
+					alert('Your Cart Is Empty');
+				} else {
+					this.buttons[1].visible = true;
+					console.log('cart shown');
+				}
+				$.get('http://localhost:3000/api_for_lags/carted_items.json', function(result) {
+					console.log('carts below yo');
+					console.log(result.carts);
+				})
 			}
 		}
 

@@ -44,4 +44,7 @@ Rails.application.routes.draw do
     post "/api_for_lags/create_order" => "api_for_lags#create_order"
     post "/api_for_lags/create_comment" => "api_for_lags#create_comment"
 
+    post "/texts/add_text_to_comment" => "api_for_lags#add_text_to_comment"
+
+
 end
