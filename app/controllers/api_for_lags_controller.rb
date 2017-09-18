@@ -7,7 +7,7 @@ class ApiForLagsController < ApplicationController
 
 	def products_index
 		@products = Product.all
-		
+
 	end
 
 	def carted_items
@@ -126,7 +126,7 @@ class ApiForLagsController < ApplicationController
 
 	def create
 		@bag = params
-		puts "&" * 100
+		puts "@__@" * 100
 		puts @bag.inspect
 		puts "&" * 100
 
@@ -139,7 +139,7 @@ class ApiForLagsController < ApplicationController
 		puts "final cart beloooow"
 		puts final_cart
 		puts "final_cart.id"
-		puts final_cart['id']
+		puts final_cart['product_id']
 
 		puts "*" * 100
 		puts "*" * 100

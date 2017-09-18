@@ -54,7 +54,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			$.get('http://localhost:3000/api_for_lags/carted_items.json', function(result) {
 				console.log('carts below yo');
 				console.log(result.carts);
-			})
+				result.carts.forEach(function(carted_product) {
+					this.loadBag(carted_product);
+				}.bind(this));
+				console.log('this.add_to_bag');
+				console.log(this.add_to_bag);
+				console.log('this.bag');
+				console.log(this.bag);
+			}.bind(this));
 		},
 		methods: {
 			removeFromCart: function(cart_item) {
@@ -77,6 +84,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				// variable = document.querySelector('buttons');
 				// this.buttons[0].visible = !this.buttons[0].visible;
 			},
+			loadBag: function(cart_item) {
+				console.log("loadBag Functioning");
+				this.add_to_bag.push(cart_item);
+				console.log('this.add_to_bag below');
+				console.log(this.add_to_bag);
+
+
+				var jsonBag = JSON.stringify(cart_item);
+
+				var json_to_send = {
+					newCart: cart_item
+				};
+				this.bag.push(json_to_send);
+				console.log('LOADED BAG BELOW');
+				console.log(this.bag);
+				console.log('jsonBag below');
+			},
 			addToBag: function(cart_item) {
 				console.log("addToBag Functioning");
 				this.add_to_bag.push(cart_item);
@@ -89,12 +113,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				var json_to_send = {
 					newCart: cart_item
 				};
-				console.log(this.bag.inspect)
+				console.log(this.bag.inspect);
 				this.bag.push(json_to_send);
-				console.log('jsonBag below')
+				console.log('jsonBag below');
 				$.post('http://localhost:3000/api_for_lags/create.json', json_to_send, function(result) {
 					this.addToBagID = "";
 					this.addToBagID = result['id'];
+					console.log('result id below');
+					console.log(result['id']);
+
 					json_to_send.id = this.addToBagID;
 					console.log('updated json_to_send below');
 					console.log(json_to_send);
