@@ -5,8 +5,7 @@
        		<h4> ${{item.newCart.cost}} </h4>
 
 
-
-      		<div v-on:click="removeFromCart(item.id)">Remove</div>
+      		<div v-on:click="removeFromCart(item)">Remove</div>
       		<!-- <div v-on:click={"'removeFromCart(' + {item.id} + ')'"}>Remove</div> -->
 
 
@@ -48,8 +47,8 @@
 				<img v-bind:src="item.image" width="275px" height="350px">
 					<p id="add-to-cart" v-on:click="addToBag(item)">Add to Cart</p>	
 					<br>
-					<p id="editproductform"><h4>{{item.name}}</h4></p>
-					<p id="editproductform"><h4>{{item.description}}</h4></p>
+					<p id="editproductform"><h2>{{item.name}}</h2></p>
+					<p id="editproductform"><h4><span>Description:</span> {{item.description}}</h4></p>
 <!-- 					<p id="add-to-cart" v-on:click="seeCart()">See Cart</p>	
  -->
 					<% if current_user && current_user.admin %>

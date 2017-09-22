@@ -101,32 +101,52 @@ class ApiForLagsController < ApplicationController
 
 	def delete_cart_item
 		@bag = params
-		newCart = @bag['newCart']
+		tobenewCart = @bag['newCart']
+		newCart = JSON.parse(tobenewCart)
 
-		puts "*" * 100
-		puts "U" * 100
-		puts "*" * 100
-
-		puts "newCart below"
+		puts '*' * 100
 		puts newCart
+		puts '*' * 100
 
+		puts "params['newCart']['id'] below"
+
+		if newCart['id']
+			newCartId = newCart['id']
+		elsif newCart['newCart']['id']
+			newCartId = newCart['newCart']['id']
+		end
+		
+		puts newCartId
+
+
+
+
+
+
+
+		puts ">" * 100
 		puts "*" * 100
+		puts newCart['id']
 		puts "U" * 100
 		puts "*" * 100
 
 
 
 
-		@item_to_delete = Cart.find_by(id: newCart)
+		@item_to_delete = Cart.find_by(id: newCartId)
+
+
+
+
 		@item_to_delete.delete
 		flash[:info] = "You Deleted the item from your cart"
-		redirect_to "/products"
+		# redirect_to "/products"
 	end
 
 
 	def create
 		@bag = params
-		puts "@__@" * 100
+		# puts "@__@" * 100
 		puts @bag.inspect
 		puts "&" * 100
 
@@ -137,9 +157,11 @@ class ApiForLagsController < ApplicationController
 		puts "*" * 100
 		final_cart = @bag['newCart']
 		puts "final cart beloooow"
-		puts final_cart
+		puts final_cart.inspect
 		puts "final_cart.id"
-		puts final_cart['product_id']
+		puts final_cart['id']
+		# the variable final_cart['product_id'] does not exist
+		# puts final_cart['product_id'].errors.full_messages
 
 		puts "*" * 100
 		puts "*" * 100

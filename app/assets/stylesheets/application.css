@@ -112,15 +112,32 @@ cursor: pointer;
 }
 
 
+.addtocartform h4 {
+    margin: 15px;
+    width: 785px;
+    font-size: 150%;
+    text-align: left;
+    font-family: sans;
+}
 
+.addtocartform h2 {
+	margin: 50px;
+	font-family: sans;
+}
+
+.addtocartform h4 span {
+	text-decoration: underline;
+	font-weight: bold;
+}
 
 #add-to-cart {
 	border: solid;
 	border-radius: 17%;
 	float: right;
     margin-top: 21%;
-    margin-right: 23%;
+    margin-right: 12%;
     cursor: pointer;
+    font-size: 24px;
 }
 
 
