@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		methods: {
 			removeFromCart: function(cart_item) {
 				console.log('removeFromCart is Functioning');
-				console.log('cart_item below');
+				console.log('cart_item below @__@');
 				console.log(cart_item);
 				var jsonCartItem = JSON.stringify(cart_item);
 				json_to_send = {
@@ -117,7 +117,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				this.bag.push(json_to_send);
 				console.log('jsonBag below');
 				$.post('http://localhost:3000/api_for_lags/create.json', json_to_send, function(result) {
-					this.addToBagID = "";
 					this.addToBagID = result['id'];
 					console.log('result id below');
 					console.log(result['id']);
@@ -125,18 +124,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 					json_to_send.id = this.addToBagID;
 					console.log('updated json_to_send below');
 					console.log(json_to_send);
-					this.buttons[2].visible = true;
-					console.log('ASGADFGASFGAFSG');
-					this.buttons[1].visible = false;
-					this.buttons[2].visible = true;
-					console.log('ASGADFGASFGAFSG');
-					this.buttons[2].visible = false;
-					this.buttons[2].visible = true;
-					console.log('ASGADFGASFGAFSG');
-					this.buttons[2].visible = false;
-					this.buttons[2].visible = true;
-					console.log('ASGADFGASFGAFSG');
-					this.buttons[2].visible = false;
+					setTimeout(function(){}, 2000);
 					console.log('bag below here yo');
 					console.log(this.bag.inspect);			
 
