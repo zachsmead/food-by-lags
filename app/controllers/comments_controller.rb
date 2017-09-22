@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
 	
 	def index
 		@approved_comments = Comment.where(approved: true)
+		
 	end
 
 	def approved

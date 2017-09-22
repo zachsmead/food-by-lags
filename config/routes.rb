@@ -24,8 +24,8 @@ Rails.application.routes.draw do
     get "/products/new" => "products#new"
     post "/products/new" => "products#create"
     get "/products/:id/edit" => "products#edit"
-    patch "/products/:id" => "products#update"
-    delete "/products/:id" => "products#destroy"
+    post "/products/update" => "products#update"
+    post "/products/delete" => "products#destroy"
 
     get "/carts" => "carts#index"
     post "/carts" => "carts#create"
@@ -38,9 +38,13 @@ Rails.application.routes.draw do
 
     get "/api_for_lags/index" => "api_for_lags#index"
     get "/api_for_lags/products_index" => "api_for_lags#products_index"
+    get "/api_for_lags/carted_items" => "api_for_lags#carted_items"
     post "/api_for_lags/create" => "api_for_lags#create"
     post "/api_for_lags/delete_cart_item" => "api_for_lags#delete_cart_item"
     post "/api_for_lags/create_order" => "api_for_lags#create_order"
     post "/api_for_lags/create_comment" => "api_for_lags#create_comment"
+
+    post "/texts/add_text_to_comment" => "api_for_lags#add_text_to_comment"
+
 
 end

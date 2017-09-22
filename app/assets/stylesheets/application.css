@@ -82,6 +82,10 @@
     flex-direction: row;
 }
 
+#checkout-button {
+cursor: pointer;
+
+}
 
 #cuttingboard {
 	text-align: center;
@@ -89,21 +93,50 @@
     display: flex;
     justify-content: center;
     flex-direction: row;
+	margin-left: 393px;
+
+}
+
+#editproductform h3 {
+	color: red;
 }
 
 #cookbook {
 	float:left;
 	margin: 150px;
+
 }
+
+#checkoutform {
+	text-align: right;
+}
+
+
+
+
+#add-to-cart {
+	border: solid;
+	border-radius: 17%;
+	float: right;
+    margin-top: 21%;
+    margin-right: 23%;
+    cursor: pointer;
+}
+
 
 .addtocartform {
 	padding-top: 250px;
-	float: left;
+	padding-left: 200px;
 	margin: 50px;
 }
 
+/*.addtocartform img {
+	margin-left:20%;
+}
+*/
 .add {
 	width: 300px;
+	margin: 50px;
 }
 
 #nameform {
@@ -174,4 +207,8 @@ border: 2px solid grey;
 #adminsignin {
 	bottom: 0;
 	position: fixed;
+}
+
+.small-font span {
+	font-size: 80%;
 }

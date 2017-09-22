@@ -7,12 +7,36 @@ class ApiForLagsController < ApplicationController
 
 	def products_index
 		@products = Product.all
+
+	end
+
+	def carted_items
+		@carts = Cart.where(status: "carted")
 	end
 
 	def new
 	end
 
+	def add_text_to_comment
+		name = params[:name]
+		text = params[:text]
+		commentId = params[:comment_id]
 
+		@new_text = Text.create(name: name,
+								text: text,
+								comment_id: commentId,
+								approved: false)
+		if @new_text.save
+			OrderMailer.text_approval(@new_text).deliver
+			redirect_to "/contacts" 
+			flash[:success] = "Your text has been successfully sent."
+
+		else
+			flash[:danger] = "Something went wrong with the mailing process."
+			redirect_to "/contacts"
+
+		end
+	end
 
 
 
@@ -20,31 +44,19 @@ class ApiForLagsController < ApplicationController
 	def create_order
 		@bag = params
 		subtotal = 0
-
 		@carts = Cart.where(status: "carted")
 			
 		@carts.each do |item|
 			subtotal += item.quantity * item.product.cost
 		end
-
-		puts "*" * 100
-		puts "*" * 100
-
-		puts "subtotal below"
-		puts subtotal
-
-
-		puts "*" * 100
-		puts "*" * 100
+		tax_value = 0.09
 		tax = subtotal * 0.09
 		total = subtotal + tax
 
 
-
-
 		@new_order = Order.create(
-			first_name: @bag['first_name'],
-			last_name: @bag['last_name'],
+			first_name: @bag['firstName'],
+			last_name: @bag['lastName'],
 			email: @bag['email'],
 			address: @bag['address'],
 			tax: tax,
@@ -54,19 +66,26 @@ class ApiForLagsController < ApplicationController
 		if @new_order.save
 			@carts.each do |item|
 				item.status = "Purchased"
+				item.order_id = @new_order.id
 				--item.product.stock
-				puts "&" * 100
-				puts "item.status below"
-				puts item.status
-				puts "&" * 100
-
 				item.save
 			end
-		else
-			@carts.each do |item|
-				item.delete
-			end
+		else !@new_order.save
+			puts "*" * 100
+			puts "*" * 100
+			puts "*" * 100
+			puts "*" * 100
+
+			puts @new_order.errors.full_messages
+
+			puts "*" * 100
+			puts "*" * 100
+			puts "*" * 100
+			puts "*" * 100
+
 		end
+
+
 
 
 		render 'create_order.json.jbuilder'
@@ -83,36 +102,31 @@ class ApiForLagsController < ApplicationController
 	def delete_cart_item
 		@bag = params
 		newCart = @bag['newCart']
-		final_cart = JSON.parse(newCart)
-
 
 		puts "*" * 100
-		puts "*" * 100
+		puts "U" * 100
 		puts "*" * 100
 
-		puts "final_cart inspect below"
-		puts final_cart.inspect
-		puts "final_cart['id'] inspect below"
-		puts final_cart['id']
-		id = final_cart['id']
-		puts "id below"
-		puts id
+		puts "newCart below"
+		puts newCart
 
 		puts "*" * 100
-		puts "*" * 100
+		puts "U" * 100
 		puts "*" * 100
 
 
 
 
-		@item_to_delete = Cart.last
+		@item_to_delete = Cart.find_by(id: newCart)
 		@item_to_delete.delete
+		flash[:info] = "You Deleted the item from your cart"
+		redirect_to "/products"
 	end
 
 
 	def create
 		@bag = params
-		puts "&" * 100
+		puts "@__@" * 100
 		puts @bag.inspect
 		puts "&" * 100
 
@@ -121,11 +135,11 @@ class ApiForLagsController < ApplicationController
 		puts "*" * 100
 		puts "*" * 100
 		puts "*" * 100
-		final_cart = JSON.parse(@bag['newCart'])
+		final_cart = @bag['newCart']
 		puts "final cart beloooow"
 		puts final_cart
 		puts "final_cart.id"
-		puts final_cart['id']
+		puts final_cart['product_id']
 
 		puts "*" * 100
 		puts "*" * 100
@@ -135,6 +149,7 @@ class ApiForLagsController < ApplicationController
 			quantity: 1,
 			status: 'carted'
 		)
+
 		render 'create.json.jbuilder'
 	end
 
@@ -146,7 +161,7 @@ class ApiForLagsController < ApplicationController
 		@bag = params
 		newBag = @bag['newComment']
 		name = @bag['name']
-		id = @bag['comment_id']
+		id = JSON.parse(@bag['comment_id'])
 		puts "*" * 100
 		puts "*" * 100
 		puts "*" * 100
@@ -176,19 +191,26 @@ class ApiForLagsController < ApplicationController
 
 
 		puts "&" * 100
+
+		puts "&" * 100
+
+		puts "&" * 100
+
+		puts "&" * 100
+
+		puts "&" * 100
+
 		# OrderMailer
 		if @text.save
 			OrderMailer.text_approval(@text).deliver
-			flash[:success] = "Your comment or question has been successfully sent."
-			redirect_to "/contacts"
+			redirect_to "/contacts" 
+			flash[:success] = "Your text has been successfully sent."
 
 		else
 			flash[:danger] = "Something went wrong with the mailing process."
 			redirect_to "/contacts"
 
 		end
-		puts "&" * 100
-
 
 	end
 

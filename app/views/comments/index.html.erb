@@ -1,6 +1,6 @@
 <div id="kabobs">
 	<div class="container">
-		<img src="http://i.imgur.com/ZGvE8sB.jpg" width="300px" height="300px" alt="kabobs.jpg">
+		<img src="https://i.imgur.com/ZGvE8sB.jpg" width="400px" height="500px" alt="kabobs.jpg">
 	</div>
 </div>
 
@@ -34,8 +34,8 @@
 	</div>
 </div>
 
-<% @approved_comments.each do |item| %>
 
+<% @approved_comments.each do |item| %>
 	<div class="approvedcomments">
 		<div class="chatbox">
 
@@ -53,16 +53,30 @@
 
 			</div>
 
-			<div class="chat-forum">
-				<div id="containerforname">
-					Name: <input type="text" v-model="nameAdd">
-				</div>			
-				<textarea v-model="commentAdd" placeholder="Write a message" cols="45" rows="6"></textarea>
-				<button v-on:click="sendComment(<%= item.id %>)">Send</button>
+<!-- 			<div key={{this.commentId}}>
+				<div class="chat-forum">
+					<div id="containerforname">
+						Name: <input type="text" v-model="nameAdd">
+							  <input type="hidden" v-model="commentId" value="(<%= item.id %>)">
+					</div>			
+					<textarea v-model="commentAdd" placeholder="Write a message" cols="45" rows="6"></textarea>
+					<button v-on:click="sendComment()">Send</button>
+				</div>
 			</div>
+ -->
+			<div id="chat-forum">
+				<div id="containerforname">
+					<%= form_tag "/texts/add_text_to_comment", method: :post do %>
+						Name: <input type="text" name="name">
+						<br>
+							<input type="hidden" name="comment_id" value="<%= item.id %>">
+						<br>
+							<textarea type="text" name="text" placeholder="Write a message" cols="45" rows="6"></textarea>
+							<button type="submit" value="Sumbit">Send</button>
 
-
-
+					<% end %>
+				</div>
+			</div>
 		</div>
 	</div>
 

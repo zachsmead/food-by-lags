@@ -6,5 +6,6 @@ json.set! :products do
 		json.product_type item.product_type
 		json.stock item.stock
 		json.cost item.cost
+		json.description item.description
 	end
 end
