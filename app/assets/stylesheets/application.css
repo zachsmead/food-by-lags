@@ -155,20 +155,20 @@ cursor: pointer;
 
 
 .floating-menu {
-font-family: sans-serif;
-background: lightgreen;
-opacity: initial;
-padding: 5px;
-width: 240px;
-z-index: 1000;
+z-index: 6;
 position: fixed;
 top: 60px;
-right: 20px;
-border-radius: 2px;
-border: 2px solid grey;
+right:356px;
+overflow-x: auto;
+overflow-y: scroll;
 
 }
 
+#checkout-group {
+/*overflow-x: hidden;*/
+overflow-x: auto;
+overflow-y: scroll;
+}
 
 #commentsubmitbutton {
 	margin: 15px;
