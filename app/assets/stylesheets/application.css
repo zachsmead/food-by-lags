@@ -14,12 +14,10 @@
  *= require_self
  */
 
-.navbar .collapse .active a {
+/*.navbar .collapse .active a {
     float:none;
     display:inline-block;
     zoom:1;
-	/*padding-left:100px;*/
-	/*padding-right:100px;*/
     margin: auto 97px;
     background-color: #B9EEF7;
     font-weight: bold;
@@ -39,7 +37,7 @@
     flex-direction: row;
     border: 1px underline #3c763d;
 
-}
+}*/
 
 #pic_of_you {
 	padding:80px;
