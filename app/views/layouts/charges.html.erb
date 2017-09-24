@@ -4,74 +4,59 @@
     <title>food_by_lags</title>
     <%= csrf_meta_tags %>
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="/css/style.css" rel="stylesheet">
+
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <body>
 
-  	<!-- As a default, Rails will use application.html.erb as the layout file for all views. But if it detects a layout file that shares the name of a view, such as this file, then Rails will use the named layout file instead of defaulting to application.html.erb.  -->
+ <body>
 
-
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark blue lighten-2">
+        <a class="navbar-brand custom-navbar-header" href="/users">Food by Lags</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
         </button>
-      </div>
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-         <% if current_user && current_user.admin %>
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="/users">Home <span class="sr-only">(current)</span></a></li>
-        </ul>
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="/products"> Cookbooks <span class="sr-only">(current)</span></a></li>
-          </ul>
-          <ul class="nav navbar-nav">
-          <li class="active"><a href="/contacts"> Contact <span class="sr-only">(current)</span></a></li>
-        </ul>
-         <% end %>
-
-
-        <% if !current_user || current_user && !current_user.admin %>
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="/users"> Home <span class="sr-only">(current)</span></a></li>
-          </ul>
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="/products"> Cookbooks <span class="sr-only">(current)</span></a></li>
-          </ul>
-          <ul class="nav navbar-nav">
-          <li class="active"><a href="/contacts"> Contact <span class="sr-only">(current)</span></a></li>
-        </ul>
-        <% end %>     
-
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
-
- 
-
-
-
-
-
-
-    <div class="container">
-      <% flash.each do |name, message| %>
-        <div class="alert alert-<%= name %> alert-dismissible" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <%= message %>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link custom-navbar-text" href="/users">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link custom-navbar-text" href="/products">Cookbooks <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link custom-navbar-text" href="/contacts">Contact <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
         </div>
-      <% end %>
+    </nav>
+  </header>
+    
+    <div id="app">
+      <%= yield %>
     </div>
 
-    <%= yield %>
-  
-  </body>
+
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="/js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="/js/mdb.min.js"></script>
+ </body>
 </html>
