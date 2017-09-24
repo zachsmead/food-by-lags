@@ -61,6 +61,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				console.log(this.add_to_bag);
 				console.log('this.bag');
 				console.log(this.bag);
+				this.bag.forEach(item => {
+					const cost = item['newCart'].cost;
+					this.total += parseInt(cost);
+				});
+				console.log('this.total below');
+				console.log(this.total);
 			}.bind(this));
 		},
 		methods: {
@@ -116,6 +122,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				console.log(this.bag.inspect);
 				this.bag.push(json_to_send);
 				console.log('jsonBag below');
+				this.bag.forEach(item => {
+					console.log('item below');
+					console.log(item);
+					console.log('item newcart below');
+					console.log(item['newCart']);
+					console.log('item newcart cost below');
+					console.log(item['newCart'].cost);
+					const cost = item['newCart'].cost;
+					this.total += parseInt(cost);
+					console.log('this.total');
+					console.log(this.total);
+				});
 				$.post('http://localhost:3000/api_for_lags/create.json', json_to_send, function(result) {
 					this.addToBagID = result['id'];
 					console.log('result id below');
