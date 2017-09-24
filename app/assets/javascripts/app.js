@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
 			total: 0,
+			cost: 0,
 			firstNameBox: "",
 			lastNameBox: "",
 			emailBox: "",
@@ -45,13 +46,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				this.products = result.products;
 				console.log('bag below');
 				console.log(this.bag);
-					if(this.bag.length === 0) {
-						this.buttons[1].visible = false;
-					} else if(this.bag.length >= 1) {
-						this.buttons[1].visible = true;
-					}
 				}.bind(this));
 			$.get('http://localhost:3000/api_for_lags/carted_items.json', function(result) {
+				if(this.bag.length === 0) {
+					this.buttons[1].visible = false;
+				} else if(this.bag.length >= 1) {
+					this.buttons[1].visible = true;
+				}
 				console.log('carts below yo');
 				console.log(result.carts);
 				result.carts.forEach(function(carted_product) {
@@ -62,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				console.log('this.bag');
 				console.log(this.bag);
 				this.bag.forEach(item => {
-					const cost = item['newCart'].cost;
+					this.cost = item['newCart'].cost;
 					this.total += parseInt(cost);
 				});
 				console.log('this.total below');
@@ -123,9 +124,27 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				console.log(this.bag.inspect);
 				this.bag.push(json_to_send);
 				console.log('jsonBag below');
-				const costly = parseInt(json_to_send['newCart'].cost);
-				this.total += costly;
+				const to_be_cost = json_to_send['newCart'];
+				console.log('to_b_cost below');
+				console.log(to_be_cost);
+				const costly = to_be_cost.cost;
+				console.log('costly below');
+				console.log(costly);
+				console.log('this.total below');
+				console.log(this.total);
+				this.total = this.total + parseInt(costly);
+				console.log('this.total below');
+				console.log(this.total);
+				console.log('json_to_send below');
+				console.log(json_to_send);
 				$.post('http://localhost:3000/api_for_lags/create.json', json_to_send, function(result) {
+					console.log('this.addToBagID below');
+					console.log(this.addToBagID);
+					console.log('result[id] below');
+					console.log(result['id']);
+					console.log('result below');
+					console.log(result);
+
 					this.addToBagID = result['id'];
 					console.log('result id below');
 					console.log(result['id']);

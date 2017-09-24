@@ -1,40 +1,35 @@
-<nav class="floating-menu" v-cloak v-if="this.buttons[1].visible || this.bag.length > 0 ">
-      <h3> Your Cart <!-- <i class="icon-large icon-fast-food icon-white"></i> --> </h3>
-      	<div v-for="item in bag">
-       		<h4> {{item.newCart.name}} </h4>
-       		<h4> ${{item.newCart.cost}} </h4>
+<!--Panel-->
+<div class="floating-menu">
+	<div class="card text-center" style="width: 22rem; max-height:90%; overflow: scroll; position: fixed;" v-cloak v-if="this.buttons[1].visible || this.bag.length > 0">
+	    <div class="card-header success-color white-text">
+	        Your Cart
+	    </div>
+
+		<div class="card-body">
+	  		<div v-for="item in bag">
+		        <h4 class="card-title">{{item['newCart'].name}}: ${{item['newCart'].cost}}</h4>
+		        <p class="card-text" v-on:click="removeFromCart(item)">Remove</p>
+			</div>
+				     <div id="checkout" v-if="this.buttons[2].visible">
+	      				<p class="card-text">First Name:<input type="text" v-model="firstNameBox"></p>
+	      				<p class="card-text">Last Name:<input type="text" v-model="lastNameBox"></p>
+	      				<p class="card-text">Email:<input type="text" v-model="emailBox"></p>
+	      				<p class="card-text">Address 1:<input type="text" v-model="AddressOneBox" placeholder="123 Cherry Rd, Forest, CA 986420"></p>
+	      				<p class="card-text">Address 2:<input type="text" v-model="firstNameBox" placeholder="Apt Tree"></p>
+	      					<a class="btn btn-success btn-sm" v-on:click="createOrder">Create Order</a>
 
 
-      		<div v-on:click="removeFromCart(item)">Remove</div>
-      		<!-- <div v-on:click={"'removeFromCart(' + {item.id} + ')'"}>Remove</div> -->
+		        	</div>
+		</div>
+		    <div class="card-footer text-muted success-color white-text">
+		        <p class="mb-0">Total(before tax)</p>
+		        <p class="mb-0">${{total}}</p>
+		        <a class="btn btn-success btn-sm" v-on:click="checkoutOrder">Checkout</a>
+		    </div>
+	</div>
+	<!--/.Panel-->
+</div>
 
-
-
-
-      	</div>
-       	<h4> Total(before tax)</h4>
-      	<h4> ${{total}} </h4>
-      		<div v-on:click="checkoutOrder"><h3 id="checkout-button"> Checkout </h3>
-      		</div>
-      			<div id="checkoutform" v-if="this.buttons[2].visible">
-      			  <p>First Name:<input type="text" v-model="firstNameBox"></p>
-      			  <p>Last Name:<input type="text" v-model="lastNameBox"></p>
-      			  <p>Email:<input type="text" v-model="emailBox"></p>
-      			  <p>Address 1:<input type="text" v-model="addressOneBox" placeholder="1234 Cherry Rd, Treesville, CA 97899"></p>
-      			  <p>Address 2:<input type="text" v-model="addressTwoBox" placeholder="Apt Tree"></p>
-
-      				<button v-on:click="createOrder"> Create Order </button>   
-				</div> 
-    <!--   <div v-for="item in bag">
-        <p class="itemname"> {{item.name}} </p>
-        <p class="itemname"> ${{item.price}}0 </p>
-      </div>
-        <div class="itemnametwo">Total: ${{total}} </div>
-      <br>
-      <div class="bagcheck">
-
-      </div> -->
-</nav>
 
 
 
