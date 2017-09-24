@@ -14,6 +14,10 @@ class ChargesController < ApplicationController
 			:source	=> params[:stripeToken]
 		)
 
+		puts "*" * 100
+		puts params.inspect
+		puts "*" * 100
+
 		charge = Stripe::Charge.create(
 			:customer => customer.id,
 			:amount => @amount.to_i,

@@ -143,6 +143,8 @@ cursor: pointer;
 #checkout {
 	bottom: 0;
 	float: right;
+	text-align: left;
+    margin-right: 43px;
 }
 
 #kabobs {
