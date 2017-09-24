@@ -122,18 +122,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				console.log(this.bag.inspect);
 				this.bag.push(json_to_send);
 				console.log('jsonBag below');
-				this.bag.forEach(item => {
-					console.log('item below');
-					console.log(item);
-					console.log('item newcart below');
-					console.log(item['newCart']);
-					console.log('item newcart cost below');
-					console.log(item['newCart'].cost);
-					const cost = item['newCart'].cost;
-					this.total += parseInt(cost);
-					console.log('this.total');
-					console.log(this.total);
-				});
+				const costly = parseInt(json_to_send['newCart'].cost);
+				this.total += costly;
 				$.post('http://localhost:3000/api_for_lags/create.json', json_to_send, function(result) {
 					this.addToBagID = result['id'];
 					console.log('result id below');
