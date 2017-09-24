@@ -82,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				$.post('http://localhost:3000/api_for_lags/delete_cart_item.json', json_to_send, function(result) {
 					console.log(result);
 				})
+
 				window.location = "http://localhost:3000/products";
 
 			},

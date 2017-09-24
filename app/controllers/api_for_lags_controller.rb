@@ -1,4 +1,5 @@
 class ApiForLagsController < ApplicationController
+	protect_from_forgery with: :null_session
 
 	def index
 		@cart = Cart.where(status: 'carted')
