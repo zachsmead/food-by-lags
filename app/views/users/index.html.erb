@@ -1,8 +1,134 @@
+<main>
+
+    <!--Main layout-->
+    <div class="container">
+        <!--First row-->
+        <div class="row">
+            <div class="col-md-7">
+						    <!--Featured image -->
+						    <div class="view overlay hm-white-light z-depth-1-half">
+						        <img src="https://i.imgur.com/4BrIX2D.jpg?1" class="img-fluid " alt="">
+						        <div class="mask">
+						        </div>
+						    </div>
+						    <br>
+						</div>
+
+            <!--Main information-->
+							<div class="col-md-5">
+							    <h2 class="h2-responsive"><a href='https://www.instagram.com/food_by_lags/'>@FoodByLags</h2></a>
+							    <hr>
+							    <p>Hi, I am Juliana Lagattuta- soon to be Mrs. Sabraw! I am an avid macro counter, I love to cook, and I love to have an all-around balanced healthy lifestyle. I have tried many styles of lifting, crossfit, bodybuilding, powerlifting, and olympic lifting. I have even competed in some crossfit competitions. I have tried several diets: carb cycling, keto diet, set macros based on percentages, and paleo. Overall, my goal is to have a balanced lifestyle; being active whether it’s in a gym or outside; and eating to not only keep me healthy but to fuel my body properly so I am constantly feel well mentally and physically. When I met my fiancé (in a gym!!) he was also an avid macro counter and gym rat. Over the past several years my cooking has not only improved, but I have started learning how to switch ingredients out for healthier options and calculate the macros (fat, carbs, and protein) for each item I cooked. I meal prep for my fiancé every week and also for myself. I find the majority of my recipes from cookbooks, online, and social media. I alter about 95% of the recipes I find to make them healthier: lowering the fat, sugar, and or carbs by switching the ingredients. I love making lower carb meals because then I can eat more. I love me some food. I’ve had several people ask about my recipes so I have created a cookbook of my top recipes. I hope you enjoy.</p>
+							    <a href="" class="btn btn-primary">Get it now!</a>
+							</div>
+        </div>
+        <!--/.First row-->
+
+        <!--Second row-->
+				<div class="row">
+				    <!--First columnn-->
+				    <div class="col-md-4">
+				        <!--Card-->
+				        <div class="card">
+
+				            <!--Card image-->
+				            <div class="view overlay hm-white-slight">
+				                <img src="https://mdbootstrap.com/images/regular/city/img%20(2).jpg" class="img-fluid" alt="">
+				                <a href="#">
+				                    <div class="mask"></div>
+				                </a>
+				            </div>
+				            <!--/.Card image-->
+
+				            <!--Card content-->
+				            <div class="card-block">
+				                <!--Title-->
+				                <h4 class="card-title">Card title</h4>
+				                <!--Text-->
+				                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				                <a href="#" class="btn btn-primary">Read more</a>
+				            </div>
+				            <!--/.Card content-->
+
+				        </div>
+				        <!--/.Card-->
+				    </div>
+				    <!--First columnn-->
+
+				    <!--Second columnn-->
+				    <div class="col-md-4">
+				        <!--Card-->
+				        <div class="card">
+
+				            <!--Card image-->
+				            <div class="view overlay hm-white-slight">
+				                <img src="https://mdbootstrap.com/images/regular/city/img%20(4).jpg" class="img-fluid" alt="">
+				                <a href="#">
+				                    <div class="mask"></div>
+				                </a>
+				            </div>
+				            <!--/.Card image-->
+
+				            <!--Card content-->
+				            <div class="card-block">
+				                <!--Title-->
+				                <h4 class="card-title">Card title</h4>
+				                <!--Text-->
+				                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				                <a href="#" class="btn btn-primary">Read more</a>
+				            </div>
+				            <!--/.Card content-->
+
+				        </div>
+				        <!--/.Card-->
+				    </div>
+				    <!--Second columnn-->
+
+				    <!--Third columnn-->
+				    <div class="col-md-4">
+				        <!--Card-->
+				        <div class="card">
+
+				            <!--Card image-->
+				            <div class="view overlay hm-white-slight">
+				                <img src="https://mdbootstrap.com/images/regular/city/img%20(8).jpg" class="img-fluid" alt="">
+				                <a href="#">
+				                    <div class="mask"></div>
+				                </a>
+				            </div>
+				            <!--/.Card image-->
+
+				            <!--Card content-->
+				            <div class="card-block">
+				                <!--Title-->
+				                <h4 class="card-title">Card title</h4>
+				                <!--Text-->
+				                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				                <a href="#" class="btn btn-primary">Read more</a>
+				            </div>
+				            <!--/.Card content-->
+
+				        </div>
+				        <!--/.Card-->
+				    </div>
+				    <!--Third columnn-->
+				</div>
+				<!--/.Second row-->
+
+    </div>
+    <!--/.Main layout-->
+
+</main>
+
+
+
+
 
 
 <div class="container">
 	<h2 id="pic_of_family"><img src="https://i.imgur.com/4BrIX2D.jpg?1" height=500px width=500px alt="famphoto">
 </div>
+
 <div class="container">
 	<h2 id="about_me"> <%= about_me %> <%= about_me_two %> </h2>
 </div>
@@ -10,12 +136,15 @@
 <div class="container">
 	<img id="pic_of_food_one" src="http://i.imgur.com/lpv962e.jpg" height="500px" width="400px" style="margin-left: 375px" alt="spices.jpg">
 </div>
+
 <div class="container">
 	<img id="pic_of_food_two" style="margin-left: 250px" src="https://i.imgur.com/mozYcfq.jpg" alt="turkeybowlsincontainers.jpg">
 </div>
+
 <div class="container">
 	<img id="pic_of_food_three" style="margin-left: 328px" src="http://i.imgur.com/glD0sHS.jpg" alt="bigtacobowls.jpg">
 </div>
+
 <div id="logout_buttons">
 	<% if current_user %>
 		<% if current_user.admin %>
