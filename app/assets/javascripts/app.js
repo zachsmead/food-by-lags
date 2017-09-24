@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				console.log(this.bag);
 				this.bag.forEach(item => {
 					this.cost = item['newCart'].cost;
-					this.total += parseInt(cost);
+					this.total += parseInt(this.cost);
 				});
 				console.log('this.total below');
 				console.log(this.total);
