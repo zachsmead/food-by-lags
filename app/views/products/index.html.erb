@@ -1,4 +1,4 @@
-<nav class="floating-menu" v-if="this.buttons[1].visible || this.bag.length > 0 ">
+<nav class="floating-menu" v-cloak v-if="this.buttons[1].visible || this.bag.length > 0 ">
       <h3> Your Cart <!-- <i class="icon-large icon-fast-food icon-white"></i> --> </h3>
       	<div v-for="item in bag">
        		<h4> {{item.newCart.name}} </h4>
