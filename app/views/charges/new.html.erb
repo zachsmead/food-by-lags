@@ -1,4 +1,4 @@
-<div id="pay_page">
+<!-- <div class="pay_page">
     <%= form_tag charges_path do %>
       <article>
         <% if flash[:error].present? %>
@@ -17,4 +17,78 @@
               data-amount="<%= @amount_in_cents %>"
               data-locale="auto"></script>
     <% end %>
-</div>
+</div> -->
+
+
+<main style="padding-top: 3rem; padding-bottom: 2rem;">
+
+    <!--Main layout-->
+    <div class="container">
+        <!--Row-->
+        <div class="row">
+            <!--Third columnn-->
+            <div class="col-md-4" style="margin: auto;">
+                <!--Card-->
+                <div class="card">
+
+                    <!--Card image-->
+                    <!-- <div class="view overlay hm-white-slight">
+                        <img src="https://mdbootstrap.com/images/regular/city/img%20(8).jpg" class="img-fluid" alt="">
+                        <a href="#">
+                            <div class="mask"></div>
+                        </a>
+                    </div> -->
+                    <!--/.Card image-->
+
+                    <!--Card content-->
+                    <div class="card-block small-card text-center">
+                        <!--Title-->
+                        <h4 class="card-title small-card">Thanks for ordering!</h4>
+                        <!--Text-->
+                        <p class="card-text small-card">
+                          <div class='pay_page'>
+                            <%= form_tag charges_path do %>
+                              <article>
+                                <% if flash[:error].present? %>
+                                  <div id="error_explanation">
+                                    <p><%= flash[:error] %></p>
+                                  </div>
+                                <% end %>
+                                <label class="amount">
+                                  <span>Amount: <%= @order.total %></span>
+                                </label>
+                              </article>
+
+                              <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                      data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                                      data-description="Final Step"
+                                      data-amount="<%= @amount_in_cents %>"
+                                      data-locale="auto">
+                              </script>
+                              <script>
+                                  // Hide default stripe button, be careful there if you
+                                  // have more than 1 button of that class
+                                  document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+                              </script>
+                              <button type="submit" class="btn btn-primary">Pay with Card</button>
+                            <% end %>
+                          </div>
+                        </p>
+                    </div>
+                    <!--/.Card content-->
+
+                </div>
+                <!--/.Card-->
+            </div>
+            <!--Third columnn-->
+        </div>
+        <!--/.row-->
+
+
+
+
+
+    </div>
+    <!--/.Main layout-->
+
+</main>
