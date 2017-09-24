@@ -26,7 +26,7 @@
 				<textarea class="longInput" name="text" placeholder="Write a message" cols="60" rows="10"></textarea>
 
 				<div id="commentsubmitbutton">
-					<input type="submit" value="Submit">
+					<input type="submit" class='btn btn-primary' value="Submit">
 				</div>
 
 			<% end %>
@@ -36,49 +36,35 @@
 
 
 <% @approved_comments.each do |item| %>
-	<div class="approvedcomments">
-		<div class="chatbox">
 
-
-			<div class="chatlogs">
-				<div class="chat">
-
-					<p class="chat-message"><span><%= item.name %></span>: <%= item.text %></p>
-					<% item.texts.each do |text| %>
-						<% if text.approved %>
-							<p id="textname"> <span> <%=text.name %></span>: <%= text.text %></p>
-						<% end %>
+	<div class="jumbotron" style="width: 50%; margin: auto; margin-bottom: 30px; margin-top: 30px;">
+	    <h1 class="h1-responsive"><b><%= item.name %></b> writes:</h1>
+	    <p class="lead"><%= item.text %></p>
+	    <div style="max-height: 200px; overflow: scroll;">
+		    <% item.texts.each do |text| %>
+					<% if text.approved %>
+						<hr class="my-2">
+				    <p style="text-align: right"><b><%=text.name %>:</b> <%= text.text %>
+				    </p>
 					<% end %>
-				</div>
-
+				<% end %>
 			</div>
-
-<!-- 			<div key={{this.commentId}}>
-				<div class="chat-forum">
-					<div id="containerforname">
-						Name: <input type="text" v-model="nameAdd">
-							  <input type="hidden" v-model="commentId" value="(<%= item.id %>)">
-					</div>			
-					<textarea v-model="commentAdd" placeholder="Write a message" cols="45" rows="6"></textarea>
-					<button v-on:click="sendComment()">Send</button>
-				</div>
-			</div>
- -->
-			<div id="chat-forum">
-				<div id="containerforname">
-					<%= form_tag "/texts/add_text_to_comment", method: :post do %>
+			<hr class="my-2">
+			<div style="width: 50%; margin: left; margin-top: 20px; margin-bottom: 20px;">
+				<h4 style="padding: 20px;">Respond to this message</h4>
+				<%= form_tag "/texts/add_text_to_comment", method: :post do %>
 						Name: <input type="text" name="name">
 						<br>
 							<input type="hidden" name="comment_id" value="<%= item.id %>">
 						<br>
-							<textarea type="text" name="text" placeholder="Write a message" cols="45" rows="6"></textarea>
-							<button type="submit" value="Sumbit">Send</button>
-
-					<% end %>
-				</div>
+					<input type="text" name="text" placeholder="Enter a message here" cols="45" rows="6" style="margin-bottom: 20px;"></input>
+					<input class='btn btn-primary' style="margin: right" type="submit" value="Send"></input>
+				<% end %>
 			</div>
-		</div>
 	</div>
+
+
+	
 
 <% end %>
 
