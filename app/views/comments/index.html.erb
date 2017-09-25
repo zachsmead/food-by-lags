@@ -44,20 +44,20 @@
 		    <% item.texts.each do |text| %>
 					<% if text.approved %>
 						<hr class="my-2">
-				    <p style="text-align: right"><b><%=text.name %>:</b> <%= text.text %>
+				    <p style="text-align: left"><b><%=text.name %>:</b> <%= text.text %>
 				    </p>
 					<% end %>
 				<% end %>
 			</div>
 			<hr class="my-2">
 			<div style="width: 50%; margin: left; margin-top: 20px; margin-bottom: 20px;">
-				<h4 style="padding: 20px;">Respond to this message</h4>
+				<h4 style="padding-top: 20px; padding-bottom: 20px;">Respond to this message</h4>
 				<%= form_tag "/texts/add_text_to_comment", method: :post do %>
-						Name: <input type="text" name="name">
+						<input type="text" name="name" placeholder="Your name">
 						<br>
-							<input type="hidden" name="comment_id" value="<%= item.id %>">
+						<input type="hidden" name="comment_id" value="<%= item.id %>">
 						<br>
-					<input type="text" name="text" placeholder="Enter a message here" cols="45" rows="6" style="margin-bottom: 20px;"></input>
+					<input type="text" name="text" placeholder="Your response" cols="45" rows="6" style="margin-bottom: 20px;"></input>
 					<input class='btn btn-primary' style="margin: right" type="submit" value="Send"></input>
 				<% end %>
 			</div>
