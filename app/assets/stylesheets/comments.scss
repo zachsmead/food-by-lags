@@ -7,7 +7,9 @@
 	margin: 80px;
 }
 
-
+#firstcomment {
+	font-size: 140%;
+}
 
 #containerforname {
 	margin: 6px;
@@ -22,6 +24,11 @@
 	padding: 25px;
 	margin: 10px auto;
 	border-radius: 8px;
+}
+
+#comment_button {
+	float: right;
+	margin-bottom: 30px;
 }
 
 .chatlogs {
