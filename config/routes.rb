@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
 
     # root to: "users#comingsoon"
-    root to: "comments#index"
+    root to: "users#index"
 
     get "/contacts" => "comments#index"
     post "/contacts" => "comments#create"
