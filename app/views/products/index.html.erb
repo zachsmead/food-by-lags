@@ -66,77 +66,73 @@
 	</div>
 </div>
 
-
-
-
-
-
-
-<% if current_user %>
-	<% if current_user.admin %>
-		<div class="add">
-			<div class="card">
-				<h2> New Product Admin Only </h2> 
-				<%= form_tag "/products/new", method: :post do %>
-					<h4> Name: <input type="text" name="name"> </h4>
-					<br>
-					<h4 class="small-font"><span>(adding image directions)<br> 
-							1) Sign into Imgur: FoodByLags. Navigate to your images, top right corner dropdown menu.<br> 
-							2) Copy 'direct link', located after 'image link', after adding your new image.<br>
-							3) Paste your image in the image url text box below.</span><br>
-							 Image URL: <input type="text" name="image"> </h4>
-					<br>
-					<h4> Product Type: <input type="text" name="product_type"> </h4>
-					<br>
-					<h4> Stock: <input type="text" name="stock"> </h4>
-					<br>
-					<h4> Cost: <input type="text" name="cost"> </h4>
-					<br>
-					<h4> Description: <textarea class="longInput" name="description" cols="20" rows="7"></textarea>
-					<br> </h4>
-						<input type="submit" name="Enter">
-					<br>
-					<br>
-				<% end %>
-								<div id="editproductform">
-									<h2>Edit Product Admin Only</h2>
-									<h3 id="alltextboxes">All Text Boxes Must Be Filled</h3>
-										<%= form_tag "/products/update", method: :post do %>
-									<h4> Name: {{item.name}} <input type="text" name="name" placeholder="update name"> </h4>
-									<br>
-									<h4 class="small-font"><span>(add image directions)<br> 
-											1) Sign into Imgur: FoodByLags. Navigate to your images, top right corner dropdown menu.<br>
-											2) Copy 'direct link', located after 'image link', after adding your new image or use an existing image's 'direct link' url.<br>
-											3) Paste your image in the image url text box below.</span><br>
-										Image URL: {{item.image}} <input type="text" name="image" placeholder="update url"> </h4>
-									<br>
-									<h4> Product Type: {{item.product_type}} <input type="text" name="product_type" placeholder="update type"> </h4>
-									<br>
-									<h4> Stock: {{item.stock}} <input type="number" name="stock" placeholder="update stock"> </h4>
-									<br>
-									<h4> Cost: ${{item.cost}} <input type="text" name="cost" placeholder="update cost"> </h4>
-									<br>
-									<h4> Description: {{item.description}} <textarea class="longInput" name="description" placeholder="update description" cols="20" rows="2"></textarea>
-									<br> </h4>
-									<h4> Id: {{item.id}} <input type="number" name="id" placeholder="update product's id"> </h4>
-									<br>
-									<br>
-										<input type="submit" name="Enter">
+<div v-for="item in products">
+	<% if current_user %>
+		<% if current_user.admin %>
+			<div class="add">
+				<div class="card">
+					<h2> New Product Admin Only </h2> 
+					<%= form_tag "/products/new", method: :post do %>
+						<h4> Name: <input type="text" name="name"> </h4>
+						<br>
+						<h4 class="small-font"><span>(adding image directions)<br> 
+								1) Sign into Imgur: FoodByLags. Navigate to your images, top right corner dropdown menu.<br> 
+								2) Copy 'direct link', located after 'image link', after adding your new image.<br>
+								3) Paste your image in the image url text box below.</span><br>
+								 Image URL: <input type="text" name="image"> </h4>
+						<br>
+						<h4> Product Type: <input type="text" name="product_type"> </h4>
+						<br>
+						<h4> Stock: <input type="text" name="stock"> </h4>
+						<br>
+						<h4> Cost: <input type="text" name="cost"> </h4>
+						<br>
+						<h4> Description: <textarea class="longInput" name="description" cols="20" rows="7"></textarea>
+						<br> </h4>
+							<input type="submit" name="Enter">
+						<br>
+						<br>
+					<% end %>
+									<div id="editproductform">
+										<h2>Edit Product Admin Only</h2>
+										<h3 id="alltextboxes">All Text Boxes Must Be Filled</h3>
+											<%= form_tag "/products/update", method: :post do %>
+										<h4> Name: {{item.name}} <input type="text" name="name" placeholder="update name"> </h4>
 										<br>
-										<% end %>
-									<br>
-										<div id="delete">
-											<%= form_tag "/products/delete", method: :post do %>
-												Put product id in box box and submit to delete: <input type="text" name="id" placeholder="product id"><br>
-												<input type="submit" name="Enter">
-												Product ID: {{item.id}}<br>
+										<h4 class="small-font"><span>(add image directions)<br> 
+												1) Sign into Imgur: FoodByLags. Navigate to your images, top right corner dropdown menu.<br>
+												2) Copy 'direct link', located after 'image link', after adding your new image or use an existing image's 'direct link' url.<br>
+												3) Paste your image in the image url text box below.</span><br>
+											Image URL: {{item.image}} <input type="text" name="image" placeholder="update url"> </h4>
+										<br>
+										<h4> Product Type: {{item.product_type}} <input type="text" name="product_type" placeholder="update type"> </h4>
+										<br>
+										<h4> Stock: {{item.stock}} <input type="number" name="stock" placeholder="update stock"> </h4>
+										<br>
+										<h4> Cost: ${{item.cost}} <input type="text" name="cost" placeholder="update cost"> </h4>
+										<br>
+										<h4> Description: {{item.description}} <textarea class="longInput" name="description" placeholder="update description" cols="20" rows="2"></textarea>
+										<br> </h4>
+										<h4> Id: {{item.id}} <input type="number" name="id" placeholder="update product's id"> </h4>
+										<br>
+										<br>
+											<input type="submit" name="Enter">
+											<br>
 											<% end %>
-										</div>
-								</div>
+										<br>
+											<div id="delete">
+												<%= form_tag "/products/delete", method: :post do %>
+													Put product id in box box and submit to delete: <input type="text" name="id" placeholder="product id"><br>
+													<input type="submit" name="Enter">
+													Product ID: {{item.id}}<br>
+												<% end %>
+											</div>
+									</div>
+				</div>
 			</div>
-		</div>
+		<% end %>
 	<% end %>
-<% end %>
+</div>
 
 
 <% if current_user %>
