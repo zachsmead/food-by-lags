@@ -1,0 +1,15 @@
+current directory: /Users/jameslagattuta/Documents/ExtraFileThree/food-by-lags/vendor/bundle/ruby/2.4.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+/Users/jameslagattuta/.rbenv/versions/2.4.0/bin/ruby -r ./siteconf20171005-28506-pr3t3c.rb extconf.rb
+creating Makefile
+
+current directory: /Users/jameslagattuta/Documents/ExtraFileThree/food-by-lags/vendor/bundle/ruby/2.4.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+make "DESTDIR=" clean
+
+current directory: /Users/jameslagattuta/Documents/ExtraFileThree/food-by-lags/vendor/bundle/ruby/2.4.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+make "DESTDIR="
+compiling websocket_mask.c
+linking shared-object websocket_mask.bundle
+
+current directory: /Users/jameslagattuta/Documents/ExtraFileThree/food-by-lags/vendor/bundle/ruby/2.4.0/gems/websocket-driver-0.6.5/ext/websocket-driver
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 websocket_mask.bundle ./.gem.20171005-28506-2wttae
