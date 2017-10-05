@@ -38,6 +38,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'stripe'
+gem 'bootstrap-sass'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'sendgrid-ruby'
 gem 'unirest'
