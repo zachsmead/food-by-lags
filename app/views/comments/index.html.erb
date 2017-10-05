@@ -19,11 +19,11 @@
 			<%= form_tag "/contacts", method: :post do %>
 			<br>
 				<div id="nameform">
-					Name: <input type="text" name="name">
+					<input type="text" name="name" placeholder="Your name">
 				</div>
 				<br>
 				<br>
-				<textarea class="longInput" name="text" placeholder="Write a message" cols="60" rows="10"></textarea>
+				<input class="" type="text" name="text" placeholder="Write a message" cols="60" rows="10"></textarea>
 
 				<div id="commentsubmitbutton">
 					<input type="submit" class='btn btn-primary' value="Submit">
@@ -38,27 +38,29 @@
 <% @approved_comments.each do |item| %>
 
 	<div class="jumbotron" style="width: 50%; margin: auto; margin-bottom: 30px; margin-top: 30px;">
-	    <h1 class="h1-responsive"><b><%= item.name %></b> writes:</h1>
-	    <p class="lead"><%= item.text %></p>
-	    <div style="max-height: 200px; overflow: scroll;">
+	    <h1 class="lead"><b id="firstcomment"><%= item.name %>:</b> <%= item.text %>
+
+	    <div style="max-height: 260px; overflow: scroll;">
 		    <% item.texts.each do |text| %>
 					<% if text.approved %>
 						<hr class="my-2">
-				    <p style="text-align: right"><b><%=text.name %>:</b> <%= text.text %>
+				    <p style="text-align: left"><b><%=text.name %>:</b> <%= text.text %>
 				    </p>
 					<% end %>
 				<% end %>
 			</div>
 			<hr class="my-2">
 			<div style="width: 50%; margin: left; margin-top: 20px; margin-bottom: 20px;">
-				<h4 style="padding: 20px;">Respond to this message</h4>
+				<h4 id="comment_here" style="text-decoration: bold; padding-top: 20px; padding-bottom: 20px;"></h4>
 				<%= form_tag "/texts/add_text_to_comment", method: :post do %>
-						Name: <input type="text" name="name">
+						<input type="text" name="name" placeholder="Your name">
 						<br>
-							<input type="hidden" name="comment_id" value="<%= item.id %>">
+						<input type="hidden" name="comment_id" value="<%= item.id %>">
 						<br>
-					<input type="text" name="text" placeholder="Enter a message here" cols="45" rows="6" style="margin-bottom: 20px;"></input>
-					<input class='btn btn-primary' style="margin: right" type="submit" value="Send"></input>
+					<input type="text" name="text" placeholder="Your response" cols="45" rows="6" style="margin-bottom: 20px;"></input>
+					<div id="comment_button">
+						<input class='btn btn-primary' style="margin-top: -3px;" type="submit" value="Send"></input>
+					</div>
 				<% end %>
 			</div>
 	</div>
