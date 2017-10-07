@@ -182,16 +182,14 @@ class ApiForLagsController < ApplicationController
 
 	def create_comment
 		@bag = params
-		newBag = @bag['newComment']
-		name = @bag['name']
-		id = JSON.parse(@bag['comment_id'])
+		newBag = @bag['textComment']
+		name = @bag['nameComment']
 		puts "*" * 100
 		puts "*" * 100
 		puts "*" * 100
 
 		puts "newBag inspect below"
 		puts newBag.inspect
-		puts @bag['comment_id']
 
 		puts "*" * 100
 		puts "*" * 100
@@ -200,10 +198,9 @@ class ApiForLagsController < ApplicationController
 
 
 
-		@text = Text.create(
+		@comment = Comment.create(
 			name: name,
 			text: newBag,
-			comment_id: id,
 			approved: false
 		)
 
@@ -224,10 +221,10 @@ class ApiForLagsController < ApplicationController
 		puts "&" * 100
 
 		# OrderMailer
-		if @text.save
-			OrderMailer.text_approval(@text).deliver
+		if @comment.save
+			OrderMailer.comment_approval(@comment).deliver
 			redirect_to "/contacts" 
-			flash[:success] = "Your text has been successfully sent."
+			flash[:success] = "Your comment has been successfully sent."
 
 		else
 			flash[:danger] = "Something went wrong with the mailing process."
