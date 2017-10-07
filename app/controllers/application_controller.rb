@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
 	def authenticate_admin!
 		if !(current_user && current_user.admin)
 			flash[:danger] = "You Must Be an Admin"
-			redirect_to "http://www.foodbylags.com"
+			redirect_to "/"
 		end 
 
 	end
