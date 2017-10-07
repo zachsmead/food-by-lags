@@ -19,9 +19,9 @@ class ApiForLagsController < ApplicationController
 	end
 
 	def add_text_to_comment
-		name = params[:name]
-		text = params[:text]
-		commentId = params[:comment_id]
+		name = params['name']
+		text = params['newText']
+		commentId = params['commentId']
 
 		@new_text = Text.create(name: name,
 								text: text,
