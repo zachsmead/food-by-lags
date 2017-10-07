@@ -183,7 +183,7 @@ class ApiForLagsController < ApplicationController
 	def create_comment
 		@bag = params
 		newBag = @bag['textComment']
-		name = @bag['nameComment']
+		name = @bag['name']
 		puts "*" * 100
 		puts "*" * 100
 		puts "*" * 100
