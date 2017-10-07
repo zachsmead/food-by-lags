@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			finalBag: [],
 			brand_new_bag: [],
 			commentAdd: "",
+			nameComment: "",
+			textComment: "",
 			nameAdd: "",
 			commentId: 0,
 
@@ -211,18 +213,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				})
 				window.location = "http://www.foodbylags.com/charges/new";
 			},
-			sendComment: function() {
+			commentSend: function() {
 				console.log('Send Comment Functioning');
-				console.log('this.commentAdd below');
-				console.log(this.commentAdd);
+				console.log('this.nameComment below');
+				console.log(this.nameComment);
+				console.log('this.textComment below');
+				console.log(this.textComment);
 
 				var comment_to_send = {
-					newComment: this.commentAdd,
-					name: this.nameAdd,
-					comment_id: parseInt(this.commentId)
+					newComment: this.textComment,
+					name: this.nameComment
 				}
 				$.post('http://www.foodbylags.com/api_for_lags/create_comment.json', comment_to_send, function(result) {
-					console.log('sendComment api call running');
+					console.log('commentSend api call running');
 					console.log(result);
 				})
 				window.location = "http://www.foodbylags.com/contacts";
