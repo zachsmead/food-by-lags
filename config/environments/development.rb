@@ -43,7 +43,7 @@ Rails.application.configure do
   }
 
   # specify what domain to use for mailerURLs
-  config.action_mailer.default_url_options = { host: "www.foodbylags.com" }
+  config.action_mailer.default_url_options = { host: "foodbylags.com" }
   
   config.action_mailer.perform_caching = false
 
