@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			commentAdd: "",
 			nameComment: "",
 			textComment: "",
+			nameText: "",
+			textText: "",
 			nameAdd: "",
 			commentId: 0,
 
