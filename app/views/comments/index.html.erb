@@ -16,24 +16,21 @@
 	<div class="box">
 		<h3> Any comments or reviews?<br> Please submit below. </h3>
 
-			<%= form_tag "/contacts", method: :post do %>
 			<br>
 				<div id="nameform">
-					<input type="text" name="name" placeholder="Your name">
+					<input type="text" v-model="nameComment" placeholder="Your name">
 				</div>
 				<br>
 				<br>
-				<input class="" type="text" name="text" placeholder="Write a message" cols="60" rows="10"></textarea>
+				<input class="" type="text" v-model="textComment" placeholder="Write a message" cols="60" rows="10"></textarea>
 
 				<div id="commentsubmitbutton">
-					<input type="submit" class='btn btn-primary' value="Submit">
+					<button v-on:click="commentSend">Submit</button>
 				</div>
 
-			<% end %>
 
 	</div>
 </div>
-
 
 <% @approved_comments.each do |item| %>
 
