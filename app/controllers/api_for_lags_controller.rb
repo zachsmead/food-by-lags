@@ -27,6 +27,7 @@ class ApiForLagsController < ApplicationController
 								text: text,
 								comment_id: commentId,
 								approved: false)
+		@id = @new_text.id
 		if @new_text.save
 			OrderMailer.text_approval(@new_text).deliver
 			redirect_to "/contacts" 
@@ -219,7 +220,7 @@ class ApiForLagsController < ApplicationController
 		puts "&" * 100
 
 		puts "&" * 100
-
+		@id = @comment.id
 		# OrderMailer
 		if @comment.save
 			OrderMailer.comment_approval(@comment).deliver
