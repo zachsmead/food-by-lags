@@ -232,6 +232,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				})
 				window.location = "http://www.foodbylags.com/contacts";
 			}.bind(this),
+			textSend: function() {
+				console.log('send text running');
+				var text_to_send = {
+					newText: this.textText,
+					name: this.nameText,
+					commentId: this.commentId
+				}
+				$.post('http://www.foodbylags.com/texts/add_text_to_comment.json', text_to_send, function(result) {
+					console.log('text send api running');
+					console.log(result);
+				})
+				window.location = "http://www.foodbylags.com/contacts";
+			}.bind(this),
 			seeCart: function() {
 				console.log('seeCart function activated');
 				if(this.bag.length === 0) {
