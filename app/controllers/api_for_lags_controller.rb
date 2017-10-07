@@ -29,12 +29,12 @@ class ApiForLagsController < ApplicationController
 								approved: false)
 		if @new_text.save
 			OrderMailer.text_approval(@new_text).deliver
-			redirect_to "http://www.foodbylags.com/contacts" 
+			redirect_to "/contacts" 
 			flash[:success] = "Your text has been successfully sent."
 
 		else
 			flash[:danger] = "Something went wrong with the mailing process."
-			redirect_to "http://www.foodbylags.com/contacts"
+			redirect_to "/contacts"
 
 		end
 	end
@@ -226,12 +226,12 @@ class ApiForLagsController < ApplicationController
 		# OrderMailer
 		if @text.save
 			OrderMailer.text_approval(@text).deliver
-			redirect_to "http://www.foodbylags.com/contacts" 
+			redirect_to "/contacts" 
 			flash[:success] = "Your text has been successfully sent."
 
 		else
 			flash[:danger] = "Something went wrong with the mailing process."
-			redirect_to "http://www.foodbylags.com/contacts"
+			redirect_to "/contacts"
 
 		end
 
