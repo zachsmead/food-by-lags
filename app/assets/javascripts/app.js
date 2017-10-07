@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		},
 		mounted: function() {
 			console.log('Vue.js!');
-			$.get('https://www.foodbylags.com/api_for_lags/products_index.json', function(result) {
+			$.get('http://www.foodbylags.com/api_for_lags/products_index.json', function(result) {
 				console.log(result.products);
 				this.products = result.products;
 				console.log('bag below');
