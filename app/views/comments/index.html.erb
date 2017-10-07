@@ -49,16 +49,14 @@
 			<hr class="my-2">
 			<div style="width: 50%; margin: left; margin-top: 20px; margin-bottom: 20px;">
 				<h4 id="comment_here" style="text-decoration: bold; padding-top: 20px; padding-bottom: 20px;"></h4>
-				<%= form_tag "/texts/add_text_to_comment", method: :post do %>
-						<input type="text" name="name" placeholder="Your name">
+						<input type="text" v-model="nameText" placeholder="Your name">
 						<br>
-						<input type="hidden" name="comment_id" value="<%= item.id %>">
+						<input type="hidden" v-model="comment_id" value="<%= item.id %>">
 						<br>
-					<input type="text" name="text" placeholder="Your response" cols="45" rows="6" style="margin-bottom: 20px;"></input>
+					<input type="text" v-model="textText" placeholder="Your response" cols="45" rows="6" style="margin-bottom: 20px;"></input>
 					<div id="comment_button">
-						<input class='btn btn-primary' style="margin-top: -3px;" type="submit" value="Send"></input>
+						<button class='btn btn-primary' v-on:Click="textSend" style="margin-top: -3px;" type="submit"> Submit</button>
 					</div>
-				<% end %>
 			</div>
 	</div>
 
