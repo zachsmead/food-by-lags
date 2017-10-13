@@ -45,13 +45,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		},
 		mounted: function() {
 			console.log('Vue.js!');
-			$.get('http://www.foodbylags.com/api_for_lags/products_index.json', function(result) {
+			$.get('http://localhost:3000/api_for_lags/products_index.json', function(result) {
 				console.log(result.products);
 				this.products = result.products;
 				console.log('bag below');
 				console.log(this.bag);
 				}.bind(this));
-			$.get('http://www.foodbylags.com/api_for_lags/carted_items.json', function(result) {
+			$.get('http://localhost:3000/api_for_lags/carted_items.json', function(result) {
 				if(this.bag.length === 0) {
 					this.buttons[1].visible = false;
 				} else if(this.bag.length >= 1) {
@@ -84,11 +84,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 					newCart: jsonCartItem
 				}
 
-				$.post('http://www.foodbylags.com/api_for_lags/delete_cart_item.json', json_to_send, function(result) {
+				$.post('http://localhost:3000/api_for_lags/delete_cart_item.json', json_to_send, function(result) {
 					console.log(result);
 				})
 
-				window.location = "http://www.foodbylags.com/products";
+				window.location = "http://localhost:3000/products";
 
 			},
 			showButton: function() {
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				console.log(this.total);
 				console.log('json_to_send below');
 				console.log(json_to_send);
-				$.post('http://www.foodbylags.com/api_for_lags/create.json', json_to_send, function(result) {
+				$.post('http://localhost:3000/api_for_lags/create.json', json_to_send, function(result) {
 					console.log('this.addToBagID below');
 					console.log(this.addToBagID);
 					console.log('result[id] below');
@@ -209,11 +209,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
 
-				$.post('http://www.foodbylags.com/api_for_lags/create_order.json', form, function(result) {
+				$.post('http://localhost:3000/api_for_lags/create_order.json', form, function(result) {
 					console.log('result below of create_order.json');
 					console.log(result);
 				})
-				window.location = "http://www.foodbylags.com/charges/new";
+				window.location = "http://localhost:3000/charges/new";
 			},
 			commentSend: function() {
 				console.log('Send Comment Functioning');
@@ -226,11 +226,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 					newComment: this.textComment,
 					name: this.nameComment
 				}
-				$.post('http://www.foodbylags.com/api_for_lags/create_comment.json', comment_to_send, function(result) {
+				$.post('http://localhost:3000/api_for_lags/create_comment.json', comment_to_send, function(result) {
 					console.log('commentSend api call running');
 					console.log(result);
 				})
-				window.location = "http://www.foodbylags.com/contacts";
+				window.location = "http://localhost:3000/contacts";
 			}.bind(this),
 			textSend: function() {
 				console.log('send text running');
@@ -239,11 +239,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 					name: this.nameText,
 					commentId: this.commentId
 				}
-				$.post('http://www.foodbylags.com/texts/add_text_to_comment.json', text_to_send, function(result) {
+				$.post('http://localhost:3000/texts/add_text_to_comment.json', text_to_send, function(result) {
 					console.log('text send api running');
 					console.log(result);
 				})
-				window.location = "http://www.foodbylags.com/contacts";
+				window.location = "http://localhost:3000/contacts";
 			}.bind(this),
 			seeCart: function() {
 				console.log('seeCart function activated');
@@ -253,7 +253,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 					this.buttons[1].visible = true;
 					console.log('cart shown');
 				}
-				$.get('http://www.foodbylags.com/api_for_lags/carted_items.json', function(result) {
+				$.get('http://localhost:3000/api_for_lags/carted_items.json', function(result) {
 					console.log('carts below yo');
 					console.log(result.carts);
 				})

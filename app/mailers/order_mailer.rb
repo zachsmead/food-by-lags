@@ -9,6 +9,15 @@ class OrderMailer < ApplicationMailer
   def order_confirmation(buyer)
     @order = Order.last
     @buyer = buyer
+    puts "*" * 100
+    puts "*" * 100
+    puts "*" * 100
+    puts "@buyer below"
+    puts @buyer
+    puts "*" * 100
+    puts "*" * 100
+    puts "*" * 100
+
 
     mail to: @buyer, subject: "Order Completed!", cc: "foodbylags@gmail.com"
   end
