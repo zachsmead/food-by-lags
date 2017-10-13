@@ -63,13 +63,12 @@ cursor: pointer;
 }
 
 #cuttingboard {
-	text-align: center;
-	margin: 100px;
+    text-align: center;
+    margin: auto;
     display: flex;
     justify-content: center;
     flex-direction: row;
-	margin-left: 393px;
-
+    margin-top: 90px;
 }
 
 #editproductform h3 {
