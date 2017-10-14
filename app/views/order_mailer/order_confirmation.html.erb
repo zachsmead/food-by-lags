@@ -1,5 +1,10 @@
 Thank you for your order!
 <br>
+Products: <%@order.products.each do |product|%>
+	<%= product.name %>
+	<br>
+<% end %>
+<br>
 First Name: <%= @order.first_name %>
 <br>
 Last Name: <%= @order.last_name %>
