@@ -193,6 +193,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				console.log(this.emailBox);
 				console.log(this.addressOneBox);
 				console.log(this.addressTwoBox);
+				const orderId = 0;
 
 
 
@@ -212,8 +213,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				$.post('http://www.foodbylags.com/api_for_lags/create_order.json', form, function(result) {
 					console.log('result below of create_order.json');
 					console.log(result);
+					this.orderId = result['id'];
+					window.location = "http://www.foodbylags.com/charges/new_with_id" + this.orderId;
+
 				})
-				window.location = "http://www.foodbylags.com/charges/new";
 			},
 			commentSend: function() {
 				console.log('Send Comment Functioning');
