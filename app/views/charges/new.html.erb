@@ -29,7 +29,7 @@
                         <!--Text-->
                         <p class="card-text small-card">
                           <div class='pay_page'>
-                            <%= form_tag charges_path do %>
+                            <form action="/charges/charges_with_id/<%=@order.id %>" method="POST">
                               <article>
                                 <% if flash[:error].present? %>
                                   <div id="error_explanation">
@@ -53,7 +53,7 @@
                                   document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
                               </script>
                               <button type="submit" class="btn btn-primary">Pay with Card</button>
-                            <% end %>
+                            </form>
                           </div>
                         </p>
                     </div>
