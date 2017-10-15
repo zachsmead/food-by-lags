@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 					console.log('result below of create_order.json');
 					console.log(result);
 					this.orderId = result['id'];
-					window.location = "http://www.foodbylags.com/charges/new_with_id" + this.orderId;
+					window.location = "http://www.foodbylags.com/charges/new_with_id/" + this.orderId;
 
 				})
 			},
