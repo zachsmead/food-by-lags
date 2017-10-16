@@ -12,17 +12,18 @@
 	</div>
 </div>
 
+
 <div id="commentbox">
 	<div class="box">
 		<h3> Any comments or reviews?<br> Please submit below. </h3>
 
 			<br>
 				<div id="nameform">
-					<input type="text" v-model="nameComment" placeholder="Your name">
+					<input type="text" v-model="name" placeholder="Your name">
 				</div>
 				<br>
 				<br>
-				<input class="" type="text" v-model="textComment" placeholder="Write a message" cols="60" rows="10"></textarea>
+				<textarea type="text" v-model="text" placeholder="Write a message" cols="60" rows="10"></textarea>
 
 				<div id="commentsubmitbutton">
 					<button v-on:click="commentSend">Submit</button>
@@ -51,11 +52,9 @@
 				<h4 id="comment_here" style="text-decoration: bold; padding-top: 20px; padding-bottom: 20px;"></h4>
 						<input type="text" v-model="nameText" placeholder="Your name">
 						<br>
-						<input type="hidden" v-model="comment_id" value="<%= item.id %>">
-						<br>
 					<input type="text" v-model="textText" placeholder="Your response" cols="45" rows="6" style="margin-bottom: 20px;"></input>
 					<div id="comment_button">
-						<button class='btn btn-primary' v-on:Click="textSend" style="margin-top: -3px;" type="submit"> Submit</button>
+						<button class='btn btn-primary' v-on:Click="textSend(<%= item.id %>)" style="margin-top: -3px;" type="submit"> Submit</button>
 					</div>
 			</div>
 	</div>
@@ -64,6 +63,7 @@
 	
 
 <% end %>
+
 
 
 
