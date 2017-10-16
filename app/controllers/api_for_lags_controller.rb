@@ -22,27 +22,55 @@ class ApiForLagsController < ApplicationController
 		name = params['name']
 		text = params['newText']
 		commentId = params['commentId']
+		puts "*" * 100
+		puts "*" * 100
+		puts "*" * 100
+		puts "params below"
+		puts params
+		puts "name below"
+		puts name
+		puts "text below"
+		puts text
+		puts "commentId"
+		puts commentId
+		puts "*" * 100
+		puts "*" * 100
+		puts "*" * 100
 
 		@new_text = Text.create(name: name,
 								text: text,
-								comment_id: commentId,
+								comment_id: commentId.to_i,
 								approved: false)
-		@id = @new_text.id
+		puts "*" * 100
+		puts "*" * 100
+		puts "*" * 100
+		puts "@new_text below"
+		puts @new_text.inspect
+		puts "*" * 100
+		puts "*" * 100
+		puts "*" * 100
+
+		@id = commentId.to_i
+
+		puts "*" * 100
+		puts "*" * 100
+		puts "*" * 100
+		puts "id below"
+		puts @id.inspect
+		puts "*" * 100
+		puts "*" * 100
+		puts "*" * 100
+
 		if @new_text.save
 			OrderMailer.text_approval(@new_text).deliver
-			redirect_to "/contacts" 
 			flash[:success] = "Your text has been successfully sent."
-
+			redirect_to "/contacts" 
 		else
 			flash[:danger] = "Something went wrong with the mailing process."
 			redirect_to "/contacts"
-
 		end
 	end
-
-
-
-
+	
 	def create_order
 		@bag = params
 		subtotal = 0
@@ -183,7 +211,7 @@ class ApiForLagsController < ApplicationController
 
 	def create_comment
 		@bag = params
-		newBag = @bag['textComment']
+		newBag = @bag['newComment']
 		name = @bag['name']
 		puts "*" * 100
 		puts "*" * 100
@@ -191,13 +219,12 @@ class ApiForLagsController < ApplicationController
 
 		puts "newBag inspect below"
 		puts newBag.inspect
+		puts "name below"
+		puts name
 
 		puts "*" * 100
 		puts "*" * 100
 		puts "*" * 100
-
-
-
 
 		@comment = Comment.create(
 			name: name,
@@ -205,27 +232,35 @@ class ApiForLagsController < ApplicationController
 			approved: false
 		)
 
+		puts "*" * 100
+		puts "*" * 100
+		puts "*" * 100
+		puts "@comment below"
+		puts @comment.inspect
+		puts "*" * 100
+		puts "*" * 100
+		puts "*" * 100
 
 
 
 
 
 
-		puts "&" * 100
+		# puts "&" * 100
 
-		puts "&" * 100
+		# puts "&" * 100
 
-		puts "&" * 100
+		# puts "&" * 100
 
-		puts "&" * 100
+		# puts "&" * 100
 
-		puts "&" * 100
+		# puts "&" * 100
 		@id = @comment.id
 		# OrderMailer
 		if @comment.save
 			OrderMailer.comment_approval(@comment).deliver
-			redirect_to "/contacts" 
 			flash[:success] = "Your comment has been successfully sent."
+			redirect_to "/contacts" 
 
 		else
 			flash[:danger] = "Something went wrong with the mailing process."
@@ -234,6 +269,5 @@ class ApiForLagsController < ApplicationController
 		end
 
 	end
-
 
 end
