@@ -8,8 +8,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			finalBag: [],
 			brand_new_bag: [],
 			commentAdd: "",
-			nameComment: "",
-			textComment: "",
+			name: "",
+			text: "",
 			nameText: "",
 			textText: "",
 			nameAdd: "",
@@ -220,34 +220,41 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			},
 			commentSend: function() {
 				console.log('Send Comment Functioning');
-				console.log('this.nameComment below');
-				console.log(this.nameComment);
-				console.log('this.textComment below');
-				console.log(this.textComment);
+				console.log('this.name below');
+				console.log(this.name;
+				console.log('this.text below');
+				console.log(this.text);
 
 				var comment_to_send = {
-					newComment: this.textComment,
-					name: this.nameComment
+					newComment: this.text,
+					name: this.name
 				}
 				$.post('http://www.foodbylags.com/api_for_lags/create_comment.json', comment_to_send, function(result) {
 					console.log('commentSend api call running');
 					console.log(result);
-				})
+				}.bind(this))
 				window.location = "http://www.foodbylags.com/contacts";
-			}.bind(this),
-			textSend: function() {
+			},
+			textSend: function(id) {
 				console.log('send text running');
+				console.log('this.textText below');
+				console.log(this.textText);
+				console.log('this.nameText');
+				console.log(this.nameText);
+				console.log('id below');
+				console.log(id);
+				
 				var text_to_send = {
 					newText: this.textText,
 					name: this.nameText,
-					commentId: this.commentId
+					commentId: id
 				}
 				$.post('http://www.foodbylags.com/texts/add_text_to_comment.json', text_to_send, function(result) {
 					console.log('text send api running');
 					console.log(result);
 				})
 				window.location = "http://www.foodbylags.com/contacts";
-			}.bind(this),
+			},
 			seeCart: function() {
 				console.log('seeCart function activated');
 				if(this.bag.length === 0) {
