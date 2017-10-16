@@ -2,7 +2,17 @@ class CommentsController < ApplicationController
 	
 	def index
 		@approved_comments = Comment.where(approved: true)
-		
+		puts "*" * 100
+		puts "$" * 100
+		puts "*" * 100
+		puts "@approved_comments id below"
+		@approved_comments.each do |comment|
+			puts "comment id"
+			puts comment.id
+		end
+		puts "*" * 100
+		puts "$" * 100
+		puts "*" * 100
 	end
 
 	def approved
