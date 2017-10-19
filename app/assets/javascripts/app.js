@@ -221,7 +221,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			commentSend: function() {
 				console.log('Send Comment Functioning');
 				console.log('this.name below');
-				console.log(this.name;
+				console.log(this.name);
 				console.log('this.text below');
 				console.log(this.text);
 
