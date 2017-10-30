@@ -1,6 +1,6 @@
 class ChargesController < ApplicationController
 # 	if there are any problems with allowing access with header etc, uncomment below
-# 	protect_from_forgery with: :null_session
+	protect_from_forgery with: :null_session
 
 	def new
 		@order = Order.find_by(id: params[:id])
