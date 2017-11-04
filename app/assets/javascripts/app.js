@@ -179,6 +179,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				// }
 				// console.log('order_in_json below');
 				// console.log(order_in_json);
+				//
 
 
 				// $.post('http://localhost:3000/api_for_lags/checkout.json', order_in_json, function(result) {
