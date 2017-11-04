@@ -33,7 +33,7 @@ Product.create(name: "Side/Dessert Cookbook",
 			   description: "Enjoy 7 scrumptious sides and dessert recipes! Try some healthier versions of our favorite carbs we enjoy on the side but taste just the same such as Cauliflower Mac N Cheese! The Churro Banana Bites for dessert will satisfy that sugar/sweet craving!"
 			)
 
-Product.create(name: "All Three Coockbooks",
+Product.create(name: "All Three Cookbooks",
 			   product_type: "Book",
 			   stock: 30,
 			   cost: 19.99,
