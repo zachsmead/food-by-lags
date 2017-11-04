@@ -66,7 +66,7 @@ Rails.application.configure do
   }
 
   # specify what domain to use for mailerURLs
-  config.action_mailer.default_url_options = { host: "foodbylags.com" 
+  config.action_mailer.default_url_options = { host: "foodbylags.com" }
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
