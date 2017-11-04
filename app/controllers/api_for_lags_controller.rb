@@ -19,27 +19,13 @@ class ApiForLagsController < ApplicationController
 	end
 
 	def add_text_to_comment
-		name = params['name']
-		text = params['newText']
-		commentId = params['commentId']
-		puts "*" * 100
-		puts "*" * 100
-		puts "*" * 100
-		puts "params below"
-		puts params
-		puts "name below"
-		puts name
-		puts "text below"
-		puts text
-		puts "commentId"
-		puts commentId
-		puts "*" * 100
-		puts "*" * 100
-		puts "*" * 100
+		name = params[:name]
+		text = params[:text]
+		comment_id = params[:comment_id]
 
 		@new_text = Text.create(name: name,
 								text: text,
-								comment_id: commentId.to_i,
+								comment_id: comment_id,
 								approved: false)
 		puts "*" * 100
 		puts "*" * 100
@@ -50,7 +36,7 @@ class ApiForLagsController < ApplicationController
 		puts "*" * 100
 		puts "*" * 100
 
-		@id = commentId.to_i
+		@id = comment_id.to_i
 
 		puts "*" * 100
 		puts "*" * 100
